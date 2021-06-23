@@ -27,7 +27,7 @@ namespace RM_2._0_old
             var login = "user1";
             var password = "12345678";
 
-            //RedmineManager redmine = new RedmineManager(host, login, password);
+            RedmineManager redmine = new RedmineManager(host, login, password);
             NameValueCollection parameters = new NameValueCollection();
             IList<Project> allProjects = redmine.GetTotalObjectList<Project>(parameters);
             foreach (var issue in allProjects)
