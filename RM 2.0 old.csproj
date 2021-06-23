@@ -79,5 +79,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RM1.2\Redmine.Api\redmine-net40-api\redmine-net40-api.csproj">
+      <Project>{0d9b763c-a16b-463b-bddd-0a0467dcd32e}</Project>
+      <Name>redmine-net40-api</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
