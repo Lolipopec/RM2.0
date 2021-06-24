@@ -18,6 +18,7 @@ namespace RM_2._0_old
         public Авторизация()
         {
             InitializeComponent();
+            LoginTXT.Focus();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -26,8 +27,8 @@ namespace RM_2._0_old
             {
                 Debug.WriteLine("Login");
                 var host = "http://testred.ru";
-                var login = "user1";
-                var password = "12345678";
+                var login = LoginTXT.Text;
+                var password = PasswordTXT.Text;
                 var a = new RedmineManager(host, login, password);
                 User currentUser = a.GetCurrentUser();
                 Debug.WriteLine("Current user: {0}.", currentUser.FirstName);
@@ -35,9 +36,6 @@ namespace RM_2._0_old
                 Form1 f = new Form1(login, password);
                 f.Show();
                 this.Hide();
-
-
-              
             }
             catch
             {
