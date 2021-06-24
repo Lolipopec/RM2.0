@@ -55,18 +55,29 @@ namespace RM_2._0_old
             RM_2._0_old.Menu.password = p;
 
             RedmineManager redmine = new RedmineManager(host, login, password);
-            //NameValueCollection parameters = new NameValueCollection();
-            //  allProjects = redmine.GetTotalObjectList<Project>(parameters);
-            //foreach (var c in allProjects)
-            //{
-            //    comboBox1.Items.Add(c.Name);
-            //}
-
-            //var parameters = new NameValueCollection { };
-            //parameters.Add(RedmineKeys.STATUS_ID, "2");
-            //parameters.Add(RedmineKeys.ASSIGNED_TO_ID, "me");
-
-
+            NameValueCollection parameters = new NameValueCollection();
+            IList<Project> allProjects = redmine.GetTotalObjectList<Project>(parameters);
+            foreach (var c in allProjects)
+            {
+                comboBox1.Items.Add(c.Name);
+            }
+            NameValueCollection parameter = new NameValueCollection();
+            parameter.Add("STATUS_ID", "*");
+            parameter.Add("ASSIGNED_TO_ID", "*");
+            parameter.Add("PROJECT_ID", "*");
+            RedmineManager manager = new RedmineManager(host, login, password);
+            int i = 0;
+            foreach (var issue in manager.GetTotalObjectList<Issue>(parameters))
+            {
+                dataGridView1.Rows.Add();
+                dataGridView1.Rows[i].Cells[0].Value = issue.Id;
+                dataGridView1.Rows[i].Cells[1].Value = issue.Subject;
+                dataGridView1.Rows[i].Cells[2].Value = issue.Status.Name;
+                dataGridView1.Rows[i].Cells[3].Value = issue.Priority.Name;
+                //XmlReader reader =  ;
+                //issue.ReadXml();
+                i++;
+            }
             var s = redminetask;
 
 
@@ -89,7 +100,6 @@ namespace RM_2._0_old
             Priority = new IdentifiableName { Id = 4 },       // Приоритет. По умолчанию Normal
             EstimatedHours = (float?)1.0,                     // Оценка времени
             Watchers = new List<Watcher>() { new Watcher { Id = 2 } }, // Наблюдатели
-
         };
 
 
@@ -104,6 +114,11 @@ namespace RM_2._0_old
 
         private void comboBox1_Update(object sender, EventArgs e)
         {
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

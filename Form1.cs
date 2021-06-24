@@ -30,25 +30,23 @@ namespace RM_2._0_old
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var redmine = new RedmineManager(host, login, password);
-            NameValueCollection parameters = new NameValueCollection();
-            IList<Project> allProjects = redmine.GetTotalObjectList<Project>(parameters);
+            //var redmine = new RedmineManager(host, login, password);
+            //NameValueCollection parameters = new NameValueCollection();
+            //IList<Project> allProjects = redmine.GetTotalObjectList<Project>(parameters);
+
+            //using (StreamWriter sw = new StreamWriter(@"Проекты.txt", false, Encoding.Default, 10))
+            //{
+            //    foreach (var issue in allProjects)
+            //    {
+            //        Debug.WriteLine(issue.Name + " " + issue.Id);
+            //        sw.Write(issue.Name + ";" + issue.Id);
+            //        sw.Write("\n");
+            //    }
 
 
-
-            using (StreamWriter sw = new StreamWriter(@"Проекты.txt", false, Encoding.Default, 10))
-            {
-
-                foreach (var issue in allProjects)
-                {
-                    Debug.WriteLine(issue.Name + " " + issue.Id);
-                    sw.Write(issue.Name + ";" + issue.Id);
-                    sw.Write("\n");
-                }
-
-
-                sw.Write(DateTime.Now.ToString());
-            }
+            //    sw.Write(DateTime.Now.ToString());
+            //}
+            //Menu m = new Menu();
 
 
         }
