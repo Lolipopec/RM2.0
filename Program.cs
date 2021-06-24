@@ -16,7 +16,7 @@ namespace RM_2._0_old
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new Menu("user1", "12345678"));
         }
     }
 }
