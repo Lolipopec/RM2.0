@@ -39,7 +39,11 @@ namespace RM_2._0_old
 
         #endregion
         #region Переменные
+        RedmineManager redmine;
+        NameValueCollection parameters;
         private int projectId = 0;
+        private int statusId = 0;
+        private int priorID = 0;
         public static string host = "http://testred.ru";
         public static string login = "";
         //  IList<Project> allProjects;
@@ -54,13 +58,76 @@ namespace RM_2._0_old
             RM_2._0_old.Menu.login = l;
             RM_2._0_old.Menu.password = p;
 
-            RedmineManager redmine = new RedmineManager(host, login, password);
-            NameValueCollection parameters = new NameValueCollection();
-            IList<Project> allProjects = redmine.GetTotalObjectList<Project>(parameters);
-            foreach (var c in allProjects)
+            redmine = new RedmineManager(host, login, password);
+            parameters = new NameValueCollection();
+            Fill();
+
+        }
+
+        /// <summary>
+        /// определение id 
+        /// </summary>
+        /// <returns></returns>
+        public void idsearch()
+        {
+            //для проектов
+            foreach (var c in redmine.GetTotalObjectList<Project>(parameters))
             {
-                comboBox1.Items.Add(c.Name);
+                if (comboProject.SelectedItem.ToString() == c.Name)
+                {
+                    projectId = c.Id;
+                    break;
+                }
+                else
+                    projectId = 0;
             }
+            //для статусов
+            foreach (var c in redmine.GetTotalObjectList<IssueStatus>(parameters))
+            {
+                if (comboStatus.SelectedItem.ToString() == c.Name)
+                {
+                    statusId = c.Id;
+                    break;
+                }
+                else
+                    statusId = 0;
+            }
+            //для приоритета
+            foreach (var c in redmine.GetTotalObjectList<IssuePriority>(parameters))
+            {
+                if (comboPrior.SelectedItem.ToString() == c.Name)
+                {
+                    priorID = c.Id;
+                    break;
+                }
+                else
+                    priorID = 0;
+            }
+        }
+
+        /// <summary>
+        /// наполнение формы
+        /// </summary>
+        public void Fill()
+        {
+            //Наполнение проектов
+            IList<Project> allProjects = redmine.GetTotalObjectList<Project>(parameters);
+            foreach (var c in allProjects.Distinct())
+            {
+                comboProject.Items.Add(c.Name);
+            }
+            //наполнение сатусов
+            foreach (var c in redmine.GetTotalObjectList<IssueStatus>(parameters))
+            {
+                comboStatus.Items.Add(c.Name);
+            }
+            //наполнение приоритетов
+            foreach (var c in redmine.GetTotalObjectList<IssuePriority>(parameters))
+            {
+                comboPrior.Items.Add(c.Name);
+            }
+
+            //наполнение datagrid
             NameValueCollection parameter = new NameValueCollection();
             parameter.Add("STATUS_ID", "*");
             parameter.Add("ASSIGNED_TO_ID", "*");
@@ -74,18 +141,10 @@ namespace RM_2._0_old
                 dataGridView1.Rows[i].Cells[1].Value = issue.Subject;
                 dataGridView1.Rows[i].Cells[2].Value = issue.Status.Name;
                 dataGridView1.Rows[i].Cells[3].Value = issue.Priority.Name;
-                //XmlReader reader =  ;
-                //issue.ReadXml();
                 i++;
             }
             var s = redminetask;
-
-
-
         }
-
-
-
         Issue redminetask = new Issue()
         {
             AssignedTo = new IdentifiableName() { Id = 1 }, // Кому отправить
@@ -101,24 +160,48 @@ namespace RM_2._0_old
             EstimatedHours = (float?)1.0,                     // Оценка времени
             Watchers = new List<Watcher>() { new Watcher { Id = 2 } }, // Наблюдатели
         };
-
-
-        public void Fill()
-        {
-
-        }
         private void Menu_Load(object sender, EventArgs e)
         {
 
         }
 
-        private void comboBox1_Update(object sender, EventArgs e)
+
+
+
+        private void tableLayoutPanel2_Paint(object sender, PaintEventArgs e)
         {
+
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void поискToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+        }
+
+        /// <summary>
+        /// combobox проектов
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void comboProject_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            idsearch();
+
+        }
+
+        private void выйтиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Debug.WriteLine(projectId + " " + statusId + " " + priorID);
+        }
+
+        private void comboPrior_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            idsearch();
+        }
+
+        private void comboStatus_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            idsearch();
         }
     }
 }

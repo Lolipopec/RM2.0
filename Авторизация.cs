@@ -33,7 +33,7 @@ namespace RM_2._0_old
                 User currentUser = a.GetCurrentUser();
                 Debug.WriteLine("Current user: {0}.", currentUser.FirstName);
 
-                Form1 f = new Form1(login, password);
+                Menu f  = new Menu(login, password);
                 f.Show();
                 this.Hide();
             }
