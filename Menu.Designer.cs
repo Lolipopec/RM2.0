@@ -39,10 +39,8 @@ namespace RM_2._0_old
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.новаяToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.поискToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.списатьОстатокВремениToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.мониторингToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ручноеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.userToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.выйтиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.labelProject = new System.Windows.Forms.Label();
             this.comboStatus = new System.Windows.Forms.ComboBox();
@@ -50,14 +48,14 @@ namespace RM_2._0_old
             this.comboPrior = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.TimeNowTXT = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.SearchDop = new System.Windows.Forms.GroupBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.TimeNowTXT = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SearchDop.SuspendLayout();
@@ -134,14 +132,15 @@ namespace RM_2._0_old
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(154, 22);
             this.dateTimePicker1.TabIndex = 3;
+            this.dateTimePicker1.Value = new System.DateTime(2021, 6, 24, 23, 33, 46, 0);
             // 
             // menuStrip1
             // 
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.новаяToolStripMenuItem,
-            this.поискToolStripMenuItem,
             this.списатьОстатокВремениToolStripMenuItem,
+            this.userToolStripMenuItem,
             this.выйтиToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -155,40 +154,27 @@ namespace RM_2._0_old
             this.новаяToolStripMenuItem.Size = new System.Drawing.Size(67, 24);
             this.новаяToolStripMenuItem.Text = "Новая";
             // 
-            // поискToolStripMenuItem
-            // 
-            this.поискToolStripMenuItem.Name = "поискToolStripMenuItem";
-            this.поискToolStripMenuItem.Size = new System.Drawing.Size(160, 24);
-            this.поискToolStripMenuItem.Text = "Открыть по номеру";
-            this.поискToolStripMenuItem.Click += new System.EventHandler(this.поискToolStripMenuItem_Click);
-            // 
             // списатьОстатокВремениToolStripMenuItem
             // 
-            this.списатьОстатокВремениToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.мониторингToolStripMenuItem,
-            this.ручноеToolStripMenuItem});
             this.списатьОстатокВремениToolStripMenuItem.Name = "списатьОстатокВремениToolStripMenuItem";
-            this.списатьОстатокВремениToolStripMenuItem.Size = new System.Drawing.Size(205, 24);
-            this.списатьОстатокВремениToolStripMenuItem.Text = "Списать остаток времени ";
+            this.списатьОстатокВремениToolStripMenuItem.Size = new System.Drawing.Size(229, 24);
+            this.списатьОстатокВремениToolStripMenuItem.Text = "Задачки \"Списание времени\"";
             // 
-            // мониторингToolStripMenuItem
+            // userToolStripMenuItem
             // 
-            this.мониторингToolStripMenuItem.Name = "мониторингToolStripMenuItem";
-            this.мониторингToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.мониторингToolStripMenuItem.Text = "Авто";
-            // 
-            // ручноеToolStripMenuItem
-            // 
-            this.ручноеToolStripMenuItem.Name = "ручноеToolStripMenuItem";
-            this.ручноеToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.ручноеToolStripMenuItem.Text = "Ручное";
+            this.userToolStripMenuItem.Margin = new System.Windows.Forms.Padding(260, 0, 0, 0);
+            this.userToolStripMenuItem.Name = "userToolStripMenuItem";
+            this.userToolStripMenuItem.Size = new System.Drawing.Size(31, 24);
+            this.userToolStripMenuItem.Text = "1";
+            this.userToolStripMenuItem.TextDirection = System.Windows.Forms.ToolStripTextDirection.Horizontal;
+            this.userToolStripMenuItem.Click += new System.EventHandler(this.userToolStripMenuItem_Click);
             // 
             // выйтиToolStripMenuItem
             // 
             this.выйтиToolStripMenuItem.Name = "выйтиToolStripMenuItem";
             this.выйтиToolStripMenuItem.Size = new System.Drawing.Size(67, 24);
             this.выйтиToolStripMenuItem.Text = "Выйти";
-            this.выйтиToolStripMenuItem.Click += new System.EventHandler(this.выйтиToolStripMenuItem_Click);
+            this.выйтиToolStripMenuItem.Click += new System.EventHandler(this.выйтиToolStripMenuItem_Click_1);
             // 
             // labelProject
             // 
@@ -243,12 +229,9 @@ namespace RM_2._0_old
             this.label2.TabIndex = 5;
             this.label2.Text = "Приоритет";
             // 
-            // TimeNowTXT
+            // timer1
             // 
-            this.TimeNowTXT.Location = new System.Drawing.Point(647, 36);
-            this.TimeNowTXT.Name = "TimeNowTXT";
-            this.TimeNowTXT.Size = new System.Drawing.Size(154, 22);
-            this.TimeNowTXT.TabIndex = 7;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // textBox1
             // 
@@ -279,12 +262,21 @@ namespace RM_2._0_old
             this.SearchDop.TabStop = false;
             this.SearchDop.Text = "Дополнительный поиск";
             // 
-            // textBox2
+            // label5
             // 
-            this.textBox2.Location = new System.Drawing.Point(6, 49);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(212, 22);
-            this.textBox2.TabIndex = 0;
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(6, 78);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(260, 17);
+            this.label5.TabIndex = 13;
+            this.label5.Text = "Тут можно еще что-нибудь придумать";
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(9, 98);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(209, 22);
+            this.textBox3.TabIndex = 12;
             // 
             // label4
             // 
@@ -295,31 +287,33 @@ namespace RM_2._0_old
             this.label4.TabIndex = 11;
             this.label4.Text = "Тема";
             // 
-            // textBox3
+            // textBox2
             // 
-            this.textBox3.Location = new System.Drawing.Point(9, 98);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(209, 22);
-            this.textBox3.TabIndex = 12;
+            this.textBox2.Location = new System.Drawing.Point(6, 49);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(212, 22);
+            this.textBox2.TabIndex = 0;
             // 
-            // label5
+            // TimeNowTXT
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 78);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(260, 17);
-            this.label5.TabIndex = 13;
-            this.label5.Text = "Тут можно еще что-нибудь придумать";
+            this.TimeNowTXT.AutoSize = true;
+            this.TimeNowTXT.BackColor = System.Drawing.Color.Transparent;
+            this.TimeNowTXT.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.TimeNowTXT.Location = new System.Drawing.Point(722, 36);
+            this.TimeNowTXT.Name = "TimeNowTXT";
+            this.TimeNowTXT.Size = new System.Drawing.Size(73, 20);
+            this.TimeNowTXT.TabIndex = 11;
+            this.TimeNowTXT.Text = "00:00:00";
             // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(813, 401);
+            this.Controls.Add(this.TimeNowTXT);
             this.Controls.Add(this.SearchDop);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.TimeNowTXT);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.comboPrior);
@@ -331,7 +325,10 @@ namespace RM_2._0_old
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.MaximumSize = new System.Drawing.Size(831, 448);
+            this.MinimumSize = new System.Drawing.Size(831, 448);
             this.Name = "Menu";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Menu";
             this.Load += new System.EventHandler(this.Menu_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -355,18 +352,14 @@ namespace RM_2._0_old
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem новаяToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem поискToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem списатьОстатокВремениToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem мониторингToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem ручноеToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem выйтиToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem userToolStripMenuItem;
         private System.Windows.Forms.Label labelProject;
         private System.Windows.Forms.ComboBox comboStatus;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboPrior;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.TextBox TimeNowTXT;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.GroupBox SearchDop;
@@ -374,5 +367,7 @@ namespace RM_2._0_old
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.ToolStripMenuItem выйтиToolStripMenuItem;
+        private System.Windows.Forms.Label TimeNowTXT;
     }
 }

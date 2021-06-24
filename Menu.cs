@@ -39,6 +39,7 @@ namespace RM_2._0_old
 
         #endregion
         #region Переменные
+
         RedmineManager redmine;
         NameValueCollection parameters;
         private int projectId = 0;
@@ -61,7 +62,9 @@ namespace RM_2._0_old
             redmine = new RedmineManager(host, login, password);
             parameters = new NameValueCollection();
             Fill();
-
+            userToolStripMenuItem.Text = l;
+            timer1.Interval = 1000;
+            timer1.Enabled = true;
         }
 
         /// <summary>
@@ -70,6 +73,7 @@ namespace RM_2._0_old
         /// <returns></returns>
         public void idsearch()
         {
+            parameters = new NameValueCollection();
             //для проектов
             foreach (var c in redmine.GetTotalObjectList<Project>(parameters))
             {
@@ -77,6 +81,7 @@ namespace RM_2._0_old
                 {
                     projectId = c.Id;
                     break;
+                    
                 }
                 else
                     projectId = 0;
@@ -103,6 +108,7 @@ namespace RM_2._0_old
                 else
                     priorID = 0;
             }
+            RefReshFill();
         }
 
         /// <summary>
@@ -143,7 +149,6 @@ namespace RM_2._0_old
                 dataGridView1.Rows[i].Cells[3].Value = issue.Priority.Name;
                 i++;
             }
-            var s = redminetask;
         }
         Issue redminetask = new Issue()
         {
@@ -164,20 +169,14 @@ namespace RM_2._0_old
         {
 
         }
-
-
-
-
         private void tableLayoutPanel2_Paint(object sender, PaintEventArgs e)
         {
 
         }
-
         private void поискToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
         }
-
         /// <summary>
         /// combobox проектов
         /// </summary>
@@ -187,21 +186,59 @@ namespace RM_2._0_old
         {
             idsearch();
 
-        }
 
-        private void выйтиToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Debug.WriteLine(projectId + " " + statusId + " " + priorID);
         }
-
         private void comboPrior_SelectedIndexChanged(object sender, EventArgs e)
         {
             idsearch();
         }
-
         private void comboStatus_SelectedIndexChanged(object sender, EventArgs e)
         {
             idsearch();
+        }
+        private void выйтиToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            this.Hide();
+            Авторизация f = new Авторизация();
+            f.Show();
+        }
+        private void RefReshFill()
+        {
+            dataGridView1.Rows.Clear();
+            //наполнение datagrid
+            NameValueCollection parameterref = new NameValueCollection();
+            if (statusId == 0)
+                parameterref.Add("status_id", "*");
+            else
+                parameterref.Add("status_id", statusId.ToString());
+            if (priorID == 0)
+                parameterref.Add("priority_id", "*");
+            else
+                parameterref.Add("priority_id", priorID.ToString());
+            if (projectId == 0)
+                parameterref.Add("project_id", "*");
+            else
+                parameterref.Add("project_id", projectId.ToString());
+            RedmineManager manager = new RedmineManager(host, login, password);
+            int i = 0;
+            foreach (var issue in manager.GetTotalObjectList<Issue>(parameterref))
+            {
+                dataGridView1.Rows.Add();
+                dataGridView1.Rows[i].Cells[0].Value = issue.Id;
+                dataGridView1.Rows[i].Cells[1].Value = issue.Subject;
+                dataGridView1.Rows[i].Cells[2].Value = issue.Status.Name;
+                dataGridView1.Rows[i].Cells[3].Value = issue.Priority.Name;
+                i++;
+            }
+        }
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            TimeNowTXT.Text = DateTime.Now.ToLongTimeString();
+        }
+
+        private void userToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            dataGridView1.Rows.Clear();
         }
     }
 }
