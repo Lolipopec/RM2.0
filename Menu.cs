@@ -135,13 +135,14 @@ namespace RM_2._0_old
 
             //наполнение datagrid
             NameValueCollection parameter = new NameValueCollection();
-            parameter.Add("STATUS_ID", "*");
-            parameter.Add("ASSIGNED_TO_ID", "*");
-            parameter.Add("PROJECT_ID", "*");
+            parameter.Add("status_id", "open");
+            parameter.Add("assigned_to_id", "me");
+            parameter.Add("project", "*");
             RedmineManager manager = new RedmineManager(host, login, password);
             int i = 0;
             foreach (var issue in manager.GetTotalObjectList<Issue>(parameters))
             {
+                Debug.WriteLine(issue.Priority.Id);
                 dataGridView1.Rows.Add();
                 dataGridView1.Rows[i].Cells[0].Value = issue.Id;
                 dataGridView1.Rows[i].Cells[1].Value = issue.Subject;
@@ -185,8 +186,6 @@ namespace RM_2._0_old
         private void comboProject_SelectedIndexChanged(object sender, EventArgs e)
         {
             idsearch();
-
-
         }
         private void comboPrior_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -206,22 +205,22 @@ namespace RM_2._0_old
         {
             dataGridView1.Rows.Clear();
             //наполнение datagrid
-            NameValueCollection parameterref = new NameValueCollection();
+            NameValueCollection parameterref1 = new NameValueCollection();
             if (statusId == 0)
-                parameterref.Add("status_id", "*");
+                parameterref1.Add("status_id", "*");
             else
-                parameterref.Add("status_id", statusId.ToString());
+                parameterref1.Add("status_id", statusId.ToString());
             if (priorID == 0)
-                parameterref.Add("priority_id", "*");
+                parameterref1.Add("priority", "*");
             else
-                parameterref.Add("priority_id", priorID.ToString());
+                parameterref1.Add("priority_id", priorID.ToString());
             if (projectId == 0)
-                parameterref.Add("project_id", "*");
+                parameterref1.Add("project", "*");
             else
-                parameterref.Add("project_id", projectId.ToString());
+                parameterref1.Add("project_id", projectId.ToString());
             RedmineManager manager = new RedmineManager(host, login, password);
             int i = 0;
-            foreach (var issue in manager.GetTotalObjectList<Issue>(parameterref))
+            foreach (var issue in manager.GetTotalObjectList<Issue>(parameterref1))
             {
                 dataGridView1.Rows.Add();
                 dataGridView1.Rows[i].Cells[0].Value = issue.Id;
@@ -239,6 +238,11 @@ namespace RM_2._0_old
         private void userToolStripMenuItem_Click(object sender, EventArgs e)
         {
             dataGridView1.Rows.Clear();
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
