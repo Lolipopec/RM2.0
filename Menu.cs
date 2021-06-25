@@ -65,6 +65,7 @@ namespace RM_2._0_old
             userToolStripMenuItem.Text = l;
             timer1.Interval = 1000;
             timer1.Enabled = true;
+            dateTimePicker1.Value = DateTime.Now;
         }
 
         /// <summary>
@@ -251,7 +252,7 @@ namespace RM_2._0_old
 
         private void новаяToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Новая новая = new Новая(login,password);
+            Новая новая = new Новая(login, password);
             новая.Show();
             this.Hide();
         }
