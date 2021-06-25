@@ -81,7 +81,6 @@ namespace RM_2._0_old
                 {
                     projectId = c.Id;
                     break;
-                    
                 }
                 else
                     projectId = 0;
@@ -140,9 +139,14 @@ namespace RM_2._0_old
             parameter.Add("project", "*");
             RedmineManager manager = new RedmineManager(host, login, password);
             int i = 0;
+
             foreach (var issue in manager.GetTotalObjectList<Issue>(parameters))
             {
-                Debug.WriteLine(issue.Priority.Id);
+                //Debug.WriteLine(issue.CustomFields.);
+                //foreach (var c in issue.CustomFields.Distinct())
+                //{
+                //    Debug.WriteLine(c.Id+" "+c.Name+" "+c.Multiple);
+                //}
                 dataGridView1.Rows.Add();
                 dataGridView1.Rows[i].Cells[0].Value = issue.Id;
                 dataGridView1.Rows[i].Cells[1].Value = issue.Subject;
@@ -243,6 +247,13 @@ namespace RM_2._0_old
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void новаяToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Новая новая = new Новая(login,password);
+            новая.Show();
+            this.Hide();
         }
     }
 }

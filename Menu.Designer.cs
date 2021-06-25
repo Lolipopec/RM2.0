@@ -70,7 +70,7 @@ namespace RM_2._0_old
             this.Status,
             this.Prior});
             this.dataGridView1.Location = new System.Drawing.Point(9, 105);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidth = 51;
@@ -119,10 +119,10 @@ namespace RM_2._0_old
             this.comboProject.FormattingEnabled = true;
             this.comboProject.Items.AddRange(new object[] {
             "Все проекты"});
-            this.comboProject.Location = new System.Drawing.Point(9, 46);
-            this.comboProject.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comboProject.Location = new System.Drawing.Point(153, 44);
+            this.comboProject.Margin = new System.Windows.Forms.Padding(2);
             this.comboProject.Name = "comboProject";
-            this.comboProject.Size = new System.Drawing.Size(127, 21);
+            this.comboProject.Size = new System.Drawing.Size(197, 21);
             this.comboProject.TabIndex = 2;
             this.comboProject.Text = "Все проекты";
             this.comboProject.SelectedIndexChanged += new System.EventHandler(this.comboProject_SelectedIndexChanged);
@@ -130,7 +130,7 @@ namespace RM_2._0_old
             // dateTimePicker1
             // 
             this.dateTimePicker1.Location = new System.Drawing.Point(485, 52);
-            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(2);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(116, 20);
             this.dateTimePicker1.TabIndex = 3;
@@ -156,6 +156,7 @@ namespace RM_2._0_old
             this.новаяToolStripMenuItem.Name = "новаяToolStripMenuItem";
             this.новаяToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
             this.новаяToolStripMenuItem.Text = "Новая";
+            this.новаяToolStripMenuItem.Click += new System.EventHandler(this.новаяToolStripMenuItem_Click);
             // 
             // списатьОстатокВремениToolStripMenuItem
             // 
@@ -182,7 +183,7 @@ namespace RM_2._0_old
             // labelProject
             // 
             this.labelProject.AutoSize = true;
-            this.labelProject.Location = new System.Drawing.Point(9, 29);
+            this.labelProject.Location = new System.Drawing.Point(153, 27);
             this.labelProject.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelProject.Name = "labelProject";
             this.labelProject.Size = new System.Drawing.Size(44, 13);
@@ -195,7 +196,7 @@ namespace RM_2._0_old
             this.comboStatus.Items.AddRange(new object[] {
             "Все статусы"});
             this.comboStatus.Location = new System.Drawing.Point(9, 82);
-            this.comboStatus.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comboStatus.Margin = new System.Windows.Forms.Padding(2);
             this.comboStatus.Name = "comboStatus";
             this.comboStatus.Size = new System.Drawing.Size(127, 21);
             this.comboStatus.TabIndex = 6;
@@ -217,8 +218,8 @@ namespace RM_2._0_old
             this.comboPrior.FormattingEnabled = true;
             this.comboPrior.Items.AddRange(new object[] {
             "Все приоритеты"});
-            this.comboPrior.Location = new System.Drawing.Point(140, 46);
-            this.comboPrior.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comboPrior.Location = new System.Drawing.Point(9, 44);
+            this.comboPrior.Margin = new System.Windows.Forms.Padding(2);
             this.comboPrior.Name = "comboPrior";
             this.comboPrior.Size = new System.Drawing.Size(127, 21);
             this.comboPrior.TabIndex = 6;
@@ -228,7 +229,7 @@ namespace RM_2._0_old
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(137, 29);
+            this.label2.Location = new System.Drawing.Point(6, 27);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(61, 13);
@@ -242,7 +243,7 @@ namespace RM_2._0_old
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(9, 302);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(2);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(47, 20);
             this.textBox1.TabIndex = 8;
@@ -264,9 +265,9 @@ namespace RM_2._0_old
             this.SearchDop.Controls.Add(this.label4);
             this.SearchDop.Controls.Add(this.textBox2);
             this.SearchDop.Location = new System.Drawing.Point(433, 105);
-            this.SearchDop.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SearchDop.Margin = new System.Windows.Forms.Padding(2);
             this.SearchDop.Name = "SearchDop";
-            this.SearchDop.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SearchDop.Padding = new System.Windows.Forms.Padding(2);
             this.SearchDop.Size = new System.Drawing.Size(168, 102);
             this.SearchDop.TabIndex = 10;
             this.SearchDop.TabStop = false;
@@ -285,7 +286,7 @@ namespace RM_2._0_old
             // textBox3
             // 
             this.textBox3.Location = new System.Drawing.Point(7, 80);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox3.Margin = new System.Windows.Forms.Padding(2);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(158, 20);
             this.textBox3.TabIndex = 12;
@@ -303,7 +304,7 @@ namespace RM_2._0_old
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(4, 40);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(2);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(160, 20);
             this.textBox2.TabIndex = 0;
@@ -339,7 +340,7 @@ namespace RM_2._0_old
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximumSize = new System.Drawing.Size(627, 371);
             this.MinimumSize = new System.Drawing.Size(627, 371);
             this.Name = "Menu";
