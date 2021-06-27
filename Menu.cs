@@ -9,6 +9,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -47,7 +48,6 @@ namespace RM_2._0_old
         private int priorID = 0;
         public static string host = "http://testred.ru";
         public static string login = "";
-        //  IList<Project> allProjects;
         public static string password = "";
         #endregion
 
@@ -66,6 +66,9 @@ namespace RM_2._0_old
             timer1.Interval = 1000;
             timer1.Enabled = true;
             dateTimePicker1.Value = DateTime.Now;
+            SearchBtn.Enabled = false;
+            SearchTxt.Enabled = false;
+            domainUpDown1.Wrap = true;
         }
 
         /// <summary>
@@ -143,11 +146,6 @@ namespace RM_2._0_old
 
             foreach (var issue in manager.GetTotalObjectList<Issue>(parameters))
             {
-                //Debug.WriteLine(issue.CustomFields.);
-                //foreach (var c in issue.CustomFields.Distinct())
-                //{
-                //    Debug.WriteLine(c.Id+" "+c.Name+" "+c.Multiple);
-                //}
                 dataGridView1.Rows.Add();
                 dataGridView1.Rows[i].Cells[0].Value = issue.Id;
                 dataGridView1.Rows[i].Cells[1].Value = issue.Subject;
@@ -156,21 +154,21 @@ namespace RM_2._0_old
                 i++;
             }
         }
-        Issue redminetask = new Issue()
-        {
-            AssignedTo = new IdentifiableName() { Id = 1 }, // Кому отправить
-            Author = new IdentifiableName() { Id = 1 },     // Автор задачи 
-            Subject = "ТЕСТ",                                 // Название задачи
-            Description = "Описание для тестовой задачи",     // Описание задачи
-            Project = new IdentifiableName { Id = 1 },      // Проект
-            CreatedOn = DateTime.Now,                         // Дата создание
-            DueDate = DateTime.Now,                          // Дата окончания
-            Tracker = new IdentifiableName { Id = 1 },        // Трекер
-            Status = new IdentifiableName { Id = 1 },         // Статус. По умолчанию NEW
-            Priority = new IdentifiableName { Id = 4 },       // Приоритет. По умолчанию Normal
-            EstimatedHours = (float?)1.0,                     // Оценка времени
-            Watchers = new List<Watcher>() { new Watcher { Id = 2 } }, // Наблюдатели
-        };
+        //Issue redminetask = new Issue()
+        //{
+        //    AssignedTo = new IdentifiableName() { Id = 1 }, // Кому отправить
+        //    Author = new IdentifiableName() { Id = 1 },     // Автор задачи 
+        //    Subject = "ТЕСТ",                                 // Название задачи
+        //    Description = "Описание для тестовой задачи",     // Описание задачи
+        //    Project = new IdentifiableName { Id = 1 },      // Проект
+        //    CreatedOn = DateTime.Now,                         // Дата создание
+        //    DueDate = DateTime.Now,                          // Дата окончания
+        //    Tracker = new IdentifiableName { Id = 1 },        // Трекер
+        //    Status = new IdentifiableName { Id = 1 },         // Статус. По умолчанию NEW
+        //    Priority = new IdentifiableName { Id = 4 },       // Приоритет. По умолчанию Normal
+        //    EstimatedHours = (float?)1.0,                     // Оценка времени
+        //    Watchers = new List<Watcher>() { new Watcher { Id = 2 } }, // Наблюдатели
+        //};
         private void Menu_Load(object sender, EventArgs e)
         {
 
@@ -239,22 +237,89 @@ namespace RM_2._0_old
         {
             TimeNowTXT.Text = DateTime.Now.ToLongTimeString();
         }
-
         private void userToolStripMenuItem_Click(object sender, EventArgs e)
         {
             dataGridView1.Rows.Clear();
         }
-
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
-
         private void новаяToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Новая новая = new Новая(login, password);
             новая.Show();
             this.Hide();
+        }
+        private void domainUpDown1_SelectedItemChanged(object sender, EventArgs e)
+        {
+            SearchTxt.Enabled = true;
+            SearchBtn.Enabled = true;
+        }
+        /// <summary>
+        /// дополнительный поиск
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SearchBtn_Click(object sender, EventArgs e)
+        {
+            //id = 0 - номер задачи; 1 - номер ЛРП
+            dataGridView1.Rows.Clear();
+
+
+            if (domainUpDown1.SelectedIndex == 0)
+            {
+
+                NameValueCollection parameterref2 = new NameValueCollection();
+                parameterref2.Add("issue_id", SearchTxt.Text);
+                RedmineManager manager = new RedmineManager(host, login, password);
+                int i = 0;
+                foreach (var issue in manager.GetTotalObjectList<Issue>(parameterref2))
+                {
+                    dataGridView1.Rows.Add();
+                    dataGridView1.Rows[i].Cells[0].Value = issue.Id;
+                    dataGridView1.Rows[i].Cells[1].Value = issue.Subject;
+                    dataGridView1.Rows[i].Cells[2].Value = issue.Status.Name;
+                    dataGridView1.Rows[i].Cells[3].Value = issue.Priority.Name;
+                    i++;
+                }
+
+
+
+            }
+            else if (domainUpDown1.SelectedIndex == 1)
+            {
+                //тут нужен двойной поиск (1 - в теме, 2 - в описании)
+                //нужно сделать, ночью мозги не придумали чего-то
+
+                NameValueCollection parameterref2 = new NameValueCollection();
+                RedmineManager manager = new RedmineManager(host, login, password);
+                parameterref2.Add("subject", SearchTxt.Text);
+                var Search = manager.GetTotalObjectList<Issue>(parameterref2);
+
+                int i = 0;
+                foreach (var issue in Search)
+                {
+                    dataGridView1.Rows.Add();
+                    dataGridView1.Rows[i].Cells[0].Value = issue.Id;
+                    dataGridView1.Rows[i].Cells[1].Value = issue.Subject;
+                    dataGridView1.Rows[i].Cells[2].Value = issue.Status.Name;
+                    dataGridView1.Rows[i].Cells[3].Value = issue.Priority.Name;
+                    i++;
+                }
+
+
+
+            }
+
+        }
+
+
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            string Search = dataGridView1[0, dataGridView1.CurrentCell.ColumnIndex].Value.ToString();
+            Просмотр_задач ch = new Просмотр_задач(Search);
+            ch.Show();
         }
     }
 }

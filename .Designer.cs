@@ -44,8 +44,6 @@ namespace RM_2._0_old
             this.textBoxВыполненныеДействияЦСС = new System.Windows.Forms.TextBox();
             this.dateTimePickerЦСС = new System.Windows.Forms.DateTimePicker();
             this.panelЦСС = new System.Windows.Forms.Panel();
-            this.labelОписание = new System.Windows.Forms.Label();
-            this.textBoxОписание = new System.Windows.Forms.TextBox();
             this.panelЕСА = new System.Windows.Forms.Panel();
             this.buttonСоздатьЗадачуЕСА = new System.Windows.Forms.Button();
             this.dateTimePickerЕСА = new System.Windows.Forms.DateTimePicker();
@@ -55,15 +53,18 @@ namespace RM_2._0_old
             this.labelКаналЕСА = new System.Windows.Forms.Label();
             this.comboBoxАктивностьЕСА = new System.Windows.Forms.ComboBox();
             this.labelАктивностьЕСА = new System.Windows.Forms.Label();
+            this.labelОписание = new System.Windows.Forms.Label();
+            this.textBoxОписание = new System.Windows.Forms.TextBox();
             this.panelЦСС.SuspendLayout();
             this.panelЕСА.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonСоздатьЗадачуЦСС
             // 
-            this.buttonСоздатьЗадачуЦСС.Location = new System.Drawing.Point(95, 320);
+            this.buttonСоздатьЗадачуЦСС.Location = new System.Drawing.Point(127, 394);
+            this.buttonСоздатьЗадачуЦСС.Margin = new System.Windows.Forms.Padding(4);
             this.buttonСоздатьЗадачуЦСС.Name = "buttonСоздатьЗадачуЦСС";
-            this.buttonСоздатьЗадачуЦСС.Size = new System.Drawing.Size(75, 23);
+            this.buttonСоздатьЗадачуЦСС.Size = new System.Drawing.Size(100, 28);
             this.buttonСоздатьЗадачуЦСС.TabIndex = 0;
             this.buttonСоздатьЗадачуЦСС.Text = "Создать задачу";
             this.buttonСоздатьЗадачуЦСС.UseVisualStyleBackColor = true;
@@ -72,116 +73,117 @@ namespace RM_2._0_old
             // comboBoxПроекты
             // 
             this.comboBoxПроекты.FormattingEnabled = true;
-            this.comboBoxПроекты.Location = new System.Drawing.Point(15, 26);
+            this.comboBoxПроекты.Location = new System.Drawing.Point(20, 32);
+            this.comboBoxПроекты.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxПроекты.Name = "comboBoxПроекты";
-            this.comboBoxПроекты.Size = new System.Drawing.Size(167, 21);
+            this.comboBoxПроекты.Size = new System.Drawing.Size(221, 24);
             this.comboBoxПроекты.TabIndex = 1;
             this.comboBoxПроекты.SelectedIndexChanged += new System.EventHandler(this.comboBoxПроекты_SelectedIndexChanged);
             // 
             // labelПроекты
             // 
             this.labelПроекты.AutoSize = true;
-            this.labelПроекты.Location = new System.Drawing.Point(14, 9);
-            this.labelПроекты.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelПроекты.Location = new System.Drawing.Point(19, 11);
             this.labelПроекты.Name = "labelПроекты";
-            this.labelПроекты.Size = new System.Drawing.Size(44, 13);
+            this.labelПроекты.Size = new System.Drawing.Size(56, 17);
             this.labelПроекты.TabIndex = 6;
             this.labelПроекты.Text = "Проект";
             // 
             // labelАктивностьЦСС
             // 
             this.labelАктивностьЦСС.AutoSize = true;
-            this.labelАктивностьЦСС.Location = new System.Drawing.Point(4, 44);
-            this.labelАктивностьЦСС.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelАктивностьЦСС.Location = new System.Drawing.Point(5, 54);
             this.labelАктивностьЦСС.Name = "labelАктивностьЦСС";
-            this.labelАктивностьЦСС.Size = new System.Drawing.Size(66, 13);
+            this.labelАктивностьЦСС.Size = new System.Drawing.Size(83, 17);
             this.labelАктивностьЦСС.TabIndex = 8;
             this.labelАктивностьЦСС.Text = "Активность";
             // 
             // comboBoxАктивностьЦСС
             // 
             this.comboBoxАктивностьЦСС.FormattingEnabled = true;
-            this.comboBoxАктивностьЦСС.Location = new System.Drawing.Point(5, 61);
+            this.comboBoxАктивностьЦСС.Location = new System.Drawing.Point(7, 75);
+            this.comboBoxАктивностьЦСС.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxАктивностьЦСС.Name = "comboBoxАктивностьЦСС";
-            this.comboBoxАктивностьЦСС.Size = new System.Drawing.Size(184, 21);
+            this.comboBoxАктивностьЦСС.Size = new System.Drawing.Size(244, 24);
             this.comboBoxАктивностьЦСС.TabIndex = 7;
             // 
             // labelМодульЦСС
             // 
             this.labelМодульЦСС.AutoSize = true;
-            this.labelМодульЦСС.Location = new System.Drawing.Point(4, 3);
-            this.labelМодульЦСС.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelМодульЦСС.Location = new System.Drawing.Point(5, 4);
             this.labelМодульЦСС.Name = "labelМодульЦСС";
-            this.labelМодульЦСС.Size = new System.Drawing.Size(45, 13);
+            this.labelМодульЦСС.Size = new System.Drawing.Size(57, 17);
             this.labelМодульЦСС.TabIndex = 10;
             this.labelМодульЦСС.Text = "Модуль";
             // 
             // comboBoxМодульЦСС
             // 
             this.comboBoxМодульЦСС.FormattingEnabled = true;
-            this.comboBoxМодульЦСС.Location = new System.Drawing.Point(5, 20);
+            this.comboBoxМодульЦСС.Location = new System.Drawing.Point(7, 25);
+            this.comboBoxМодульЦСС.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxМодульЦСС.Name = "comboBoxМодульЦСС";
-            this.comboBoxМодульЦСС.Size = new System.Drawing.Size(184, 21);
+            this.comboBoxМодульЦСС.Size = new System.Drawing.Size(244, 24);
             this.comboBoxМодульЦСС.TabIndex = 9;
             // 
             // labelКаналЦСС
             // 
             this.labelКаналЦСС.AutoSize = true;
-            this.labelКаналЦСС.Location = new System.Drawing.Point(4, 89);
-            this.labelКаналЦСС.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelКаналЦСС.Location = new System.Drawing.Point(5, 110);
             this.labelКаналЦСС.Name = "labelКаналЦСС";
-            this.labelКаналЦСС.Size = new System.Drawing.Size(38, 13);
+            this.labelКаналЦСС.Size = new System.Drawing.Size(49, 17);
             this.labelКаналЦСС.TabIndex = 12;
             this.labelКаналЦСС.Text = "Канал";
             // 
             // comboBoxКаналЦСС
             // 
             this.comboBoxКаналЦСС.FormattingEnabled = true;
-            this.comboBoxКаналЦСС.Location = new System.Drawing.Point(5, 106);
+            this.comboBoxКаналЦСС.Location = new System.Drawing.Point(7, 130);
+            this.comboBoxКаналЦСС.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxКаналЦСС.Name = "comboBoxКаналЦСС";
-            this.comboBoxКаналЦСС.Size = new System.Drawing.Size(184, 21);
+            this.comboBoxКаналЦСС.Size = new System.Drawing.Size(244, 24);
             this.comboBoxКаналЦСС.TabIndex = 11;
             // 
             // textBoxНомерЦСС
             // 
-            this.textBoxНомерЦСС.Location = new System.Drawing.Point(5, 146);
+            this.textBoxНомерЦСС.Location = new System.Drawing.Point(7, 180);
+            this.textBoxНомерЦСС.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxНомерЦСС.Name = "textBoxНомерЦСС";
-            this.textBoxНомерЦСС.Size = new System.Drawing.Size(100, 20);
+            this.textBoxНомерЦСС.Size = new System.Drawing.Size(132, 22);
             this.textBoxНомерЦСС.TabIndex = 13;
             // 
             // labelНомерЦСС
             // 
             this.labelНомерЦСС.AutoSize = true;
-            this.labelНомерЦСС.Location = new System.Drawing.Point(4, 130);
-            this.labelНомерЦСС.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelНомерЦСС.Location = new System.Drawing.Point(5, 160);
             this.labelНомерЦСС.Name = "labelНомерЦСС";
-            this.labelНомерЦСС.Size = new System.Drawing.Size(101, 13);
+            this.labelНомерЦСС.Size = new System.Drawing.Size(130, 17);
             this.labelНомерЦСС.TabIndex = 14;
             this.labelНомерЦСС.Text = "Номер обращения";
             // 
             // labelВыполненныеДействияЦСС
             // 
             this.labelВыполненныеДействияЦСС.AutoSize = true;
-            this.labelВыполненныеДействияЦСС.Location = new System.Drawing.Point(2, 221);
-            this.labelВыполненныеДействияЦСС.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelВыполненныеДействияЦСС.Location = new System.Drawing.Point(3, 272);
             this.labelВыполненныеДействияЦСС.Name = "labelВыполненныеДействияЦСС";
-            this.labelВыполненныеДействияЦСС.Size = new System.Drawing.Size(128, 13);
+            this.labelВыполненныеДействияЦСС.Size = new System.Drawing.Size(166, 17);
             this.labelВыполненныеДействияЦСС.TabIndex = 16;
             this.labelВыполненныеДействияЦСС.Text = "Выполненные действия";
             // 
             // textBoxВыполненныеДействияЦСС
             // 
-            this.textBoxВыполненныеДействияЦСС.Location = new System.Drawing.Point(3, 237);
+            this.textBoxВыполненныеДействияЦСС.Location = new System.Drawing.Point(4, 292);
+            this.textBoxВыполненныеДействияЦСС.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxВыполненныеДействияЦСС.Multiline = true;
             this.textBoxВыполненныеДействияЦСС.Name = "textBoxВыполненныеДействияЦСС";
-            this.textBoxВыполненныеДействияЦСС.Size = new System.Drawing.Size(256, 51);
+            this.textBoxВыполненныеДействияЦСС.Size = new System.Drawing.Size(340, 62);
             this.textBoxВыполненныеДействияЦСС.TabIndex = 15;
             // 
             // dateTimePickerЦСС
             // 
-            this.dateTimePickerЦСС.Location = new System.Drawing.Point(0, 294);
+            this.dateTimePickerЦСС.Location = new System.Drawing.Point(0, 362);
+            this.dateTimePickerЦСС.Margin = new System.Windows.Forms.Padding(4);
             this.dateTimePickerЦСС.Name = "dateTimePickerЦСС";
-            this.dateTimePickerЦСС.Size = new System.Drawing.Size(135, 20);
+            this.dateTimePickerЦСС.Size = new System.Drawing.Size(179, 22);
             this.dateTimePickerЦСС.TabIndex = 17;
             // 
             // panelЦСС
@@ -202,29 +204,12 @@ namespace RM_2._0_old
             this.panelЦСС.Controls.Add(this.comboBoxКаналЦСС);
             this.panelЦСС.Controls.Add(this.labelКаналЦСС);
             this.panelЦСС.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.panelЦСС.Location = new System.Drawing.Point(12, 53);
+            this.panelЦСС.Location = new System.Drawing.Point(16, 65);
+            this.panelЦСС.Margin = new System.Windows.Forms.Padding(4);
             this.panelЦСС.Name = "panelЦСС";
-            this.panelЦСС.Size = new System.Drawing.Size(294, 382);
+            this.panelЦСС.Size = new System.Drawing.Size(392, 470);
             this.panelЦСС.TabIndex = 18;
             this.panelЦСС.Visible = false;
-            // 
-            // labelОписание
-            // 
-            this.labelОписание.AutoSize = true;
-            this.labelОписание.Location = new System.Drawing.Point(2, 167);
-            this.labelОписание.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.labelОписание.Name = "labelОписание";
-            this.labelОписание.Size = new System.Drawing.Size(57, 13);
-            this.labelОписание.TabIndex = 19;
-            this.labelОписание.Text = "Описание";
-            // 
-            // textBoxОписание
-            // 
-            this.textBoxОписание.Location = new System.Drawing.Point(3, 183);
-            this.textBoxОписание.Multiline = true;
-            this.textBoxОписание.Name = "textBoxОписание";
-            this.textBoxОписание.Size = new System.Drawing.Size(256, 33);
-            this.textBoxОписание.TabIndex = 18;
             // 
             // panelЕСА
             // 
@@ -237,91 +222,114 @@ namespace RM_2._0_old
             this.panelЕСА.Controls.Add(this.comboBoxАктивностьЕСА);
             this.panelЕСА.Controls.Add(this.labelАктивностьЕСА);
             this.panelЕСА.Location = new System.Drawing.Point(0, 0);
+            this.panelЕСА.Margin = new System.Windows.Forms.Padding(4);
             this.panelЕСА.Name = "panelЕСА";
-            this.panelЕСА.Size = new System.Drawing.Size(294, 340);
+            this.panelЕСА.Size = new System.Drawing.Size(392, 418);
             this.panelЕСА.TabIndex = 19;
             this.panelЕСА.Visible = false;
             // 
             // buttonСоздатьЗадачуЕСА
             // 
-            this.buttonСоздатьЗадачуЕСА.Location = new System.Drawing.Point(24, 190);
+            this.buttonСоздатьЗадачуЕСА.Location = new System.Drawing.Point(32, 234);
+            this.buttonСоздатьЗадачуЕСА.Margin = new System.Windows.Forms.Padding(4);
             this.buttonСоздатьЗадачуЕСА.Name = "buttonСоздатьЗадачуЕСА";
-            this.buttonСоздатьЗадачуЕСА.Size = new System.Drawing.Size(75, 23);
+            this.buttonСоздатьЗадачуЕСА.Size = new System.Drawing.Size(100, 28);
             this.buttonСоздатьЗадачуЕСА.TabIndex = 18;
             this.buttonСоздатьЗадачуЕСА.Text = "Создать задачу";
             this.buttonСоздатьЗадачуЕСА.UseVisualStyleBackColor = true;
             // 
             // dateTimePickerЕСА
             // 
-            this.dateTimePickerЕСА.Location = new System.Drawing.Point(3, 164);
+            this.dateTimePickerЕСА.Location = new System.Drawing.Point(4, 202);
+            this.dateTimePickerЕСА.Margin = new System.Windows.Forms.Padding(4);
             this.dateTimePickerЕСА.Name = "dateTimePickerЕСА";
-            this.dateTimePickerЕСА.Size = new System.Drawing.Size(135, 20);
+            this.dateTimePickerЕСА.Size = new System.Drawing.Size(179, 22);
             this.dateTimePickerЕСА.TabIndex = 18;
             // 
             // labelДействияЕСА
             // 
             this.labelДействияЕСА.AutoSize = true;
-            this.labelДействияЕСА.Location = new System.Drawing.Point(2, 91);
-            this.labelДействияЕСА.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelДействияЕСА.Location = new System.Drawing.Point(3, 112);
             this.labelДействияЕСА.Name = "labelДействияЕСА";
-            this.labelДействияЕСА.Size = new System.Drawing.Size(128, 13);
+            this.labelДействияЕСА.Size = new System.Drawing.Size(166, 17);
             this.labelДействияЕСА.TabIndex = 19;
             this.labelДействияЕСА.Text = "Выполненные действия";
             // 
             // comboBoxКаналЕСА
             // 
             this.comboBoxКаналЕСА.FormattingEnabled = true;
-            this.comboBoxКаналЕСА.Location = new System.Drawing.Point(3, 62);
+            this.comboBoxКаналЕСА.Location = new System.Drawing.Point(4, 76);
+            this.comboBoxКаналЕСА.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxКаналЕСА.Name = "comboBoxКаналЕСА";
-            this.comboBoxКаналЕСА.Size = new System.Drawing.Size(167, 21);
+            this.comboBoxКаналЕСА.Size = new System.Drawing.Size(221, 24);
             this.comboBoxКаналЕСА.TabIndex = 18;
             // 
             // textBoxВыполненныеДействияЕСА
             // 
-            this.textBoxВыполненныеДействияЕСА.Location = new System.Drawing.Point(3, 107);
+            this.textBoxВыполненныеДействияЕСА.Location = new System.Drawing.Point(4, 132);
+            this.textBoxВыполненныеДействияЕСА.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxВыполненныеДействияЕСА.Multiline = true;
             this.textBoxВыполненныеДействияЕСА.Name = "textBoxВыполненныеДействияЕСА";
-            this.textBoxВыполненныеДействияЕСА.Size = new System.Drawing.Size(256, 51);
+            this.textBoxВыполненныеДействияЕСА.Size = new System.Drawing.Size(340, 62);
             this.textBoxВыполненныеДействияЕСА.TabIndex = 18;
             // 
             // labelКаналЕСА
             // 
             this.labelКаналЕСА.AutoSize = true;
-            this.labelКаналЕСА.Location = new System.Drawing.Point(2, 45);
-            this.labelКаналЕСА.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelКаналЕСА.Location = new System.Drawing.Point(3, 55);
             this.labelКаналЕСА.Name = "labelКаналЕСА";
-            this.labelКаналЕСА.Size = new System.Drawing.Size(38, 13);
+            this.labelКаналЕСА.Size = new System.Drawing.Size(49, 17);
             this.labelКаналЕСА.TabIndex = 19;
             this.labelКаналЕСА.Text = "Канал";
             // 
             // comboBoxАктивностьЕСА
             // 
             this.comboBoxАктивностьЕСА.FormattingEnabled = true;
-            this.comboBoxАктивностьЕСА.Location = new System.Drawing.Point(3, 21);
+            this.comboBoxАктивностьЕСА.Location = new System.Drawing.Point(4, 26);
+            this.comboBoxАктивностьЕСА.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxАктивностьЕСА.Name = "comboBoxАктивностьЕСА";
-            this.comboBoxАктивностьЕСА.Size = new System.Drawing.Size(167, 21);
+            this.comboBoxАктивностьЕСА.Size = new System.Drawing.Size(221, 24);
             this.comboBoxАктивностьЕСА.TabIndex = 9;
             // 
             // labelАктивностьЕСА
             // 
             this.labelАктивностьЕСА.AutoSize = true;
-            this.labelАктивностьЕСА.Location = new System.Drawing.Point(2, 4);
-            this.labelАктивностьЕСА.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelАктивностьЕСА.Location = new System.Drawing.Point(3, 5);
             this.labelАктивностьЕСА.Name = "labelАктивностьЕСА";
-            this.labelАктивностьЕСА.Size = new System.Drawing.Size(66, 13);
+            this.labelАктивностьЕСА.Size = new System.Drawing.Size(83, 17);
             this.labelАктивностьЕСА.TabIndex = 10;
             this.labelАктивностьЕСА.Text = "Активность";
             // 
+            // labelОписание
+            // 
+            this.labelОписание.AutoSize = true;
+            this.labelОписание.Location = new System.Drawing.Point(3, 206);
+            this.labelОписание.Name = "labelОписание";
+            this.labelОписание.Size = new System.Drawing.Size(74, 17);
+            this.labelОписание.TabIndex = 19;
+            this.labelОписание.Text = "Описание";
+            // 
+            // textBoxОписание
+            // 
+            this.textBoxОписание.Location = new System.Drawing.Point(4, 225);
+            this.textBoxОписание.Margin = new System.Windows.Forms.Padding(4);
+            this.textBoxОписание.Multiline = true;
+            this.textBoxОписание.Name = "textBoxОписание";
+            this.textBoxОписание.Size = new System.Drawing.Size(340, 40);
+            this.textBoxОписание.TabIndex = 18;
+            // 
             // Новая
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(515, 447);
+            this.ClientSize = new System.Drawing.Size(687, 550);
             this.Controls.Add(this.panelЦСС);
             this.Controls.Add(this.labelПроекты);
             this.Controls.Add(this.comboBoxПроекты);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Новая";
             this.Text = "Новая задача";
+            this.Load += new System.EventHandler(this.Новая_Load);
             this.panelЦСС.ResumeLayout(false);
             this.panelЦСС.PerformLayout();
             this.panelЕСА.ResumeLayout(false);

@@ -92,5 +92,10 @@ namespace RM_2._0_old
             catch (Exception c)
             { MessageBox.Show(c.Message); }
         }
+
+        private void Новая_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

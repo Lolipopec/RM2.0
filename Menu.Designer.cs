@@ -51,11 +51,13 @@ namespace RM_2._0_old
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.SearchDop = new System.Windows.Forms.GroupBox();
+            this.SearchBtn = new System.Windows.Forms.Button();
+            this.domainUpDown1 = new System.Windows.Forms.DomainUpDown();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.SearchTxt = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.TimeNowTXT = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.checkForME = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SearchDop.SuspendLayout();
@@ -63,6 +65,8 @@ namespace RM_2._0_old
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.nom,
@@ -72,12 +76,14 @@ namespace RM_2._0_old
             this.dataGridView1.Location = new System.Drawing.Point(12, 129);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(559, 238);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             // 
             // nom
             // 
@@ -87,6 +93,7 @@ namespace RM_2._0_old
             this.nom.HeaderText = "№";
             this.nom.MinimumWidth = 6;
             this.nom.Name = "nom";
+            this.nom.ReadOnly = true;
             this.nom.Width = 51;
             // 
             // What
@@ -95,6 +102,7 @@ namespace RM_2._0_old
             this.What.HeaderText = "Тема";
             this.What.MinimumWidth = 6;
             this.What.Name = "What";
+            this.What.ReadOnly = true;
             // 
             // Status
             // 
@@ -103,6 +111,7 @@ namespace RM_2._0_old
             this.Status.HeaderText = "Статус";
             this.Status.MinimumWidth = 6;
             this.Status.Name = "Status";
+            this.Status.ReadOnly = true;
             this.Status.Width = 82;
             // 
             // Prior
@@ -112,6 +121,7 @@ namespace RM_2._0_old
             this.Prior.HeaderText = "Приоритет";
             this.Prior.MinimumWidth = 6;
             this.Prior.Name = "Prior";
+            this.Prior.ReadOnly = true;
             this.Prior.Width = 109;
             // 
             // comboProject
@@ -147,7 +157,7 @@ namespace RM_2._0_old
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(812, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(812, 30);
             this.menuStrip1.TabIndex = 4;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -256,44 +266,65 @@ namespace RM_2._0_old
             // 
             // SearchDop
             // 
-            this.SearchDop.Controls.Add(this.comboBox1);
+            this.SearchDop.Controls.Add(this.SearchBtn);
+            this.SearchDop.Controls.Add(this.domainUpDown1);
             this.SearchDop.Controls.Add(this.label5);
-            this.SearchDop.Controls.Add(this.textBox3);
+            this.SearchDop.Controls.Add(this.SearchTxt);
             this.SearchDop.Controls.Add(this.label4);
             this.SearchDop.Location = new System.Drawing.Point(577, 129);
             this.SearchDop.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.SearchDop.Name = "SearchDop";
             this.SearchDop.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.SearchDop.Size = new System.Drawing.Size(224, 126);
+            this.SearchDop.Size = new System.Drawing.Size(224, 151);
             this.SearchDop.TabIndex = 10;
             this.SearchDop.TabStop = false;
             this.SearchDop.Text = "Дополнительный поиск";
+            // 
+            // SearchBtn
+            // 
+            this.SearchBtn.Location = new System.Drawing.Point(9, 125);
+            this.SearchBtn.Name = "SearchBtn";
+            this.SearchBtn.Size = new System.Drawing.Size(209, 23);
+            this.SearchBtn.TabIndex = 12;
+            this.SearchBtn.Text = "Поиск";
+            this.SearchBtn.UseVisualStyleBackColor = true;
+            this.SearchBtn.Click += new System.EventHandler(this.SearchBtn_Click);
+            // 
+            // domainUpDown1
+            // 
+            this.domainUpDown1.Items.Add("Номер задачи RM");
+            this.domainUpDown1.Items.Add("Номер задачи форума");
+            this.domainUpDown1.Location = new System.Drawing.Point(9, 50);
+            this.domainUpDown1.Name = "domainUpDown1";
+            this.domainUpDown1.Size = new System.Drawing.Size(209, 22);
+            this.domainUpDown1.TabIndex = 12;
+            this.domainUpDown1.SelectedItemChanged += new System.EventHandler(this.domainUpDown1_SelectedItemChanged);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(5, 78);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(260, 17);
+            this.label5.Size = new System.Drawing.Size(123, 17);
             this.label5.TabIndex = 13;
-            this.label5.Text = "Тут можно еще что-нибудь придумать";
+            this.label5.Text = "Значение поиска";
             // 
-            // textBox3
+            // SearchTxt
             // 
-            this.textBox3.Location = new System.Drawing.Point(9, 98);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(209, 22);
-            this.textBox3.TabIndex = 12;
+            this.SearchTxt.Location = new System.Drawing.Point(9, 98);
+            this.SearchTxt.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.SearchTxt.Name = "SearchTxt";
+            this.SearchTxt.Size = new System.Drawing.Size(209, 22);
+            this.SearchTxt.TabIndex = 12;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(5, 30);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(42, 17);
+            this.label4.Size = new System.Drawing.Size(68, 17);
             this.label4.TabIndex = 11;
-            this.label4.Text = "Тема";
+            this.label4.Text = "Поиск по";
             // 
             // TimeNowTXT
             // 
@@ -306,19 +337,22 @@ namespace RM_2._0_old
             this.TimeNowTXT.TabIndex = 11;
             this.TimeNowTXT.Text = "00:00:00";
             // 
-            // comboBox1
+            // checkForME
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(9, 51);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(209, 24);
-            this.comboBox1.TabIndex = 14;
+            this.checkForME.AutoSize = true;
+            this.checkForME.Location = new System.Drawing.Point(207, 101);
+            this.checkForME.Name = "checkForME";
+            this.checkForME.Size = new System.Drawing.Size(135, 21);
+            this.checkForME.TabIndex = 12;
+            this.checkForME.Text = "Задачки на мне";
+            this.checkForME.UseVisualStyleBackColor = true;
             // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(812, 399);
+            this.Controls.Add(this.checkForME);
             this.Controls.Add(this.TimeNowTXT);
             this.Controls.Add(this.SearchDop);
             this.Controls.Add(this.label3);
@@ -338,7 +372,7 @@ namespace RM_2._0_old
             this.MinimumSize = new System.Drawing.Size(830, 446);
             this.Name = "Menu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Menu";
+            this.Text = "-";
             this.Load += new System.EventHandler(this.Menu_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.menuStrip1.ResumeLayout(false);
@@ -373,10 +407,12 @@ namespace RM_2._0_old
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.GroupBox SearchDop;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox SearchTxt;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ToolStripMenuItem выйтиToolStripMenuItem;
         private System.Windows.Forms.Label TimeNowTXT;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.DomainUpDown domainUpDown1;
+        private System.Windows.Forms.Button SearchBtn;
+        private System.Windows.Forms.CheckBox checkForME;
     }
 }

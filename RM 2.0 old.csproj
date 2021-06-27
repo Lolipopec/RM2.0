@@ -72,6 +72,12 @@
     <Compile Include="Авторизация.Designer.cs">
       <DependentUpon>Авторизация.cs</DependentUpon>
     </Compile>
+    <Compile Include="Просмотр задач.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Просмотр задач.Designer.cs">
+      <DependentUpon>Просмотр задач.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Новая.resx">
       <DependentUpon>Новая.cs</DependentUpon>
     </EmbeddedResource>
@@ -89,6 +95,9 @@
     </Compile>
     <EmbeddedResource Include="Авторизация.resx">
       <DependentUpon>Авторизация.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Просмотр задач.resx">
+      <DependentUpon>Просмотр задач.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
