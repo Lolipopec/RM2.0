@@ -69,7 +69,7 @@ namespace RM_2._0_old
                 ComboBoxTracker.Text = issue.Tracker.Name;
                 DateStart.Value = issue.StartDate.Value;
                 opisanie.Text = issue.Description;
-                try
+                    try
                 {
                     DateDue.Value = issue.DueDate.Value;
                 }
@@ -78,7 +78,7 @@ namespace RM_2._0_old
                     DateDue.Value = DateTime.Now.AddDays(1);
                 }
             }
-
+           
 
         }
 
@@ -86,6 +86,16 @@ namespace RM_2._0_old
         private void Просмотр_задач_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void ComboBoxTracker_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            fill();
         }
     }
 }

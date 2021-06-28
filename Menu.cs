@@ -143,7 +143,6 @@ namespace RM_2._0_old
             parameter.Add("project", "*");
             RedmineManager manager = new RedmineManager(host, login, password);
             int i = 0;
-
             foreach (var issue in manager.GetTotalObjectList<Issue>(parameters))
             {
                 dataGridView1.Rows.Add();
