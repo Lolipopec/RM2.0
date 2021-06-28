@@ -45,12 +45,13 @@ namespace RM_2._0_old
             this.DateStart = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.timeZN = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // redmineWebClient1
             // 
-          //  this.redmineWebClient1.AllowReadStreamBuffering = false;
-          //  this.redmineWebClient1.AllowWriteStreamBuffering = false;
+            //this.redmineWebClient1.AllowReadStreamBuffering = false;
+            //this.redmineWebClient1.AllowWriteStreamBuffering = false;
             this.redmineWebClient1.BaseAddress = "";
             this.redmineWebClient1.CachePolicy = null;
             this.redmineWebClient1.Credentials = null;
@@ -189,11 +190,21 @@ namespace RM_2._0_old
             this.label4.TabIndex = 22;
             this.label4.Text = "Выполнение";
             // 
+            // timeZN
+            // 
+            this.timeZN.AutoSize = true;
+            this.timeZN.Location = new System.Drawing.Point(579, 248);
+            this.timeZN.Name = "timeZN";
+            this.timeZN.Size = new System.Drawing.Size(44, 17);
+            this.timeZN.TabIndex = 23;
+            this.timeZN.Text = "00.00";
+            // 
             // Просмотр_задач
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(638, 515);
+            this.Controls.Add(this.timeZN);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.DateDue);
@@ -209,7 +220,7 @@ namespace RM_2._0_old
             this.Controls.Add(this.labelTracker);
             this.Controls.Add(this.ComboBoxTracker);
             this.Name = "Просмотр_задач";
-            this.Text = "Просмотр_задач";
+            this.Text = "-";
             this.Load += new System.EventHandler(this.Просмотр_задач_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -233,5 +244,6 @@ namespace RM_2._0_old
         private System.Windows.Forms.DateTimePicker DateStart;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label timeZN;
     }
 }

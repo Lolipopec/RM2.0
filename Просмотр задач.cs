@@ -22,7 +22,6 @@ namespace RM_2._0_old
         public static string login = "";
         public static string password = "";
         public static string id;
-        RedmineManager redmine;
         NameValueCollection parameters;
         #endregion
 
@@ -58,8 +57,9 @@ namespace RM_2._0_old
             RedmineManager manager = new RedmineManager(host, login, password);
             parameter.Add("issue_id", id);
             var Search = manager.GetTotalObjectList<Issue>(parameter);
+            var Search1 = manager.GetTotalObjectList<TimeEntry>(parameter);
 
-            foreach (var issue in manager.GetTotalObjectList<Issue>(parameters))
+            foreach (var issue in Search)
             {
 
                 this.Text = "Просмотр и редактирование задачи №" + issue.Id;
@@ -75,10 +75,8 @@ namespace RM_2._0_old
                 }
                 catch
                 {
-                    DateDue.Value = DateTime.Now;
+                    DateDue.Value = DateTime.Now.AddDays(1);
                 }
-
-
             }
 
 

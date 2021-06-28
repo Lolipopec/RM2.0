@@ -266,7 +266,6 @@ namespace RM_2._0_old
             //id = 0 - номер задачи; 1 - номер ЛРП
             dataGridView1.Rows.Clear();
 
-
             if (domainUpDown1.SelectedIndex == 0)
             {
 
@@ -307,14 +306,9 @@ namespace RM_2._0_old
                     dataGridView1.Rows[i].Cells[3].Value = issue.Priority.Name;
                     i++;
                 }
-
-
-
             }
-
         }
-
-
+        
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             string Search = dataGridView1[0, dataGridView1.CurrentCell.ColumnIndex].Value.ToString();
