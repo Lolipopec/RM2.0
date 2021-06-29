@@ -157,7 +157,7 @@ namespace RM_2._0_old
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(812, 30);
+            this.menuStrip1.Size = new System.Drawing.Size(812, 28);
             this.menuStrip1.TabIndex = 4;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -346,6 +346,7 @@ namespace RM_2._0_old
             this.checkForME.TabIndex = 12;
             this.checkForME.Text = "Задачки на мне";
             this.checkForME.UseVisualStyleBackColor = true;
+            this.checkForME.CheckedChanged += new System.EventHandler(this.checkForME_CheckedChanged);
             // 
             // Menu
             // 
