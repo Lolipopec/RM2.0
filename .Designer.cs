@@ -205,7 +205,6 @@ namespace RM_2._0_old
             this.panelЦСС.Name = "panelЦСС";
             this.panelЦСС.Size = new System.Drawing.Size(294, 382);
             this.panelЦСС.TabIndex = 18;
-            this.panelЦСС.Visible = false;
             // 
             // panelЕСА
             // 

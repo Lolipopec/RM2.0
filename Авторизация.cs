@@ -19,7 +19,7 @@ namespace RM_2._0_old
         {
             InitializeComponent();
             LoginTXT.Focus();
-            LoginTXT.Text = "user1" ;
+            LoginTXT.Text = "user1";
             PasswordTXT.Text = "12345678";
         }
 
