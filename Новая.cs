@@ -67,22 +67,39 @@ namespace RM_2._0_old
             {
                 panelЦСС.Visible = false;
                 panelЕСА.Visible = true;
-
+                parameters.Add("project_id", projectId.ToString());
+                var allProjects = redmine.GetTotalObjectList<CustomField>(parameters);
+                foreach (var c in allProjects)
+                {
+                    if (c.Name == "Источник информации")
+                        foreach (var ccc in c.PossibleValues)
+                        {
+                            comboBoxКаналЕСА.Items.Add(ccc.Value);
+                        }
+                    if (c.Name == "Активность")
+                        foreach (var ccc in c.PossibleValues)
+                        {
+                            comboBoxАктивностьЕСА.Items.Add(ccc.Value);
+                        }
+                }
             }
             if (comboBoxПроекты.SelectedItem.ToString().Contains("ЦСС") == true)
             {
                 panelЦСС.Visible = true;
                 panelЕСА.Visible = false;
-
                 parameters.Add("project_id", projectId.ToString());
                 var allProjects = redmine.GetTotalObjectList<CustomField>(parameters);
                 foreach (var c in allProjects)
                 {
-                        Debug.WriteLine(c.Id);
-                        Debug.WriteLine(c.Name);
+                    if (c.Name == "Источник информации")
                         foreach (var ccc in c.PossibleValues)
                         {
-                            Debug.WriteLine(ccc.Value);
+                            comboBoxКаналЦСС.Items.Add(ccc.Value);
+                        }
+                    if (c.Name == "Активность")
+                        foreach (var ccc in c.PossibleValues)
+                        {
+                            comboBoxАктивностьЦСС.Items.Add(ccc.Value);
                         }
                 }
             }
@@ -104,7 +121,6 @@ namespace RM_2._0_old
                         break;
                     }
                 }
-                
                 User user = redmine.GetCurrentUser();
                 IList<IssueCustomField> c = new List<IssueCustomField>();
                 IssueCustomField cf = new IssueCustomField();
@@ -116,21 +132,29 @@ namespace RM_2._0_old
                 IssueCustomField cf3 = new IssueCustomField();
                 CustomFieldValue cfv3 = new CustomFieldValue();
                 IList<CustomFieldValue> Lcfv3 = new List<CustomFieldValue>();
-                cfv2.Info = "ЦСС";
+                IssueCustomField cf4 = new IssueCustomField();
+                CustomFieldValue cfv4 = new CustomFieldValue();
+                IList<CustomFieldValue> Lcfv4 = new List<CustomFieldValue>();
+                cfv2.Info = comboBoxАктивностьЦСС.Text;
                 cfv.Info = "ЕСМА. Центр";
-                cfv3.Info = user.Id.ToString(); 
+                cfv3.Info = user.Id.ToString();
+                cfv4.Info = comboBoxКаналЦСС.Text;
                 Lcfv.Add(cfv);
                 Lcfv2.Add(cfv2);
                 Lcfv3.Add(cfv3);
+                Lcfv4.Add(cfv4);
                 cf.Id = 6;
                 cf2.Id = 7;
                 cf3.Id = 8;
+                cf4.Id = 9;
                 cf.Values = Lcfv;
                 cf2.Values = Lcfv2;
                 cf3.Values = Lcfv3;
+                cf4.Values = Lcfv4;
                 c.Add(cf);
                 c.Add(cf2);
                 c.Add(cf3);
+                c.Add(cf4);
                 Issue redminetask = new Issue()
                 {
                     AssignedTo = new IdentifiableName() { Id = user.Id }, // Кому отправить
@@ -138,8 +162,8 @@ namespace RM_2._0_old
                     Subject = "ЛРП " + textBoxНомерЦСС.Text + " " + comboBoxМодульЦСС.Text, // Название задачи
                     Description = textBoxОписание.Text,     // Описание задачи
                     Project = new IdentifiableName { Id = projectId },      // Проект
-                    CreatedOn = DateTime.Now,                         // Дата создание
-                    DueDate = DateTime.Now,                          // Дата окончания
+                    CreatedOn = dateTimePickerЕСА.Value,                         // Дата создание
+                    DueDate = dateTimePickerЕСА.Value,                          // Дата окончания
                     Tracker = new IdentifiableName { Id = 4 },        // Трекер
                     Status = new IdentifiableName { Id = 3 },         // Статус. По умолчанию NEW
                     Priority = new IdentifiableName { Id = 1 },       // Приоритет. По умолчанию Normal
@@ -149,15 +173,6 @@ namespace RM_2._0_old
                 };
                 Issue savedIssue = redmine.CreateObject(redminetask);
                 MessageBox.Show("Созданна задача: " + savedIssue.Id);
-                //var manager = new RedmineManager(host, login, password);
-                //manager.ImpersonateUser = login;
-                //var issue = manager.GetObject<Issue>(savedIssue.Id.ToString(), null);
-                //issue.IsPrivate = ;
-                //User user1 = manager.GetCurrentUser();
-                //issue.Author = new IdentifiableName() { Id = user1.Id };
-                //manager.UpdateObject(savedIssue.Id.ToString(), issue);
-                //var updatedIssue = manager.GetObject<Issue>(savedIssue.Id.ToString(), null);
-                //MessageBox.Show("Updated issue:" + updatedIssue.Id);
             }
             catch (Exception c)
             { MessageBox.Show(c.Message); }
@@ -170,7 +185,67 @@ namespace RM_2._0_old
 
         private void buttonСоздатьЗадачуЕСА_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                var redmine = new RedmineManager(host, login, password);
+                redmine.ImpersonateUser = login;
+                var parameters = new NameValueCollection();
+                IList<Project> allProjects = redmine.GetTotalObjectList<Project>(parameters);
+                foreach (var c1 in redmine.GetTotalObjectList<Project>(parameters))
+                {
+                    if (comboBoxПроекты.SelectedItem.ToString() == c1.Name)
+                    {
+                        projectId = c1.Id;
+                        break;
+                    }
+                }
+                User user = redmine.GetCurrentUser();
+                IList<IssueCustomField> c = new List<IssueCustomField>();
+                IssueCustomField cf2 = new IssueCustomField();
+                CustomFieldValue cfv2 = new CustomFieldValue();
+                IList<CustomFieldValue> Lcfv2 = new List<CustomFieldValue>();
+                IssueCustomField cf3 = new IssueCustomField();
+                CustomFieldValue cfv3 = new CustomFieldValue();
+                IList<CustomFieldValue> Lcfv3 = new List<CustomFieldValue>();
+                IssueCustomField cf4 = new IssueCustomField();
+                CustomFieldValue cfv4 = new CustomFieldValue();
+                IList<CustomFieldValue> Lcfv4 = new List<CustomFieldValue>();
+                cfv2.Info = comboBoxАктивностьЕСА.Text;
+                cfv3.Info = user.Id.ToString();
+                cfv4.Info = comboBoxКаналЕСА.Text;
+                Lcfv2.Add(cfv2);
+                Lcfv3.Add(cfv3);
+                Lcfv4.Add(cfv4);
+                cf2.Id = 7;
+                cf3.Id = 8;
+                cf4.Id = 9;
+                cf2.Values = Lcfv2;
+                cf3.Values = Lcfv3;
+                cf4.Values = Lcfv4;
+                c.Add(cf2);
+                c.Add(cf3);
+                c.Add(cf4);
+                Issue redminetask = new Issue()
+                {
+                    AssignedTo = new IdentifiableName() { Id = user.Id }, // Кому отправить
+                    Author = new IdentifiableName() { Id = user.Id },     // Автор задачи 
+                    Subject = textBoxТема.Text, // Название задачи
+                    Description = textBoxОписаниеЕСА.Text,     // Описание задачи
+                    Project = new IdentifiableName { Id = projectId },      // Проект
+                    CreatedOn = dateTimePickerЕСА.Value,                         // Дата создание
+                    DueDate = dateTimePickerЕСА.Value,                          // Дата окончания
+                    Tracker = new IdentifiableName { Id = 4 },        // Трекер
+                    Status = new IdentifiableName { Id = 3 },         // Статус. По умолчанию NEW
+                    Priority = new IdentifiableName { Id = 1 },       // Приоритет. По умолчанию Normal
+                    CustomFields = c,                                 // Кастомные поля (вставляем лист с заполнением кастомных полей)
+                    IsPrivate = false,                                //Параметр приватности
+                    Category = new IdentifiableName { Id = 1 },
+                };
+                Issue savedIssue = redmine.CreateObject(redminetask);
+                MessageBox.Show("Созданна задача: " + savedIssue.Id);
+            }
+            catch (Exception c)
+            { MessageBox.Show(c.Message); }
         }
     }
 }
