@@ -282,7 +282,7 @@ namespace RM_2._0_old
         /// <param name="e"></param>
         private void SearchBtn_Click(object sender, EventArgs e)
         {
-            //id = 0 - номер задачи; 1 - номер ЛРП
+            //id = 0 - номер задачи; 1 - номер ЛРП фыв
             dataGridView1.Rows.Clear();
 
             if (domainUpDown1.SelectedIndex == 0)
