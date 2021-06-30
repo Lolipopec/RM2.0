@@ -51,6 +51,7 @@ namespace RM_2._0_old
             // 
             // redmineWebClient1
             // 
+            
             this.redmineWebClient1.BaseAddress = "";
             this.redmineWebClient1.CachePolicy = null;
             this.redmineWebClient1.Credentials = null;
@@ -159,7 +160,6 @@ namespace RM_2._0_old
             // 
             // DateDue
             // 
-            this.DateDue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.DateDue.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.DateDue.Location = new System.Drawing.Point(109, 202);
             this.DateDue.Margin = new System.Windows.Forms.Padding(2);
@@ -170,10 +170,9 @@ namespace RM_2._0_old
             // 
             // DateStart
             // 
-            this.DateStart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.DateStart.Enabled = false;
             this.DateStart.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DateStart.Location = new System.Drawing.Point(9, 202);
+            this.DateStart.Location = new System.Drawing.Point(10, 202);
             this.DateStart.Margin = new System.Windows.Forms.Padding(2);
             this.DateStart.Name = "DateStart";
             this.DateStart.Size = new System.Drawing.Size(95, 20);
@@ -202,16 +201,17 @@ namespace RM_2._0_old
             // timeZN
             // 
             this.timeZN.AutoSize = true;
-            this.timeZN.Location = new System.Drawing.Point(434, 202);
+            this.timeZN.Location = new System.Drawing.Point(298, 202);
             this.timeZN.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.timeZN.Name = "timeZN";
             this.timeZN.Size = new System.Drawing.Size(34, 13);
             this.timeZN.TabIndex = 23;
             this.timeZN.Text = "00.00";
+            this.timeZN.Click += new System.EventHandler(this.timeZN_Click);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(239, 353);
+            this.button1.Location = new System.Drawing.Point(218, 245);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 24;
@@ -223,7 +223,7 @@ namespace RM_2._0_old
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(478, 418);
+            this.ClientSize = new System.Drawing.Size(478, 287);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.timeZN);
             this.Controls.Add(this.label4);

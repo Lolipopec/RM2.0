@@ -23,12 +23,6 @@ namespace RM_2._0_old
         //public static string host = "http://192.168.100.74/";
         public static string login = "";
         public static string password = "";
-        public enum eFormType
-        {
-            New,
-            Edit,
-        };
-        private eFormType type;
         public TimeEntry CurTimeEntry { get; set; }
         public int projectId=0;
         class ClientCustomField
@@ -119,6 +113,7 @@ namespace RM_2._0_old
                 var redmine = new RedmineManager(host, login, password);
                 redmine.ImpersonateUser = login;
                 var parameters = new NameValueCollection();
+                
                 IList<Project> allProjects = redmine.GetTotalObjectList<Project>(parameters);
                 foreach (var c1 in redmine.GetTotalObjectList<Project>(parameters))
                 {
@@ -179,13 +174,12 @@ namespace RM_2._0_old
                     Category = new IdentifiableName { Id = 1 },
                 };
                 Issue savedIssue = redmine.CreateObject(redminetask);
-                type = eFormType.New;
                 CurTimeEntry = new TimeEntry();
                 CurTimeEntry.Issue = new IdentifiableName() { Id = savedIssue.Id };
                 CurTimeEntry.SpentOn = DateTime.Now;
                 CurTimeEntry.User = new IdentifiableName() { Id = user.Id };
-                CurTimeEntry.Activity = new IdentifiableName() { Id = 10 };
-                CurTimeEntry.Hours = decimal.Parse(buttonСоздатьЗадачуЦСС.Text);
+                //CurTimeEntry.Activity = new IdentifiableName() { Id = 10 };
+                CurTimeEntry.Hours = decimal.Parse(textBoxЗатраченноеВремяЦСС.Text);
                 CurTimeEntry.Comments = textBoxВыполненныеДействияЦСС.Text;
                 redmine.CreateObject(CurTimeEntry);
                 MessageBox.Show("Созданна задача: " + savedIssue.Id + " и списано " + CurTimeEntry.Hours);
@@ -259,12 +253,11 @@ namespace RM_2._0_old
                 };
                 Issue savedIssue = redmine.CreateObject(redminetask);
                 
-                type = eFormType.New;
                 CurTimeEntry = new TimeEntry();
                 CurTimeEntry.Issue = new IdentifiableName() { Id = savedIssue.Id };
                 CurTimeEntry.SpentOn = DateTime.Now;
                 CurTimeEntry.User = new IdentifiableName() { Id = user.Id };
-                CurTimeEntry.Activity = new IdentifiableName() { Id = 10 };
+                //CurTimeEntry.Activity = new IdentifiableName() { Id = 10 };
                 CurTimeEntry.Hours = decimal.Parse(textBoxЗатраченноеВремяЕСА.Text);
                 CurTimeEntry.Comments = textBoxВыполненныеДействияЕСА.Text;
                 redmine.CreateObject(CurTimeEntry);

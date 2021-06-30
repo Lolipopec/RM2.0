@@ -425,7 +425,7 @@ namespace RM_2._0_old
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(515, 447);
+            this.ClientSize = new System.Drawing.Size(317, 447);
             this.Controls.Add(this.panelЕСА);
             this.Controls.Add(this.panelЦСС);
             this.Controls.Add(this.labelПроекты);

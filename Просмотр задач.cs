@@ -19,16 +19,20 @@ namespace RM_2._0_old
     {
         #region Переменные
         public static string host = "http://testred.ru";
-        public static string login = "";
-        public static string password = "";
+        public  string login = "";
+        public TimeEntry CurTimeEntry { get; set; }
+        public  string password = "";
         public static string id;
+        private Просмотр_задач DataCache = null;
         NameValueCollection parameters;
         #endregion
 
-        public Просмотр_задач(string st)
+        public Просмотр_задач(string st,string login,string pass)
         {
             InitializeComponent();
             id = st;
+            this.login = login;
+            this.password = pass;
             fill();
         }
 
@@ -51,14 +55,12 @@ namespace RM_2._0_old
             {
                 ComboBoxPriority.Items.Add(c.Name);
             }
-
-
+            
             NameValueCollection parameter = new NameValueCollection();
             RedmineManager manager = new RedmineManager(host, login, password);
             parameter.Add("issue_id", id);
             var Search = manager.GetTotalObjectList<Issue>(parameter);
-            var Search1 = manager.GetTotalObjectList<TimeEntry>(parameter);
-
+            var CurTimeEntr = manager.GetTotalObjectList<TimeEntry>(parameter);
             foreach (var issue in Search)
             {
 
@@ -69,6 +71,7 @@ namespace RM_2._0_old
                 ComboBoxTracker.Text = issue.Tracker.Name;
                 DateStart.Value = issue.StartDate.Value;
                 opisanie.Text = issue.Description;
+                
                     try
                 {
                     DateDue.Value = issue.DueDate.Value;
@@ -78,8 +81,12 @@ namespace RM_2._0_old
                     DateDue.Value = DateTime.Now.AddDays(1);
                 }
             }
-           
-
+            decimal ZN = 0;
+            foreach (var issue in CurTimeEntr)
+            {
+                ZN+= issue.Hours;
+            }
+            timeZN.Text = "Затраченное время " + " " + ZN.ToString() + " ч.";
         }
 
 
@@ -96,6 +103,21 @@ namespace RM_2._0_old
         private void button1_Click(object sender, EventArgs e)
         {
             fill();
+        }
+
+        private void timeZN_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Затрченное_время dlg = new Затрченное_время(id,login,password);
+                if (dlg.ShowDialog(this) == DialogResult.OK)
+                {
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

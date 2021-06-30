@@ -51,6 +51,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Затраченное время.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Затраченное время.Designer.cs">
+      <DependentUpon>Затраченное время.cs</DependentUpon>
+    </Compile>
     <Compile Include="Новая.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -78,6 +84,9 @@
     <Compile Include="Просмотр задач.Designer.cs">
       <DependentUpon>Просмотр задач.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Затраченное время.resx">
+      <DependentUpon>Затраченное время.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Новая.resx">
       <DependentUpon>Новая.cs</DependentUpon>
     </EmbeddedResource>
