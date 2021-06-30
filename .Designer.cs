@@ -256,7 +256,7 @@ namespace RM_2._0_old
             this.panelЕСА.Controls.Add(this.labelАктивностьЕСА);
             this.panelЕСА.Location = new System.Drawing.Point(12, 53);
             this.panelЕСА.Name = "panelЕСА";
-            this.panelЕСА.Size = new System.Drawing.Size(294, 249);
+            this.panelЕСА.Size = new System.Drawing.Size(294, 382);
             this.panelЕСА.TabIndex = 19;
             this.panelЕСА.Visible = false;
             // 
