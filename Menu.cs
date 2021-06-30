@@ -50,6 +50,7 @@ namespace RM_2._0_old
         public static string login = "";
         public static string password = "";
         public bool mezad = false;
+        public string us = "";
         #endregion
 
 
@@ -67,6 +68,8 @@ namespace RM_2._0_old
             userToolStripMenuItem.Text = l;
             timer1.Interval = 1000;
             timer1.Enabled = true;
+            timer2.Interval = 6000;
+            timer2.Enabled = true;
             dateTimePicker1.Value = DateTime.Now;
             SearchBtn.Enabled = false;
             SearchTxt.Enabled = false;
@@ -252,6 +255,12 @@ namespace RM_2._0_old
         {
             SearchTxt.Enabled = true;
             SearchBtn.Enabled = true;
+            SearchBtn.Text = "Поиск";
+            if (domainUpDown1.SelectedIndex == 2)
+            {
+                SearchTxt.Enabled = false;
+                SearchBtn.Text = "Выгрузить";
+            }
         }
         /// <summary>
         /// дополнительный поиск
@@ -265,6 +274,7 @@ namespace RM_2._0_old
 
             if (domainUpDown1.SelectedIndex == 0)
             {
+
                 try
                 {
                     NameValueCollection parameterref2 = new NameValueCollection();
@@ -289,12 +299,63 @@ namespace RM_2._0_old
             else if (domainUpDown1.SelectedIndex == 1)
             {
                 //тут нужен двойной поиск (1 - в теме, 2 - в описании)
-                //нужно сделать, ночью мозги не придумали чего-то
+
                 try
                 {
                     NameValueCollection parameterref2 = new NameValueCollection();
                     RedmineManager manager = new RedmineManager(host, login, password);
-                    parameterref2.Add("subject", SearchTxt.Text);
+                    parameterref2.Add("subject", "~" + SearchTxt.Text);
+                    var Search = manager.GetTotalObjectList<Issue>(parameterref2);
+
+                    int i = 0;
+                    foreach (var issue in Search)
+                    {
+                        dataGridView1.Rows.Add();
+                        dataGridView1.Rows[i].Cells[0].Value = issue.Id;
+                        dataGridView1.Rows[i].Cells[1].Value = issue.Subject;
+                        dataGridView1.Rows[i].Cells[2].Value = issue.Status.Name;
+                        dataGridView1.Rows[i].Cells[3].Value = issue.Priority.Name;
+                        i++;
+                    }
+                    if (dataGridView1.RowCount > 0)
+                    {
+                        return;
+                    }
+                    else
+                    {
+                        NameValueCollection parameterref3 = new NameValueCollection();
+                        RedmineManager manager1 = new RedmineManager(host, login, password);
+                        parameterref3.Add("description", "~" + SearchTxt.Text);
+                        var Search2 = manager1.GetTotalObjectList<Issue>(parameterref3);
+
+                        i = 0;
+                        foreach (var issue in Search2)
+                        {
+                            dataGridView1.Rows.Add();
+                            dataGridView1.Rows[i].Cells[0].Value = issue.Id;
+                            dataGridView1.Rows[i].Cells[1].Value = issue.Subject;
+                            dataGridView1.Rows[i].Cells[2].Value = issue.Status.Name;
+                            dataGridView1.Rows[i].Cells[3].Value = issue.Priority.Name;
+                            i++;
+                        }
+                    }
+                }
+                catch
+                {
+
+                }
+            }
+            else if (domainUpDown1.SelectedIndex == 2)
+            {
+                try
+                {
+                    RedmineManager manager = new RedmineManager(host, login, password);
+                    NameValueCollection pr = new NameValueCollection();
+                    pr.Add("login", login);
+                    User uss = manager.GetCurrentUser();
+                    NameValueCollection parameterref2 = new NameValueCollection();
+                    Debug.WriteLine(us);
+                    parameterref2.Add("subject", "~" + "Затраченное время " + uss.FirstName);
                     var Search = manager.GetTotalObjectList<Issue>(parameterref2);
 
                     int i = 0;
@@ -310,7 +371,6 @@ namespace RM_2._0_old
                 }
                 catch
                 {
-
                 }
             }
         }
@@ -326,6 +386,32 @@ namespace RM_2._0_old
         {
             mezad = !mezad;
             RefReshFill();
+        }
+
+        private void TimeNowTXT_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            ttime();
+        }
+
+        public void ttime()
+        {
+            textBox1.Text ="0";
+            decimal tim = 0;
+            RedmineManager manager = new RedmineManager(host, login, password);
+            NameValueCollection param = new NameValueCollection();
+            Debug.WriteLine(dateTimePicker1.Value.ToShortDateString()); 
+            var oftime = manager.GetTotalObjectList<TimeEntry>(param);
+            param.Add("spent_on", dateTimePicker1.Value.ToShortDateString());
+            foreach (var c in oftime)
+            {
+                tim += c.Hours;     
+            }
+            textBox1.Text = tim.ToString();
         }
     }
 }

@@ -39,7 +39,6 @@ namespace RM_2._0_old
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.новаяToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.списатьОстатокВремениToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.userToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.выйтиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.labelProject = new System.Windows.Forms.Label();
@@ -58,6 +57,8 @@ namespace RM_2._0_old
             this.label4 = new System.Windows.Forms.Label();
             this.TimeNowTXT = new System.Windows.Forms.Label();
             this.checkForME = new System.Windows.Forms.CheckBox();
+            this.списатьОстатокВремениToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.timer2 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SearchDop.SuspendLayout();
@@ -167,12 +168,6 @@ namespace RM_2._0_old
             this.новаяToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
             this.новаяToolStripMenuItem.Text = "Новая";
             this.новаяToolStripMenuItem.Click += new System.EventHandler(this.новаяToolStripMenuItem_Click);
-            // 
-            // списатьОстатокВремениToolStripMenuItem
-            // 
-            this.списатьОстатокВремениToolStripMenuItem.Name = "списатьОстатокВремениToolStripMenuItem";
-            this.списатьОстатокВремениToolStripMenuItem.Size = new System.Drawing.Size(182, 20);
-            this.списатьОстатокВремениToolStripMenuItem.Text = "Задачки \"Списание времени\"";
             // 
             // userToolStripMenuItem
             // 
@@ -298,9 +293,9 @@ namespace RM_2._0_old
             // domainUpDown1
             // 
             this.domainUpDown1.Items.Add("Номер задачи RM");
-            this.domainUpDown1.Items.Add("Номер задачи форума");
-            this.domainUpDown1.Location = new System.Drawing.Point(7, 41);
-            this.domainUpDown1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.domainUpDown1.Items.Add("Поиск по номеру ЛРП");
+            this.domainUpDown1.Items.Add("Задачи по списанию времени");
+            this.domainUpDown1.Location = new System.Drawing.Point(9, 50);
             this.domainUpDown1.Name = "domainUpDown1";
             this.domainUpDown1.Size = new System.Drawing.Size(157, 20);
             this.domainUpDown1.TabIndex = 12;
@@ -345,6 +340,7 @@ namespace RM_2._0_old
             this.TimeNowTXT.Size = new System.Drawing.Size(64, 17);
             this.TimeNowTXT.TabIndex = 11;
             this.TimeNowTXT.Text = "00:00:00";
+            this.TimeNowTXT.Click += new System.EventHandler(this.TimeNowTXT_Click);
             // 
             // checkForME
             // 
@@ -357,6 +353,16 @@ namespace RM_2._0_old
             this.checkForME.Text = "Задачки на мне";
             this.checkForME.UseVisualStyleBackColor = true;
             this.checkForME.CheckedChanged += new System.EventHandler(this.checkForME_CheckedChanged);
+            // 
+            // списатьОстатокВремениToolStripMenuItem
+            // 
+            this.списатьОстатокВремениToolStripMenuItem.Margin = new System.Windows.Forms.Padding(215, 0, 0, 0);
+            this.списатьОстатокВремениToolStripMenuItem.Name = "списатьОстатокВремениToolStripMenuItem";
+            this.списатьОстатокВремениToolStripMenuItem.Size = new System.Drawing.Size(14, 24);
+            // 
+            // timer2
+            // 
+            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
             // Menu
             // 
@@ -406,7 +412,6 @@ namespace RM_2._0_old
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem новаяToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem списатьОстатокВремениToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem userToolStripMenuItem;
         private System.Windows.Forms.Label labelProject;
         private System.Windows.Forms.ComboBox comboStatus;
@@ -425,5 +430,7 @@ namespace RM_2._0_old
         private System.Windows.Forms.DomainUpDown domainUpDown1;
         private System.Windows.Forms.Button SearchBtn;
         private System.Windows.Forms.CheckBox checkForME;
+        private System.Windows.Forms.ToolStripMenuItem списатьОстатокВремениToolStripMenuItem;
+        private System.Windows.Forms.Timer timer2;
     }
 }

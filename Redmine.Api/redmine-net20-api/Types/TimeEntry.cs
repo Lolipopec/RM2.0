@@ -49,7 +49,7 @@ namespace Redmine.Net.Api.Types
         /// <value>The spent on.</value>
         [XmlAttribute("spent_on")]
         public DateTime? SpentOn { get; set; }
-
+        //Fleshh
         /// <summary>
         /// Gets or sets the number of spent hours.
         /// </summary>
