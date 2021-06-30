@@ -150,6 +150,16 @@ namespace RM_2._0_old
                 dataGridView1.Rows[i].Cells[1].Value = issue.Subject;
                 dataGridView1.Rows[i].Cells[2].Value = issue.Status.Name;
                 dataGridView1.Rows[i].Cells[3].Value = issue.Priority.Name;
+                //Debug.WriteLine(issue.Project.Id);
+                //foreach (var iss in issue.CustomFields)
+                //{
+                //    Debug.WriteLine(iss.Id);
+                //    Debug.WriteLine(iss.Name);
+                //    foreach (var isss in iss.Values)
+                //    {
+                //        Debug.WriteLine(isss.Info);
+                //    }
+                //}
                 i++;
             }
         }

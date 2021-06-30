@@ -19,12 +19,10 @@ namespace RM_2._0_old
 {
     public partial class Новая : Form
     {
-        //public static string host = "http://testred.ru";
-        public static string host = "http://192.168.100.74/";
-        public static string login = "vlasov_pa";
-        public static string password = "9Ai3dxUL";
-        //public static string login = "";
-        //public static string password = "";
+        public static string host = "http://testred.ru";
+        //public static string host = "http://192.168.100.74/";
+        public static string login = "";
+        public static string password = "";
         public int projectId=0;
         class ClientCustomField
         {
@@ -34,10 +32,13 @@ namespace RM_2._0_old
         public Новая(string login, string password)
         {
             InitializeComponent();
-            //RM_2._0_old.Новая.login = login;
-            //RM_2._0_old.Новая.password = password;
-            login = "vlasov_pa";
-            password = "9Ai3dxUL";
+           
+            //login = "vlasov_pa";
+            //password = "9Ai3dxUL";
+            login = "user1";
+            password = "12345678";
+             RM_2._0_old.Новая.login = login;
+            RM_2._0_old.Новая.password = password;
             var redmine = new RedmineManager(host, login, password);
             var parameters = new NameValueCollection();
             IList<Project> allProjects = redmine.GetTotalObjectList<Project>(parameters);
@@ -45,34 +46,46 @@ namespace RM_2._0_old
             {
                 comboBoxПроекты.Items.Add(c.Name);
             }
-            comboBoxКаналЦСС.Items.Add("Форум");
             comboBoxМодульЦСС.Items.Add("TRS Manager");
         }
         private void comboBoxПроекты_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //var redmine = new RedmineManager(host, login, password);
-            //var parameters = new NameValueCollection();
-            //IList<Project> allProjects = redmine.GetTotalObjectList<Project>(parameters);
-            //if (comboBoxПроекты.SelectedItem.ToString().Contains("ЕСА") == true)
-            //{
-            //    panelЦСС.Visible = false;
-            //    panelЕСА.Visible = true;
-            //}
-            //if (comboBoxПроекты.SelectedItem.ToString().Contains("ЦСС") == true)
-            //{
-            //    panelЦСС.Visible = true;
-            //    panelЕСА.Visible = false;
-            //}
-            //NameValueCollection parameterref2 = new NameValueCollection();
-            //parameterref2.Add("issue_id", "107668");
-            //parameterref2.Add("project_id", "56");
-            //RedmineManager manager = new RedmineManager(host, login, password);
-            //int i = 0;
-            //foreach (var issue in manager.GetTotalObjectList<Issue>(parameterref2))
-            //{
-            //    Debug.WriteLine(issue.Tracker);
-            //}
+            var redmine = new RedmineManager(host, login, password);
+            var parameters = new NameValueCollection();
+            int projectId = 0;
+            foreach (var c in redmine.GetTotalObjectList<Project>(parameters))
+            {
+                if (comboBoxПроекты.SelectedItem.ToString() == c.Name)
+                {
+                    projectId = c.Id;
+                    break;
+                }
+                else
+                    projectId = 0;
+            }
+            if (comboBoxПроекты.SelectedItem.ToString().Contains("ЕСА") == true)
+            {
+                panelЦСС.Visible = false;
+                panelЕСА.Visible = true;
 
+            }
+            if (comboBoxПроекты.SelectedItem.ToString().Contains("ЦСС") == true)
+            {
+                panelЦСС.Visible = true;
+                panelЕСА.Visible = false;
+
+                parameters.Add("project_id", projectId.ToString());
+                var allProjects = redmine.GetTotalObjectList<CustomField>(parameters);
+                foreach (var c in allProjects)
+                {
+                        Debug.WriteLine(c.Id);
+                        Debug.WriteLine(c.Name);
+                        foreach (var ccc in c.PossibleValues)
+                        {
+                            Debug.WriteLine(ccc.Value);
+                        }
+                }
+            }
         }
 
         private void buttonСоздатьЗадачуЦСС_Click(object sender, EventArgs e)
@@ -88,46 +101,63 @@ namespace RM_2._0_old
                     if (comboBoxПроекты.SelectedItem.ToString() == c1.Name)
                     {
                         projectId = c1.Id;
-                        Debug.WriteLine(c1.Id);
                         break;
                     }
                 }
                 
                 User user = redmine.GetCurrentUser();
-                IssueCustomField cf = new IssueCustomField();
                 IList<IssueCustomField> c = new List<IssueCustomField>();
+                IssueCustomField cf = new IssueCustomField();
                 CustomFieldValue cfv = new CustomFieldValue();
                 IList<CustomFieldValue> Lcfv = new List<CustomFieldValue>();
-                cfv.Info = "ЕСМА. Центр"; 
+                IssueCustomField cf2 = new IssueCustomField();
+                CustomFieldValue cfv2 = new CustomFieldValue();
+                IList<CustomFieldValue> Lcfv2 = new List<CustomFieldValue>();
+                IssueCustomField cf3 = new IssueCustomField();
+                CustomFieldValue cfv3 = new CustomFieldValue();
+                IList<CustomFieldValue> Lcfv3 = new List<CustomFieldValue>();
+                cfv2.Info = "ЦСС";
+                cfv.Info = "ЕСМА. Центр";
+                cfv3.Info = user.Id.ToString(); 
                 Lcfv.Add(cfv);
+                Lcfv2.Add(cfv2);
+                Lcfv3.Add(cfv3);
                 cf.Id = 6;
+                cf2.Id = 7;
+                cf3.Id = 8;
                 cf.Values = Lcfv;
+                cf2.Values = Lcfv2;
+                cf3.Values = Lcfv3;
                 c.Add(cf);
+                c.Add(cf2);
+                c.Add(cf3);
                 Issue redminetask = new Issue()
                 {
                     AssignedTo = new IdentifiableName() { Id = user.Id }, // Кому отправить
                     Author = new IdentifiableName() { Id = user.Id },     // Автор задачи 
-                    Subject = "ЛРП " + textBoxНомерЦСС.Text + " " + comboBoxМодульЦСС.Text + " " + textBoxОписание.Text, // Название задачи
-                    Description = textBoxВыполненныеДействияЦСС.Text,     // Описание задачи
+                    Subject = "ЛРП " + textBoxНомерЦСС.Text + " " + comboBoxМодульЦСС.Text, // Название задачи
+                    Description = textBoxОписание.Text,     // Описание задачи
                     Project = new IdentifiableName { Id = projectId },      // Проект
                     CreatedOn = DateTime.Now,                         // Дата создание
                     DueDate = DateTime.Now,                          // Дата окончания
-                    Tracker = new IdentifiableName { Id = 9 },        // Трекер
-                    Status = new IdentifiableName { Id = 1 },         // Статус. По умолчанию NEW
+                    Tracker = new IdentifiableName { Id = 4 },        // Трекер
+                    Status = new IdentifiableName { Id = 3 },         // Статус. По умолчанию NEW
                     Priority = new IdentifiableName { Id = 1 },       // Приоритет. По умолчанию Normal
-                    //CustomFields = c,                                 // Кастомные поля (вставляем лист с заполнением кастомных полей)
+                    CustomFields = c,                                 // Кастомные поля (вставляем лист с заполнением кастомных полей)
                     IsPrivate = false,                                //Параметр приватности
+                    Category = new IdentifiableName { Id = 1 },
                 };
                 Issue savedIssue = redmine.CreateObject(redminetask);
                 MessageBox.Show("Созданна задача: " + savedIssue.Id);
                 //var manager = new RedmineManager(host, login, password);
                 //manager.ImpersonateUser = login;
-                //var issue = manager.GetObject<Issue>("35", null);
-                //issue.IsPrivate = false;
-                //issue.SpentHours = 2;
-                //manager.UpdateObject("35", issue);
-                //var updatedIssue = manager.GetObject<Issue> ("35", null);
-                //MessageBox.Show("Updated issue:" +updatedIssue.Id);
+                //var issue = manager.GetObject<Issue>(savedIssue.Id.ToString(), null);
+                //issue.IsPrivate = ;
+                //User user1 = manager.GetCurrentUser();
+                //issue.Author = new IdentifiableName() { Id = user1.Id };
+                //manager.UpdateObject(savedIssue.Id.ToString(), issue);
+                //var updatedIssue = manager.GetObject<Issue>(savedIssue.Id.ToString(), null);
+                //MessageBox.Show("Updated issue:" + updatedIssue.Id);
             }
             catch (Exception c)
             { MessageBox.Show(c.Message); }
