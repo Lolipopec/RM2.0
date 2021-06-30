@@ -23,6 +23,13 @@ namespace RM_2._0_old
         //public static string host = "http://192.168.100.74/";
         public static string login = "";
         public static string password = "";
+        public enum eFormType
+        {
+            New,
+            Edit,
+        };
+        private eFormType type;
+        public TimeEntry CurTimeEntry { get; set; }
         public int projectId=0;
         class ClientCustomField
         {
@@ -162,8 +169,8 @@ namespace RM_2._0_old
                     Subject = "ЛРП " + textBoxНомерЦСС.Text + " " + comboBoxМодульЦСС.Text, // Название задачи
                     Description = textBoxОписание.Text,     // Описание задачи
                     Project = new IdentifiableName { Id = projectId },      // Проект
-                    CreatedOn = dateTimePickerЕСА.Value,                         // Дата создание
-                    DueDate = dateTimePickerЕСА.Value,                          // Дата окончания
+                    CreatedOn = dateTimePickerЦСС.Value,                         // Дата создание
+                    DueDate = dateTimePickerЦСС.Value,                          // Дата окончания
                     Tracker = new IdentifiableName { Id = 4 },        // Трекер
                     Status = new IdentifiableName { Id = 3 },         // Статус. По умолчанию NEW
                     Priority = new IdentifiableName { Id = 1 },       // Приоритет. По умолчанию Normal
@@ -172,8 +179,17 @@ namespace RM_2._0_old
                     Category = new IdentifiableName { Id = 1 },
                 };
                 Issue savedIssue = redmine.CreateObject(redminetask);
-                MessageBox.Show("Созданна задача: " + savedIssue.Id);
-            }
+                type = eFormType.New;
+                CurTimeEntry = new TimeEntry();
+                CurTimeEntry.Issue = new IdentifiableName() { Id = savedIssue.Id };
+                CurTimeEntry.SpentOn = DateTime.Now;
+                CurTimeEntry.User = new IdentifiableName() { Id = user.Id };
+                CurTimeEntry.Activity = new IdentifiableName() { Id = 10 };
+                CurTimeEntry.Hours = decimal.Parse(buttonСоздатьЗадачуЦСС.Text);
+                CurTimeEntry.Comments = textBoxВыполненныеДействияЦСС.Text;
+                redmine.CreateObject(CurTimeEntry);
+                MessageBox.Show("Созданна задача: " + savedIssue.Id + " и списано " + CurTimeEntry.Hours);
+                }
             catch (Exception c)
             { MessageBox.Show(c.Message); }
         }
@@ -242,10 +258,23 @@ namespace RM_2._0_old
                     Category = new IdentifiableName { Id = 1 },
                 };
                 Issue savedIssue = redmine.CreateObject(redminetask);
-                MessageBox.Show("Созданна задача: " + savedIssue.Id);
+                
+                type = eFormType.New;
+                CurTimeEntry = new TimeEntry();
+                CurTimeEntry.Issue = new IdentifiableName() { Id = savedIssue.Id };
+                CurTimeEntry.SpentOn = DateTime.Now;
+                CurTimeEntry.User = new IdentifiableName() { Id = user.Id };
+                CurTimeEntry.Activity = new IdentifiableName() { Id = 10 };
+                CurTimeEntry.Hours = decimal.Parse(textBoxЗатраченноеВремяЕСА.Text);
+                CurTimeEntry.Comments = textBoxВыполненныеДействияЕСА.Text;
+                redmine.CreateObject(CurTimeEntry);
+                MessageBox.Show("Созданна задача: " + savedIssue.Id + " и списано "+ CurTimeEntry.Hours);
+
+
             }
             catch (Exception c)
             { MessageBox.Show(c.Message); }
         }
+
     }
 }

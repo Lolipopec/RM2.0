@@ -47,6 +47,11 @@ namespace RM_2._0_old
             this.labelОписание = new System.Windows.Forms.Label();
             this.textBoxОписание = new System.Windows.Forms.TextBox();
             this.panelЕСА = new System.Windows.Forms.Panel();
+            this.textBoxЗатраченноеВремяЕСА = new System.Windows.Forms.TextBox();
+            this.textBoxТема = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.textBoxОписаниеЕСА = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.buttonСоздатьЗадачуЕСА = new System.Windows.Forms.Button();
             this.dateTimePickerЕСА = new System.Windows.Forms.DateTimePicker();
             this.labelДействияЕСА = new System.Windows.Forms.Label();
@@ -55,17 +60,18 @@ namespace RM_2._0_old
             this.labelКаналЕСА = new System.Windows.Forms.Label();
             this.comboBoxАктивностьЕСА = new System.Windows.Forms.ComboBox();
             this.labelАктивностьЕСА = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBoxОписаниеЕСА = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.textBoxТема = new System.Windows.Forms.TextBox();
+            this.labelДата = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.textBoxЗатраченноеВремяЦСС = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.panelЦСС.SuspendLayout();
             this.panelЕСА.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonСоздатьЗадачуЦСС
             // 
-            this.buttonСоздатьЗадачуЦСС.Location = new System.Drawing.Point(95, 320);
+            this.buttonСоздатьЗадачуЦСС.Location = new System.Drawing.Point(95, 356);
             this.buttonСоздатьЗадачуЦСС.Name = "buttonСоздатьЗадачуЦСС";
             this.buttonСоздатьЗадачуЦСС.Size = new System.Drawing.Size(75, 23);
             this.buttonСоздатьЗадачуЦСС.TabIndex = 0;
@@ -183,14 +189,17 @@ namespace RM_2._0_old
             // 
             // dateTimePickerЦСС
             // 
-            this.dateTimePickerЦСС.Location = new System.Drawing.Point(0, 294);
+            this.dateTimePickerЦСС.Location = new System.Drawing.Point(10, 320);
             this.dateTimePickerЦСС.Name = "dateTimePickerЦСС";
             this.dateTimePickerЦСС.Size = new System.Drawing.Size(135, 20);
             this.dateTimePickerЦСС.TabIndex = 17;
             // 
             // panelЦСС
             // 
+            this.panelЦСС.Controls.Add(this.label5);
+            this.panelЦСС.Controls.Add(this.label4);
             this.panelЦСС.Controls.Add(this.labelОписание);
+            this.panelЦСС.Controls.Add(this.textBoxЗатраченноеВремяЦСС);
             this.panelЦСС.Controls.Add(this.textBoxОписание);
             this.panelЦСС.Controls.Add(this.comboBoxАктивностьЦСС);
             this.panelЦСС.Controls.Add(this.dateTimePickerЦСС);
@@ -230,6 +239,9 @@ namespace RM_2._0_old
             // 
             // panelЕСА
             // 
+            this.panelЕСА.Controls.Add(this.label3);
+            this.panelЕСА.Controls.Add(this.labelДата);
+            this.panelЕСА.Controls.Add(this.textBoxЗатраченноеВремяЕСА);
             this.panelЕСА.Controls.Add(this.textBoxТема);
             this.panelЕСА.Controls.Add(this.label2);
             this.panelЕСА.Controls.Add(this.textBoxОписаниеЕСА);
@@ -244,13 +256,56 @@ namespace RM_2._0_old
             this.panelЕСА.Controls.Add(this.labelАктивностьЕСА);
             this.panelЕСА.Location = new System.Drawing.Point(12, 53);
             this.panelЕСА.Name = "panelЕСА";
-            this.panelЕСА.Size = new System.Drawing.Size(294, 340);
+            this.panelЕСА.Size = new System.Drawing.Size(294, 249);
             this.panelЕСА.TabIndex = 19;
             this.panelЕСА.Visible = false;
             // 
+            // textBoxЗатраченноеВремяЕСА
+            // 
+            this.textBoxЗатраченноеВремяЕСА.Location = new System.Drawing.Point(161, 323);
+            this.textBoxЗатраченноеВремяЕСА.Name = "textBoxЗатраченноеВремяЕСА";
+            this.textBoxЗатраченноеВремяЕСА.Size = new System.Drawing.Size(100, 20);
+            this.textBoxЗатраченноеВремяЕСА.TabIndex = 24;
+            // 
+            // textBoxТема
+            // 
+            this.textBoxТема.Location = new System.Drawing.Point(3, 102);
+            this.textBoxТема.Multiline = true;
+            this.textBoxТема.Name = "textBoxТема";
+            this.textBoxТема.Size = new System.Drawing.Size(256, 25);
+            this.textBoxТема.TabIndex = 23;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(4, 86);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(34, 13);
+            this.label2.TabIndex = 22;
+            this.label2.Text = "Тема";
+            // 
+            // textBoxОписаниеЕСА
+            // 
+            this.textBoxОписаниеЕСА.Location = new System.Drawing.Point(5, 159);
+            this.textBoxОписаниеЕСА.Multiline = true;
+            this.textBoxОписаниеЕСА.Name = "textBoxОписаниеЕСА";
+            this.textBoxОписаниеЕСА.Size = new System.Drawing.Size(256, 44);
+            this.textBoxОписаниеЕСА.TabIndex = 21;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(4, 143);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(57, 13);
+            this.label1.TabIndex = 20;
+            this.label1.Text = "Описание";
+            // 
             // buttonСоздатьЗадачуЕСА
             // 
-            this.buttonСоздатьЗадачуЕСА.Location = new System.Drawing.Point(26, 305);
+            this.buttonСоздатьЗадачуЕСА.Location = new System.Drawing.Point(26, 349);
             this.buttonСоздатьЗадачуЕСА.Name = "buttonСоздатьЗадачуЕСА";
             this.buttonСоздатьЗадачуЕСА.Size = new System.Drawing.Size(75, 23);
             this.buttonСоздатьЗадачуЕСА.TabIndex = 18;
@@ -260,7 +315,7 @@ namespace RM_2._0_old
             // 
             // dateTimePickerЕСА
             // 
-            this.dateTimePickerЕСА.Location = new System.Drawing.Point(5, 279);
+            this.dateTimePickerЕСА.Location = new System.Drawing.Point(5, 323);
             this.dateTimePickerЕСА.Name = "dateTimePickerЕСА";
             this.dateTimePickerЕСА.Size = new System.Drawing.Size(135, 20);
             this.dateTimePickerЕСА.TabIndex = 18;
@@ -319,41 +374,52 @@ namespace RM_2._0_old
             this.labelАктивностьЕСА.TabIndex = 10;
             this.labelАктивностьЕСА.Text = "Активность";
             // 
-            // label1
+            // labelДата
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(4, 143);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(57, 13);
-            this.label1.TabIndex = 20;
-            this.label1.Text = "Описание";
+            this.labelДата.AutoSize = true;
+            this.labelДата.Location = new System.Drawing.Point(7, 300);
+            this.labelДата.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelДата.Name = "labelДата";
+            this.labelДата.Size = new System.Drawing.Size(33, 13);
+            this.labelДата.TabIndex = 25;
+            this.labelДата.Text = "Дата";
             // 
-            // textBoxОписаниеЕСА
+            // label3
             // 
-            this.textBoxОписаниеЕСА.Location = new System.Drawing.Point(5, 159);
-            this.textBoxОписаниеЕСА.Multiline = true;
-            this.textBoxОписаниеЕСА.Name = "textBoxОписаниеЕСА";
-            this.textBoxОписаниеЕСА.Size = new System.Drawing.Size(256, 44);
-            this.textBoxОписаниеЕСА.TabIndex = 21;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(158, 304);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(69, 13);
+            this.label3.TabIndex = 26;
+            this.label3.Text = "Затр. время";
             // 
-            // label2
+            // label4
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(4, 86);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(34, 13);
-            this.label2.TabIndex = 22;
-            this.label2.Text = "Тема";
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(158, 300);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(69, 13);
+            this.label4.TabIndex = 28;
+            this.label4.Text = "Затр. время";
             // 
-            // textBoxТема
+            // textBoxЗатраченноеВремяЦСС
             // 
-            this.textBoxТема.Location = new System.Drawing.Point(3, 102);
-            this.textBoxТема.Multiline = true;
-            this.textBoxТема.Name = "textBoxТема";
-            this.textBoxТема.Size = new System.Drawing.Size(256, 25);
-            this.textBoxТема.TabIndex = 23;
+            this.textBoxЗатраченноеВремяЦСС.Location = new System.Drawing.Point(161, 320);
+            this.textBoxЗатраченноеВремяЦСС.Name = "textBoxЗатраченноеВремяЦСС";
+            this.textBoxЗатраченноеВремяЦСС.Size = new System.Drawing.Size(100, 20);
+            this.textBoxЗатраченноеВремяЦСС.TabIndex = 27;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(9, 304);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(33, 13);
+            this.label5.TabIndex = 27;
+            this.label5.Text = "Дата";
             // 
             // Новая
             // 
@@ -408,6 +474,12 @@ namespace RM_2._0_old
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBoxТема;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox textBoxЗатраченноеВремяЕСА;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label labelДата;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox textBoxЗатраченноеВремяЦСС;
     }
 }
 
