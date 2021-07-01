@@ -146,7 +146,6 @@ namespace RM_2._0_old
             parameter.Add("status_id", "open");
             parameter.Add("assigned_to_id", "me");
             parameter.Add("project", "*");
-
             RedmineManager manager = new RedmineManager(host, login, password);
             int i = 0;
             foreach (var issue in manager.GetTotalObjectList<Issue>(parameters))
@@ -159,6 +158,21 @@ namespace RM_2._0_old
                 i++;
             }
         }
+        //Issue redminetask = new Issue()
+        //{
+        //    AssignedTo = new IdentifiableName() { Id = 1 }, // Кому отправить
+        //    Author = new IdentifiableName() { Id = 1 },     // Автор задачи 
+        //    Subject = "ТЕСТ",                                 // Название задачи
+        //    Description = "Описание для тестовой задачи",     // Описание задачи
+        //    Project = new IdentifiableName { Id = 1 },      // Проект
+        //    CreatedOn = DateTime.Now,                         // Дата создание
+        //    DueDate = DateTime.Now,                          // Дата окончания
+        //    Tracker = new IdentifiableName { Id = 1 },        // Трекер
+        //    Status = new IdentifiableName { Id = 1 },         // Статус. По умолчанию NEW
+        //    Priority = new IdentifiableName { Id = 4 },       // Приоритет. По умолчанию Normal
+        //    EstimatedHours = (float?)1.0,                     // Оценка времени
+        //    Watchers = new List<Watcher>() { new Watcher { Id = 2 } }, // Наблюдатели
+        //};
         private void Menu_Load(object sender, EventArgs e)
         {
 
@@ -208,7 +222,6 @@ namespace RM_2._0_old
                 parameterref1.Add("assigned_to_id", currentUser.Id.ToString());
 
             }
-            parameterref1.Add("subject", "123");
             if (statusId == 0)
                 parameterref1.Add("status_id", "*");
             else
@@ -269,7 +282,7 @@ namespace RM_2._0_old
         /// <param name="e"></param>
         private void SearchBtn_Click(object sender, EventArgs e)
         {
-            //id = 0 - номер задачи; 1 - номер ЛРП
+            //id = 0 - номер задачи; 1 - номер ЛРП фыв
             dataGridView1.Rows.Clear();
 
             if (domainUpDown1.SelectedIndex == 0)
@@ -378,7 +391,7 @@ namespace RM_2._0_old
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             string Search = dataGridView1[0, dataGridView1.CurrentCell.RowIndex].Value.ToString();
-            Просмотр_задач ch = new Просмотр_задач(Search,login,password);
+            Просмотр_задач ch = new Просмотр_задач(Search,login, password);
             ch.Show();
         }
 
@@ -400,16 +413,16 @@ namespace RM_2._0_old
 
         public void ttime()
         {
-            textBox1.Text ="0";
+            textBox1.Text = "0";
             decimal tim = 0;
             RedmineManager manager = new RedmineManager(host, login, password);
             NameValueCollection param = new NameValueCollection();
-            Debug.WriteLine(dateTimePicker1.Value.ToShortDateString()); 
+            Debug.WriteLine(dateTimePicker1.Value.ToShortDateString());
             var oftime = manager.GetTotalObjectList<TimeEntry>(param);
             param.Add("spent_on", dateTimePicker1.Value.ToShortDateString());
             foreach (var c in oftime)
             {
-                tim += c.Hours;     
+                tim += c.Hours;
             }
             textBox1.Text = tim.ToString();
         }
