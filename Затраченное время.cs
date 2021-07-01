@@ -19,18 +19,22 @@ namespace RM_2._0_old
         public string id;
         public string login = "";
         public TimeEntry CurTimeEntry { get; set; }
-        public string password="";
+        public string password = "";
         public string host = "http://testred.ru";
-        public Затрченное_время(string id,string log,string pass)
+        Menu m;
+        public Затрченное_время(string id, string log, string pass)
         {
             InitializeComponent();
             this.id = id;
             this.login = log;
             this.password = pass;
             fill();
+            m = new Menu(login, password);
+
         }
         public void fill()
         {
+            DataGridViewTimeEntries.Rows.Clear();
             NameValueCollection parameter = new NameValueCollection();
             RedmineManager manager = new RedmineManager(host, login, password);
             parameter.Add("issue_id", id);
@@ -47,7 +51,6 @@ namespace RM_2._0_old
                 i++;
             }
         }
-
         private void добавитьToolStripMenuItem_Click(object sender, EventArgs e)
         {
             NameValueCollection parameter = new NameValueCollection();
@@ -61,8 +64,10 @@ namespace RM_2._0_old
             CurTimeEntry.Hours = decimal.Parse(textBoxЗатраченноеВремя.Text);
             CurTimeEntry.Comments = textBoxВыполненныеДействия.Text;
             manager.CreateObject(CurTimeEntry);
-        }
 
+            fill();
+            m.ttime();
+        }
         private void button1_Click(object sender, EventArgs e)
         {
             try
@@ -76,7 +81,7 @@ namespace RM_2._0_old
                 manager.ImpersonateUser = login;
                 //Debug.WriteLine(user.FirstName);
                 parameter.Add("comments", DataGridViewTimeEntries[2, DataGridViewTimeEntries.CurrentCell.RowIndex].Value.ToString());
-                parameter.Add("hours", DataGridViewTimeEntries[3, DataGridViewTimeEntries.CurrentCell.RowIndex].Value.ToString().Replace(",","."));
+                parameter.Add("hours", DataGridViewTimeEntries[3, DataGridViewTimeEntries.CurrentCell.RowIndex].Value.ToString().Replace(",", "."));
                 parameter.Add("user", user.Id.ToString());
                 //parameter.Add("created_on", DataGridViewTimeEntries[1, DataGridViewTimeEntries.CurrentCell.RowIndex].Value.ToString());
                 Debug.WriteLine(id.ToString());
@@ -96,17 +101,21 @@ namespace RM_2._0_old
                 CurTimeEntry.Comments = textBoxВыполненныеДействия.Text;
                 CurTimeEntr2.Comments = textBoxВыполненныеДействия.Text;
                 manager.UpdateObject(CurTimeEntry.Id.ToString(), CurTimeEntr2);
-                //manager.UpdateObject(CurTimeEntry.Id.ToString(), CurTimeEntry);
+                manager.UpdateObject(CurTimeEntry.Id.ToString(), CurTimeEntry);
             }
             catch (Exception c)
             {
                 MessageBox.Show(c.Message);
             }
         }
-
         private void изменитьToolStripMenuItem_Click(object sender, EventArgs e)
         {
             button1.Visible = true;
+            m.ttime();
+
+        }
+        private void удалитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
         }
     }
 }

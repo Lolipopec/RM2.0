@@ -39,6 +39,7 @@ namespace RM_2._0_old
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.новаяToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.списатьОстатокВремениToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.userToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.выйтиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.labelProject = new System.Windows.Forms.Label();
@@ -57,7 +58,6 @@ namespace RM_2._0_old
             this.label4 = new System.Windows.Forms.Label();
             this.TimeNowTXT = new System.Windows.Forms.Label();
             this.checkForME = new System.Windows.Forms.CheckBox();
-            this.списатьОстатокВремениToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -158,22 +158,28 @@ namespace RM_2._0_old
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(812, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(812, 30);
             this.menuStrip1.TabIndex = 4;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // новаяToolStripMenuItem
             // 
             this.новаяToolStripMenuItem.Name = "новаяToolStripMenuItem";
-            this.новаяToolStripMenuItem.Size = new System.Drawing.Size(67, 24);
+            this.новаяToolStripMenuItem.Size = new System.Drawing.Size(67, 26);
             this.новаяToolStripMenuItem.Text = "Новая";
             this.новаяToolStripMenuItem.Click += new System.EventHandler(this.новаяToolStripMenuItem_Click);
+            // 
+            // списатьОстатокВремениToolStripMenuItem
+            // 
+            this.списатьОстатокВремениToolStripMenuItem.Margin = new System.Windows.Forms.Padding(215, 0, 0, 0);
+            this.списатьОстатокВремениToolStripMenuItem.Name = "списатьОстатокВремениToolStripMenuItem";
+            this.списатьОстатокВремениToolStripMenuItem.Size = new System.Drawing.Size(14, 26);
             // 
             // userToolStripMenuItem
             // 
             this.userToolStripMenuItem.Margin = new System.Windows.Forms.Padding(260, 0, 0, 0);
             this.userToolStripMenuItem.Name = "userToolStripMenuItem";
-            this.userToolStripMenuItem.Size = new System.Drawing.Size(31, 24);
+            this.userToolStripMenuItem.Size = new System.Drawing.Size(31, 26);
             this.userToolStripMenuItem.Text = "1";
             this.userToolStripMenuItem.TextDirection = System.Windows.Forms.ToolStripTextDirection.Horizontal;
             this.userToolStripMenuItem.Click += new System.EventHandler(this.userToolStripMenuItem_Click);
@@ -181,7 +187,7 @@ namespace RM_2._0_old
             // выйтиToolStripMenuItem
             // 
             this.выйтиToolStripMenuItem.Name = "выйтиToolStripMenuItem";
-            this.выйтиToolStripMenuItem.Size = new System.Drawing.Size(67, 24);
+            this.выйтиToolStripMenuItem.Size = new System.Drawing.Size(67, 26);
             this.выйтиToolStripMenuItem.Text = "Выйти";
             this.выйтиToolStripMenuItem.Click += new System.EventHandler(this.выйтиToolStripMenuItem_Click_1);
             // 
@@ -255,9 +261,9 @@ namespace RM_2._0_old
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(79, 372);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(123, 17);
+            this.label3.Size = new System.Drawing.Size(124, 17);
             this.label3.TabIndex = 9;
-            this.label3.Text = "Остаток времени";
+            this.label3.Text = "Списанное время";
             // 
             // SearchDop
             // 
@@ -344,12 +350,6 @@ namespace RM_2._0_old
             this.checkForME.Text = "Задачки на мне";
             this.checkForME.UseVisualStyleBackColor = true;
             this.checkForME.CheckedChanged += new System.EventHandler(this.checkForME_CheckedChanged);
-            // 
-            // списатьОстатокВремениToolStripMenuItem
-            // 
-            this.списатьОстатокВремениToolStripMenuItem.Margin = new System.Windows.Forms.Padding(215, 0, 0, 0);
-            this.списатьОстатокВремениToolStripMenuItem.Name = "списатьОстатокВремениToolStripMenuItem";
-            this.списатьОстатокВремениToolStripMenuItem.Size = new System.Drawing.Size(14, 24);
             // 
             // timer2
             // 

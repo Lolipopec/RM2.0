@@ -52,30 +52,26 @@ namespace RM_2._0_old
         public bool mezad = false;
         public string us = "";
         #endregion
-
-
-        //   private Dictionary<int, Project> Projects;
         public Menu(string l, string p)
         {
             InitializeComponent();
             this.Text = l;
             RM_2._0_old.Menu.login = l;
             RM_2._0_old.Menu.password = p;
-
             redmine = new RedmineManager(host, login, password);
             parameters = new NameValueCollection();
             Fill();
             userToolStripMenuItem.Text = l;
             timer1.Interval = 1000;
             timer1.Enabled = true;
-            timer2.Interval = 6000;
+            timer2.Interval = 60000;
             timer2.Enabled = true;
             dateTimePicker1.Value = DateTime.Now;
             SearchBtn.Enabled = false;
             SearchTxt.Enabled = false;
             domainUpDown1.Wrap = true;
+            ttime();
         }
-
         /// <summary>
         /// определение id 
         /// </summary>
@@ -118,12 +114,12 @@ namespace RM_2._0_old
             }
             RefReshFill();
         }
-
         /// <summary>
         /// наполнение формы
         /// </summary>
         public void Fill()
         {
+            ttime();
             //Наполнение проектов
             IList<Project> allProjects = redmine.GetTotalObjectList<Project>(parameters);
             foreach (var c in allProjects.Distinct())
@@ -158,21 +154,6 @@ namespace RM_2._0_old
                 i++;
             }
         }
-        //Issue redminetask = new Issue()
-        //{
-        //    AssignedTo = new IdentifiableName() { Id = 1 }, // Кому отправить
-        //    Author = new IdentifiableName() { Id = 1 },     // Автор задачи 
-        //    Subject = "ТЕСТ",                                 // Название задачи
-        //    Description = "Описание для тестовой задачи",     // Описание задачи
-        //    Project = new IdentifiableName { Id = 1 },      // Проект
-        //    CreatedOn = DateTime.Now,                         // Дата создание
-        //    DueDate = DateTime.Now,                          // Дата окончания
-        //    Tracker = new IdentifiableName { Id = 1 },        // Трекер
-        //    Status = new IdentifiableName { Id = 1 },         // Статус. По умолчанию NEW
-        //    Priority = new IdentifiableName { Id = 4 },       // Приоритет. По умолчанию Normal
-        //    EstimatedHours = (float?)1.0,                     // Оценка времени
-        //    Watchers = new List<Watcher>() { new Watcher { Id = 2 } }, // Наблюдатели
-        //};
         private void Menu_Load(object sender, EventArgs e)
         {
 
@@ -210,6 +191,7 @@ namespace RM_2._0_old
         }
         private void RefReshFill()
         {
+            ttime();
             User currentUser = redmine.GetCurrentUser();
 
 
@@ -366,13 +348,26 @@ namespace RM_2._0_old
                     NameValueCollection pr = new NameValueCollection();
                     pr.Add("login", login);
                     User uss = manager.GetCurrentUser();
-                    NameValueCollection parameterref2 = new NameValueCollection();
-                    Debug.WriteLine(us);
-                    parameterref2.Add("subject", "~" + "Затраченное время " + uss.FirstName);
+                    NameValueCollection parameterref2 = new NameValueCollection(); // для поиска по теме
+                    NameValueCollection parameterref3 = new NameValueCollection(); // для поиска по описанию
+                    parameterref2.Add("subject", "~" + "Затраченное время " + uss.FirstName); //параметр по теме*
+                    parameterref3.Add("description", "~" + "Затраченное время"); // параметр по описанию*
+                    parameterref3.Add("start_date", DateTime.Now.Year.ToString("yyyy-MM-dd")); //параметр по дате*
                     var Search = manager.GetTotalObjectList<Issue>(parameterref2);
+                    var Search2 = manager.GetTotalObjectList<Issue>(parameterref3);
 
                     int i = 0;
                     foreach (var issue in Search)
+                    {
+                        dataGridView1.Rows.Add();
+                        dataGridView1.Rows[i].Cells[0].Value = issue.Id;
+                        dataGridView1.Rows[i].Cells[1].Value = issue.Subject;
+                        dataGridView1.Rows[i].Cells[2].Value = issue.Status.Name;
+                        dataGridView1.Rows[i].Cells[3].Value = issue.Priority.Name;
+                        i++;
+                    }
+           
+                    foreach (var issue in Search2)
                     {
                         dataGridView1.Rows.Add();
                         dataGridView1.Rows[i].Cells[0].Value = issue.Id;
@@ -387,39 +382,33 @@ namespace RM_2._0_old
                 }
             }
         }
-
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             string Search = dataGridView1[0, dataGridView1.CurrentCell.RowIndex].Value.ToString();
-            Просмотр_задач ch = new Просмотр_задач(Search,login, password);
+            Просмотр_задач ch = new Просмотр_задач(Search, login, password);
             ch.Show();
         }
-
         private void checkForME_CheckedChanged(object sender, EventArgs e)
         {
             mezad = !mezad;
             RefReshFill();
         }
-
         private void TimeNowTXT_Click(object sender, EventArgs e)
         {
 
         }
-
         private void timer2_Tick(object sender, EventArgs e)
         {
             ttime();
         }
-
         public void ttime()
         {
             textBox1.Text = "0";
             decimal tim = 0;
             RedmineManager manager = new RedmineManager(host, login, password);
             NameValueCollection param = new NameValueCollection();
-            Debug.WriteLine(dateTimePicker1.Value.ToShortDateString());
+            param.Add("spent_on", dateTimePicker1.Value.ToString("yyyy-MM-dd"));
             var oftime = manager.GetTotalObjectList<TimeEntry>(param);
-            param.Add("spent_on", dateTimePicker1.Value.ToShortDateString());
             foreach (var c in oftime)
             {
                 tim += c.Hours;
