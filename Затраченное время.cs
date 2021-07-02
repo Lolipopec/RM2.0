@@ -43,8 +43,6 @@ namespace RM_2._0_old
             Debug.WriteLine(id);
             var CurTimeEntr = manager.GetTotalObjectList<TimeEntry>(parameter);
             int i = 0;
-            string firstn = "";
-            int tabIdx;
             foreach (var issue in CurTimeEntr)
             {
                 Array.Resize(ref mas, mas.Length + 1);
