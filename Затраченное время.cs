@@ -82,7 +82,7 @@ namespace RM_2._0_old
                 //Debug.WriteLine(user.FirstName);
                 parameter.Add("comments", DataGridViewTimeEntries[2, DataGridViewTimeEntries.CurrentCell.RowIndex].Value.ToString());
                 parameter.Add("hours", DataGridViewTimeEntries[3, DataGridViewTimeEntries.CurrentCell.RowIndex].Value.ToString().Replace(",", "."));
-                parameter.Add("user", user.Id.ToString());
+                parameter.Add("user_id", user.Id.ToString());
                 //parameter.Add("created_on", DataGridViewTimeEntries[1, DataGridViewTimeEntries.CurrentCell.RowIndex].Value.ToString());
                 Debug.WriteLine(id.ToString());
                 var CurTimeEntr = manager.GetTotalObjectList<TimeEntry>(parameter);
@@ -95,13 +95,20 @@ namespace RM_2._0_old
                 }
                 Debug.WriteLine(CurTimeEntry.Id);
                 var CurTimeEntr2 = new TimeEntry();
-                CurTimeEntr2.SpentOn = Convert.ToDateTime("2021-07-02");
-                CurTimeEntr2.Hours = 1;
-                CurTimeEntry.Id = 19;
+
+                CurTimeEntry.SpentOn = DateTime.Parse(dateTimePicker.Value.ToString("yyyy-MM-dd"));
+                CurTimeEntry.Hours = 1;
+                CurTimeEntry.Id = 44;
                 CurTimeEntry.Comments = textBoxВыполненныеДействия.Text;
                 CurTimeEntr2.Comments = textBoxВыполненныеДействия.Text;
-                manager.UpdateObject(CurTimeEntry.Id.ToString(), CurTimeEntr2);
+                CurTimeEntry.Issue = new IdentifiableName() { Id = 112 };
+                CurTimeEntry.User = new IdentifiableName() { Id = user.Id };
+                CurTimeEntry.Activity = new IdentifiableName() { Id = 10 };
+
+               // manager.UpdateObject(CurTimeEntry.Id.ToString(), CurTimeEntr2);
+
                 manager.UpdateObject(CurTimeEntry.Id.ToString(), CurTimeEntry);
+                m.ttime();
             }
             catch (Exception c)
             {
@@ -111,11 +118,13 @@ namespace RM_2._0_old
         private void изменитьToolStripMenuItem_Click(object sender, EventArgs e)
         {
             button1.Visible = true;
-            m.ttime();
+
 
         }
         private void удалитьToolStripMenuItem_Click(object sender, EventArgs e)
         {
+
+
         }
     }
 }

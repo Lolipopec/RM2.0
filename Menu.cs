@@ -51,6 +51,7 @@ namespace RM_2._0_old
         public static string password = "";
         public bool mezad = false;
         public string us = "";
+        public User currentUser;
         #endregion
         public Menu(string l, string p)
         {
@@ -70,6 +71,7 @@ namespace RM_2._0_old
             SearchBtn.Enabled = false;
             SearchTxt.Enabled = false;
             domainUpDown1.Wrap = true;
+            checkForME.Checked = true;
             ttime();
         }
         /// <summary>
@@ -119,6 +121,7 @@ namespace RM_2._0_old
         /// </summary>
         public void Fill()
         {
+            currentUser = redmine.GetCurrentUser();
             ttime();
             //Наполнение проектов
             IList<Project> allProjects = redmine.GetTotalObjectList<Project>(parameters);
@@ -139,12 +142,11 @@ namespace RM_2._0_old
 
             //наполнение datagrid
             NameValueCollection parameter = new NameValueCollection();
-            parameter.Add("status_id", "open");
-            parameter.Add("assigned_to_id", "me");
-            parameter.Add("project", "*");
+
+            parameter.Add("assigned_to_id", currentUser.Id.ToString());
             RedmineManager manager = new RedmineManager(host, login, password);
             int i = 0;
-            foreach (var issue in manager.GetTotalObjectList<Issue>(parameters))
+            foreach (var issue in manager.GetTotalObjectList<Issue>(parameter))
             {
                 dataGridView1.Rows.Add();
                 dataGridView1.Rows[i].Cells[0].Value = issue.Id;
@@ -192,7 +194,7 @@ namespace RM_2._0_old
         private void RefReshFill()
         {
             ttime();
-            User currentUser = redmine.GetCurrentUser();
+
 
 
 
@@ -244,7 +246,6 @@ namespace RM_2._0_old
         {
             Новая новая = new Новая(login, password);
             новая.Show();
-            this.Hide();
         }
         private void domainUpDown1_SelectedItemChanged(object sender, EventArgs e)
         {
@@ -366,7 +367,7 @@ namespace RM_2._0_old
                         dataGridView1.Rows[i].Cells[3].Value = issue.Priority.Name;
                         i++;
                     }
-           
+
                     foreach (var issue in Search2)
                     {
                         dataGridView1.Rows.Add();
@@ -408,6 +409,7 @@ namespace RM_2._0_old
             RedmineManager manager = new RedmineManager(host, login, password);
             NameValueCollection param = new NameValueCollection();
             param.Add("spent_on", dateTimePicker1.Value.ToString("yyyy-MM-dd"));
+            param.Add("user_id", currentUser.Id.ToString());
             var oftime = manager.GetTotalObjectList<TimeEntry>(param);
             foreach (var c in oftime)
             {

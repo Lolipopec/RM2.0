@@ -119,5 +119,18 @@ namespace RM_2._0_old
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void назадToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void сохранитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+
+
+
+        }
     }
 }

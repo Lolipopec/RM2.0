@@ -44,7 +44,6 @@ namespace RM_2._0_old
                 MessageBox.Show("Неправильный логин или пароль.");
             }
         }
-
         private void Авторизация_Load(object sender, EventArgs e)
         {
 

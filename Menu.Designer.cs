@@ -165,19 +165,18 @@ namespace RM_2._0_old
             // новаяToolStripMenuItem
             // 
             this.новаяToolStripMenuItem.Name = "новаяToolStripMenuItem";
-            this.новаяToolStripMenuItem.Size = new System.Drawing.Size(67, 26);
+            this.новаяToolStripMenuItem.Size = new System.Drawing.Size(67, 24);
             this.новаяToolStripMenuItem.Text = "Новая";
             this.новаяToolStripMenuItem.Click += new System.EventHandler(this.новаяToolStripMenuItem_Click);
             // 
             // списатьОстатокВремениToolStripMenuItem
             // 
-            this.списатьОстатокВремениToolStripMenuItem.Margin = new System.Windows.Forms.Padding(215, 0, 0, 0);
             this.списатьОстатокВремениToolStripMenuItem.Name = "списатьОстатокВремениToolStripMenuItem";
             this.списатьОстатокВремениToolStripMenuItem.Size = new System.Drawing.Size(14, 26);
             // 
             // userToolStripMenuItem
             // 
-            this.userToolStripMenuItem.Margin = new System.Windows.Forms.Padding(260, 0, 0, 0);
+            this.userToolStripMenuItem.Margin = new System.Windows.Forms.Padding(420, 0, 0, 0);
             this.userToolStripMenuItem.Name = "userToolStripMenuItem";
             this.userToolStripMenuItem.Size = new System.Drawing.Size(31, 26);
             this.userToolStripMenuItem.Text = "1";
@@ -186,6 +185,7 @@ namespace RM_2._0_old
             // 
             // выйтиToolStripMenuItem
             // 
+            this.выйтиToolStripMenuItem.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.выйтиToolStripMenuItem.Name = "выйтиToolStripMenuItem";
             this.выйтиToolStripMenuItem.Size = new System.Drawing.Size(67, 26);
             this.выйтиToolStripMenuItem.Text = "Выйти";

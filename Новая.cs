@@ -176,7 +176,8 @@ namespace RM_2._0_old
                 Issue savedIssue = redmine.CreateObject(redminetask);
                 CurTimeEntry = new TimeEntry();
                 CurTimeEntry.Issue = new IdentifiableName() { Id = savedIssue.Id };
-                CurTimeEntry.SpentOn = DateTime.Now;
+                
+                CurTimeEntry.SpentOn = DateTime.Parse(dateTimePickerЦСС.Value.ToString("yyyy-MM-dd"));
                 CurTimeEntry.User = new IdentifiableName() { Id = user.Id };
                 //CurTimeEntry.Activity = new IdentifiableName() { Id = 10 };
                 CurTimeEntry.Hours = decimal.Parse(textBoxЗатраченноеВремяЦСС.Text);
@@ -255,7 +256,7 @@ namespace RM_2._0_old
                 
                 CurTimeEntry = new TimeEntry();
                 CurTimeEntry.Issue = new IdentifiableName() { Id = savedIssue.Id };
-                CurTimeEntry.SpentOn = DateTime.Now;
+                CurTimeEntry.SpentOn = DateTime.Parse(dateTimePickerЕСА.Value.ToString("yyyy-MM-dd")); ;
                 CurTimeEntry.User = new IdentifiableName() { Id = user.Id };
                 //CurTimeEntry.Activity = new IdentifiableName() { Id = 10 };
                 CurTimeEntry.Hours = decimal.Parse(textBoxЗатраченноеВремяЕСА.Text);
@@ -269,5 +270,9 @@ namespace RM_2._0_old
             { MessageBox.Show(c.Message); }
         }
 
+        private void назадToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
