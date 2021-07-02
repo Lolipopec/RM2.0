@@ -29,12 +29,14 @@ namespace RM_2._0_old
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Авторизация));
             this.PasswordTXT = new System.Windows.Forms.TextBox();
             this.LoginTXT = new System.Windows.Forms.TextBox();
             this.buttonLogin = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.label1 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // PasswordTXT
@@ -90,15 +92,15 @@ namespace RM_2._0_old
             this.tableLayoutPanel1.Size = new System.Drawing.Size(343, 97);
             this.tableLayoutPanel1.TabIndex = 3;
             // 
-            // label1
+            // pictureBox1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(45, 56);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(266, 20);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Тут могла быть Ваша реклама";
+            this.pictureBox1.Image = global::RM_2._0_old.Properties.Resources.imgonline_com_ua_Transparent_backgr_18UTq8wTOXKduBd_removebg_preview;
+            this.pictureBox1.Location = new System.Drawing.Point(38, 30);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(248, 54);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 4;
+            this.pictureBox1.TabStop = false;
             // 
             // Авторизация
             // 
@@ -107,10 +109,11 @@ namespace RM_2._0_old
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(332, 303);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.buttonLogin);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(5);
             this.MaximumSize = new System.Drawing.Size(350, 350);
             this.MinimumSize = new System.Drawing.Size(350, 350);
@@ -120,8 +123,8 @@ namespace RM_2._0_old
             this.Load += new System.EventHandler(this.Авторизация_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -131,6 +134,6 @@ namespace RM_2._0_old
         private System.Windows.Forms.TextBox LoginTXT;
         private System.Windows.Forms.Button buttonLogin;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

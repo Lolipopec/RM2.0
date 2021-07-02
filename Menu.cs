@@ -56,7 +56,7 @@ namespace RM_2._0_old
         public Menu(string l, string p)
         {
             InitializeComponent();
-            this.Text = l;
+            this.Text = "Меню (" + l + ")";
             RM_2._0_old.Menu.login = l;
             RM_2._0_old.Menu.password = p;
             redmine = new RedmineManager(host, login, password);

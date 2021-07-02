@@ -29,6 +29,7 @@ namespace RM_2._0_old
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Затрченное_время));
             this.DataGridViewTimeEntries = new System.Windows.Forms.DataGridView();
             this.Дата = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Пользователь = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -56,19 +57,21 @@ namespace RM_2._0_old
             this.DataGridViewTimeEntries.AllowUserToDeleteRows = false;
             this.DataGridViewTimeEntries.AllowUserToResizeRows = false;
             this.DataGridViewTimeEntries.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.DataGridViewTimeEntries.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.DataGridViewTimeEntries.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DataGridViewTimeEntries.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Дата,
             this.Пользователь,
             this.Комментарий,
             this.Часы});
-            this.DataGridViewTimeEntries.Location = new System.Drawing.Point(12, 27);
+            this.DataGridViewTimeEntries.Location = new System.Drawing.Point(16, 33);
+            this.DataGridViewTimeEntries.Margin = new System.Windows.Forms.Padding(4);
             this.DataGridViewTimeEntries.MultiSelect = false;
             this.DataGridViewTimeEntries.Name = "DataGridViewTimeEntries";
             this.DataGridViewTimeEntries.ReadOnly = true;
             this.DataGridViewTimeEntries.RowHeadersWidth = 51;
             this.DataGridViewTimeEntries.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DataGridViewTimeEntries.Size = new System.Drawing.Size(547, 210);
+            this.DataGridViewTimeEntries.Size = new System.Drawing.Size(729, 258);
             this.DataGridViewTimeEntries.TabIndex = 53;
             // 
             // Дата
@@ -105,6 +108,7 @@ namespace RM_2._0_old
             // 
             // menuStrip1
             // 
+            this.menuStrip1.BackColor = System.Drawing.Color.Transparent;
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.добавитьToolStripMenuItem,
@@ -113,95 +117,98 @@ namespace RM_2._0_old
             this.назадToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(566, 24);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(755, 28);
             this.menuStrip1.TabIndex = 57;
             this.menuStrip1.Text = "menuStrip1";
+            this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
             // 
             // добавитьToolStripMenuItem
             // 
             this.добавитьToolStripMenuItem.Name = "добавитьToolStripMenuItem";
-            this.добавитьToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
+            this.добавитьToolStripMenuItem.Size = new System.Drawing.Size(90, 24);
             this.добавитьToolStripMenuItem.Text = "Добавить";
             this.добавитьToolStripMenuItem.Click += new System.EventHandler(this.добавитьToolStripMenuItem_Click);
             // 
             // изменитьToolStripMenuItem
             // 
             this.изменитьToolStripMenuItem.Name = "изменитьToolStripMenuItem";
-            this.изменитьToolStripMenuItem.Size = new System.Drawing.Size(73, 20);
+            this.изменитьToolStripMenuItem.Size = new System.Drawing.Size(92, 24);
             this.изменитьToolStripMenuItem.Text = "Изменить";
             this.изменитьToolStripMenuItem.Click += new System.EventHandler(this.изменитьToolStripMenuItem_Click);
             // 
             // удалитьToolStripMenuItem
             // 
             this.удалитьToolStripMenuItem.Name = "удалитьToolStripMenuItem";
-            this.удалитьToolStripMenuItem.Size = new System.Drawing.Size(63, 20);
+            this.удалитьToolStripMenuItem.Size = new System.Drawing.Size(79, 24);
             this.удалитьToolStripMenuItem.Text = "Удалить";
             this.удалитьToolStripMenuItem.Click += new System.EventHandler(this.удалитьToolStripMenuItem_Click);
             // 
             // назадToolStripMenuItem
             // 
             this.назадToolStripMenuItem.Name = "назадToolStripMenuItem";
-            this.назадToolStripMenuItem.Size = new System.Drawing.Size(51, 20);
+            this.назадToolStripMenuItem.Size = new System.Drawing.Size(65, 24);
             this.назадToolStripMenuItem.Text = "Назад";
+            this.назадToolStripMenuItem.Click += new System.EventHandler(this.назадToolStripMenuItem_Click);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(354, 246);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Location = new System.Drawing.Point(472, 303);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(69, 13);
+            this.label3.Size = new System.Drawing.Size(88, 17);
             this.label3.TabIndex = 63;
             this.label3.Text = "Затр. время";
             // 
             // labelДата
             // 
             this.labelДата.AutoSize = true;
-            this.labelДата.Location = new System.Drawing.Point(213, 246);
-            this.labelДата.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelДата.Location = new System.Drawing.Point(284, 303);
             this.labelДата.Name = "labelДата";
-            this.labelДата.Size = new System.Drawing.Size(33, 13);
+            this.labelДата.Size = new System.Drawing.Size(42, 17);
             this.labelДата.TabIndex = 62;
             this.labelДата.Text = "Дата";
             // 
             // textBoxЗатраченноеВремя
             // 
-            this.textBoxЗатраченноеВремя.Location = new System.Drawing.Point(357, 261);
+            this.textBoxЗатраченноеВремя.Location = new System.Drawing.Point(476, 321);
+            this.textBoxЗатраченноеВремя.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxЗатраченноеВремя.Name = "textBoxЗатраченноеВремя";
-            this.textBoxЗатраченноеВремя.Size = new System.Drawing.Size(100, 20);
+            this.textBoxЗатраченноеВремя.Size = new System.Drawing.Size(132, 22);
             this.textBoxЗатраченноеВремя.TabIndex = 61;
             // 
             // dateTimePicker
             // 
-            this.dateTimePicker.Location = new System.Drawing.Point(216, 262);
+            this.dateTimePicker.Location = new System.Drawing.Point(288, 322);
+            this.dateTimePicker.Margin = new System.Windows.Forms.Padding(4);
             this.dateTimePicker.Name = "dateTimePicker";
-            this.dateTimePicker.Size = new System.Drawing.Size(135, 20);
+            this.dateTimePicker.Size = new System.Drawing.Size(179, 22);
             this.dateTimePicker.TabIndex = 58;
             // 
             // labelДействияЕСА
             // 
             this.labelДействияЕСА.AutoSize = true;
-            this.labelДействияЕСА.Location = new System.Drawing.Point(11, 246);
-            this.labelДействияЕСА.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelДействияЕСА.Location = new System.Drawing.Point(15, 303);
             this.labelДействияЕСА.Name = "labelДействияЕСА";
-            this.labelДействияЕСА.Size = new System.Drawing.Size(128, 13);
+            this.labelДействияЕСА.Size = new System.Drawing.Size(166, 17);
             this.labelДействияЕСА.TabIndex = 60;
             this.labelДействияЕСА.Text = "Выполненные действия";
             // 
             // textBoxВыполненныеДействия
             // 
-            this.textBoxВыполненныеДействия.Location = new System.Drawing.Point(12, 262);
+            this.textBoxВыполненныеДействия.Location = new System.Drawing.Point(16, 322);
+            this.textBoxВыполненныеДействия.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxВыполненныеДействия.Multiline = true;
             this.textBoxВыполненныеДействия.Name = "textBoxВыполненныеДействия";
-            this.textBoxВыполненныеДействия.Size = new System.Drawing.Size(198, 20);
+            this.textBoxВыполненныеДействия.Size = new System.Drawing.Size(263, 24);
             this.textBoxВыполненныеДействия.TabIndex = 59;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(483, 258);
+            this.button1.Location = new System.Drawing.Point(644, 318);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(53, 23);
+            this.button1.Size = new System.Drawing.Size(71, 28);
             this.button1.TabIndex = 64;
             this.button1.Text = "ОК";
             this.button1.UseVisualStyleBackColor = true;
@@ -210,9 +217,10 @@ namespace RM_2._0_old
             // 
             // Затрченное_время
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(566, 293);
+            this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.ClientSize = new System.Drawing.Size(755, 361);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.labelДата);
@@ -222,9 +230,11 @@ namespace RM_2._0_old
             this.Controls.Add(this.textBoxВыполненныеДействия);
             this.Controls.Add(this.DataGridViewTimeEntries);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Затрченное_время";
-            this.Text = "Затрченное_время";
+            this.Text = "Затраченное время";
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewTimeEntries)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

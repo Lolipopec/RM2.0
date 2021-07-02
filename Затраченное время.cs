@@ -31,6 +31,8 @@ namespace RM_2._0_old
             this.password = pass;
             fill();
             m = new Menu(login, password);
+            DataGridViewTimeEntries.DefaultCellStyle.SelectionBackColor = Color.LightSkyBlue;
+
         }
         public void fill()
         {
@@ -41,9 +43,11 @@ namespace RM_2._0_old
             Debug.WriteLine(id);
             var CurTimeEntr = manager.GetTotalObjectList<TimeEntry>(parameter);
             int i = 0;
+            string firstn = "";
+            int tabIdx;
             foreach (var issue in CurTimeEntr)
             {
-                Array.Resize(ref mas,mas.Length+1);
+                Array.Resize(ref mas, mas.Length + 1);
                 mas[i] = issue.Id;
                 Debug.WriteLine("issue.Id" + issue.Id);
                 DataGridViewTimeEntries.Rows.Add();
@@ -67,7 +71,6 @@ namespace RM_2._0_old
             CurTimeEntry.Hours = decimal.Parse(textBoxЗатраченноеВремя.Text);
             CurTimeEntry.Comments = textBoxВыполненныеДействия.Text;
             manager.CreateObject(CurTimeEntry);
-
             fill();
             m.ttime();
         }
@@ -115,7 +118,7 @@ namespace RM_2._0_old
         {
             RedmineManager manager = new RedmineManager(host, login, password);
             NameValueCollection parameter = new NameValueCollection();
-            var CurTimeEntr = manager.GetObject<TimeEntry>(mas[DataGridViewTimeEntries.CurrentCell.RowIndex].ToString(),parameter);
+            var CurTimeEntr = manager.GetObject<TimeEntry>(mas[DataGridViewTimeEntries.CurrentCell.RowIndex].ToString(), parameter);
             try
             {
                 manager.DeleteObject<TimeEntry>(CurTimeEntr.Id.ToString(), null);
@@ -123,10 +126,20 @@ namespace RM_2._0_old
             }
             catch (RedmineException rex)
             {
-                MessageBox.Show("Ошибка " +rex.Message);
+                MessageBox.Show("Ошибка " + rex.Message);
             }
             fill();
             m.ttime();
+        }
+
+        private void назадToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
         }
     }
 }

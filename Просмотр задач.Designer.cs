@@ -54,8 +54,6 @@ namespace RM_2._0_old
             // 
             // redmineWebClient1
             // 
-           // this.redmineWebClient1.AllowReadStreamBuffering = false;
-            //this.redmineWebClient1.AllowWriteStreamBuffering = false;
             this.redmineWebClient1.BaseAddress = "";
             this.redmineWebClient1.CachePolicy = null;
             this.redmineWebClient1.Credentials = null;
@@ -198,15 +196,20 @@ namespace RM_2._0_old
             // timeZN
             // 
             this.timeZN.AutoSize = true;
+            this.timeZN.BackColor = System.Drawing.Color.Transparent;
+            this.timeZN.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.timeZN.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.timeZN.ForeColor = System.Drawing.Color.Black;
             this.timeZN.Location = new System.Drawing.Point(397, 273);
             this.timeZN.Name = "timeZN";
-            this.timeZN.Size = new System.Drawing.Size(44, 17);
+            this.timeZN.Size = new System.Drawing.Size(44, 18);
             this.timeZN.TabIndex = 23;
             this.timeZN.Text = "00.00";
             this.timeZN.Click += new System.EventHandler(this.timeZN_Click);
             // 
             // menuStrip1
             // 
+            this.menuStrip1.BackColor = System.Drawing.Color.Transparent;
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.назадToolStripMenuItem,
@@ -236,6 +239,7 @@ namespace RM_2._0_old
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(637, 353);
             this.Controls.Add(this.timeZN);
             this.Controls.Add(this.label4);
@@ -253,6 +257,7 @@ namespace RM_2._0_old
             this.Controls.Add(this.labelTracker);
             this.Controls.Add(this.ComboBoxTracker);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Просмотр_задач";
