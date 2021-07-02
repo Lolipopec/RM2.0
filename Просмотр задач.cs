@@ -29,64 +29,72 @@ namespace RM_2._0_old
 
         public Просмотр_задач(string st,string login,string pass)
         {
-            InitializeComponent();
-            id = st;
-            this.login = login;
-            this.password = pass;
-            fill();
+            try
+            {
+                InitializeComponent();
+                id = st;
+                this.login = login;
+                this.password = pass;
+                fill();
+            }
+            catch { MessageBox.Show("Ошибка"); }
         }
 
 
         public void fill()
         {
-            RedmineManager redmine = new RedmineManager(host, login, password);
-            //Наполнение трекеров (не работает)
-            foreach (var c in redmine.GetTotalObjectList<Tracker>(parameters))
+            try
             {
-                ComboBoxTracker.Items.Add(c.Name);
-            }
-            //наполнение сатусов
-            foreach (var c in redmine.GetTotalObjectList<IssueStatus>(parameters))
-            {
-                ComboBoxStatus.Items.Add(c.Name);
-            }
-            //наполнение приоритетов
-            foreach (var c in redmine.GetTotalObjectList<IssuePriority>(parameters))
-            {
-                ComboBoxPriority.Items.Add(c.Name);
-            }
-            
-            NameValueCollection parameter = new NameValueCollection();
-            RedmineManager manager = new RedmineManager(host, login, password);
-            parameter.Add("issue_id", id);
-            var Search = manager.GetTotalObjectList<Issue>(parameter);
-            var CurTimeEntr = manager.GetTotalObjectList<TimeEntry>(parameter);
-            foreach (var issue in Search)
-            {
+                RedmineManager redmine = new RedmineManager(host, login, password);
+                //Наполнение трекеров (не работает)
+                foreach (var c in redmine.GetTotalObjectList<Tracker>(parameters))
+                {
+                    ComboBoxTracker.Items.Add(c.Name);
+                }
+                //наполнение сатусов
+                foreach (var c in redmine.GetTotalObjectList<IssueStatus>(parameters))
+                {
+                    ComboBoxStatus.Items.Add(c.Name);
+                }
+                //наполнение приоритетов
+                foreach (var c in redmine.GetTotalObjectList<IssuePriority>(parameters))
+                {
+                    ComboBoxPriority.Items.Add(c.Name);
+                }
 
-                this.Text = "Просмотр и редактирование задачи №" + issue.Id;
-                tema.Text = issue.Subject;
-                ComboBoxStatus.Text = issue.Status.Name;
-                ComboBoxPriority.Text = issue.Priority.Name;
-                ComboBoxTracker.Text = issue.Tracker.Name;
-                DateStart.Value = issue.StartDate.Value;
-                opisanie.Text = issue.Description;
-                
+                NameValueCollection parameter = new NameValueCollection();
+                RedmineManager manager = new RedmineManager(host, login, password);
+                parameter.Add("issue_id", id);
+                var Search = manager.GetTotalObjectList<Issue>(parameter);
+                var CurTimeEntr = manager.GetTotalObjectList<TimeEntry>(parameter);
+                foreach (var issue in Search)
+                {
+
+                    this.Text = "Просмотр и редактирование задачи №" + issue.Id;
+                    tema.Text = issue.Subject;
+                    ComboBoxStatus.Text = issue.Status.Name;
+                    ComboBoxPriority.Text = issue.Priority.Name;
+                    ComboBoxTracker.Text = issue.Tracker.Name;
+                    DateStart.Value = issue.StartDate.Value;
+                    opisanie.Text = issue.Description;
+
                     try
-                {
-                    DateDue.Value = issue.DueDate.Value;
+                    {
+                        DateDue.Value = issue.DueDate.Value;
+                    }
+                    catch
+                    {
+                        DateDue.Value = DateTime.Now.AddDays(1);
+                    }
                 }
-                catch
+                decimal ZN = 0;
+                foreach (var issue in CurTimeEntr)
                 {
-                    DateDue.Value = DateTime.Now.AddDays(1);
+                    ZN += issue.Hours;
                 }
+                timeZN.Text = "Затраченное время " + " " + ZN.ToString() + " ч.";
             }
-            decimal ZN = 0;
-            foreach (var issue in CurTimeEntr)
-            {
-                ZN+= issue.Hours;
-            }
-            timeZN.Text = "Затраченное время " + " " + ZN.ToString() + " ч.";
+            catch { MessageBox.Show("Ошибка"); }
         }
 
 
@@ -102,30 +110,42 @@ namespace RM_2._0_old
 
         private void button1_Click(object sender, EventArgs e)
         {
+            try {
             fill();
+            }
+            catch { MessageBox.Show("Ошибка"); }
         }
 
         private void timeZN_Click(object sender, EventArgs e)
         {
             try
             {
-                Затрченное_время dlg = new Затрченное_время(id,login,password);
-                if (dlg.ShowDialog(this) == DialogResult.OK)
+                try
                 {
+                    Затрченное_время dlg = new Затрченное_время(id, login, password);
+                    if (dlg.ShowDialog(this) == DialogResult.OK)
+                    {
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
                 }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            catch { MessageBox.Show("Ошибка"); }
         }
 
         private void назадToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.Close();
+            try
+            {
+                this.Close();
+            }
+            catch { MessageBox.Show("Ошибка"); }
         }
         private void сохранитьToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            try { 
             NameValueCollection parameter = new NameValueCollection();
             RedmineManager manager = new RedmineManager(host, login, password);
             parameter.Add("issue_id", id);
@@ -138,6 +158,8 @@ namespace RM_2._0_old
             manager.UpdateObject(id, issue);
             var updatedIssue = manager.GetObject<Issue>(id, null);
             MessageBox.Show("Обновлена задача "+ updatedIssue.Id);
+            }
+            catch { MessageBox.Show("Ошибка"); }
         }
     }
 }

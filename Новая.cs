@@ -19,6 +19,7 @@ namespace RM_2._0_old
 {
     public partial class Новая : Form
     {
+        public bool flagbutton = false;
         public static string host = "http://testred.ru";
         //public static string host = "http://192.168.100.74/";
         public static string login = "";
@@ -32,6 +33,7 @@ namespace RM_2._0_old
         };
         public Новая(string login, string password)
         {
+            try {
             InitializeComponent();
            
             //login = "vlasov_pa";
@@ -48,9 +50,18 @@ namespace RM_2._0_old
                 comboBoxПроекты.Items.Add(c.Name);
             }
             comboBoxМодульЦСС.Items.Add("TRS Manager");
+                comboBoxМодульЦСС.Items.Add("ГТП");
+                comboBoxМодульЦСС.Items.Add("Форум ЕСМА");
+                comboBoxМодульЦСС.Items.Add("АСИА");
+                comboBoxМодульЦСС.Items.Add("Моб.ЕСМА");
+                comboBoxМодульЦСС.Items.Add("АГО-5");
+                comboBoxМодульЦСС.Items.Add("УРРАН");
+            }
+            catch { MessageBox.Show("Ошибка"); }
         }
         private void comboBoxПроекты_SelectedIndexChanged(object sender, EventArgs e)
         {
+            try { 
             var redmine = new RedmineManager(host, login, password);
             var parameters = new NameValueCollection();
             int projectId = 0;
@@ -66,6 +77,9 @@ namespace RM_2._0_old
             }
             if (comboBoxПроекты.SelectedItem.ToString().Contains("ЕСА") == true)
             {
+                flagbutton = true;
+                comboBoxАктивностьЕСА.Items.Clear();
+                comboBoxКаналЕСА.Items.Clear();
                 panelЦСС.Visible = false;
                 panelЕСА.Visible = true;
                 parameters.Add("project_id", projectId.ToString());
@@ -86,6 +100,9 @@ namespace RM_2._0_old
             }
             if (comboBoxПроекты.SelectedItem.ToString().Contains("ЦСС") == true)
             {
+                comboBoxКаналЦСС.Items.Clear();
+                comboBoxАктивностьЦСС.Items.Clear();
+                flagbutton = false;
                 panelЦСС.Visible = true;
                 panelЕСА.Visible = false;
                 parameters.Add("project_id", projectId.ToString());
@@ -104,10 +121,13 @@ namespace RM_2._0_old
                         }
                 }
             }
+            }
+            catch { MessageBox.Show("Ошибка"); }
         }
 
-        private void buttonСоздатьЗадачуЦСС_Click(object sender, EventArgs e)
+        public void СоздатьЗадачуЦСС()
         {
+            try { 
             try 
             {
                 var redmine = new RedmineManager(host, login, password);
@@ -164,8 +184,8 @@ namespace RM_2._0_old
                     Subject = "ЛРП " + textBoxНомерЦСС.Text + " " + comboBoxМодульЦСС.Text, // Название задачи
                     Description = textBoxОписание.Text,     // Описание задачи
                     Project = new IdentifiableName { Id = projectId },      // Проект
-                    CreatedOn = dateTimePickerЦСС.Value,                         // Дата создание
-                    DueDate = dateTimePickerЦСС.Value,                          // Дата окончания
+                    CreatedOn = DateTime.Now,                         // Дата создание
+                    DueDate = DateTime.Now,                           // Дата окончания
                     Tracker = new IdentifiableName { Id = 4 },        // Трекер
                     Status = new IdentifiableName { Id = 3 },         // Статус. По умолчанию NEW
                     Priority = new IdentifiableName { Id = 1 },       // Приоритет. По умолчанию Normal
@@ -187,6 +207,8 @@ namespace RM_2._0_old
                 }
             catch (Exception c)
             { MessageBox.Show(c.Message); }
+            }
+            catch { MessageBox.Show("Ошибка"); }
         }
 
         private void Новая_Load(object sender, EventArgs e)
@@ -194,8 +216,9 @@ namespace RM_2._0_old
 
         }
 
-        private void buttonСоздатьЗадачуЕСА_Click(object sender, EventArgs e)
+        public void СоздатьЗадачуЕСА()
         {
+            try { 
             try
             {
                 var redmine = new RedmineManager(host, login, password);
@@ -243,8 +266,8 @@ namespace RM_2._0_old
                     Subject = textBoxТема.Text, // Название задачи
                     Description = textBoxОписаниеЕСА.Text,     // Описание задачи
                     Project = new IdentifiableName { Id = projectId },      // Проект
-                    CreatedOn = dateTimePickerЕСА.Value,                         // Дата создание
-                    DueDate = dateTimePickerЕСА.Value,                          // Дата окончания
+                    CreatedOn = DateTime.Now,                         // Дата создание
+                    DueDate = DateTime.Now,                          // Дата окончания
                     Tracker = new IdentifiableName { Id = 4 },        // Трекер
                     Status = new IdentifiableName { Id = 3 },         // Статус. По умолчанию NEW
                     Priority = new IdentifiableName { Id = 1 },       // Приоритет. По умолчанию Normal
@@ -268,11 +291,27 @@ namespace RM_2._0_old
             }
             catch (Exception c)
             { MessageBox.Show(c.Message); }
+            }
+            catch { MessageBox.Show("Ошибка"); }
         }
 
         private void назадToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void создатьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (flagbutton == false)
+                {
+                    СоздатьЗадачуЦСС();
+                }
+                else
+                { СоздатьЗадачуЕСА(); }
+            }
+            catch { MessageBox.Show("Ошибка"); }
         }
     }
 }

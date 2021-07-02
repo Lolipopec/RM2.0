@@ -34,7 +34,6 @@ namespace RM_2._0_old
                 var a = new RedmineManager(host, login, password);
                 User currentUser = a.GetCurrentUser();
                 //Debug.WriteLine("Current user: {0}.", currentUser.Id);
-
                 Menu f  = new Menu(login, password);
                 f.Show();
                 this.Hide();

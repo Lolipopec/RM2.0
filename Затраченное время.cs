@@ -25,6 +25,7 @@ namespace RM_2._0_old
         Menu m;
         public Затрченное_время(string id, string log, string pass)
         {
+            try { 
             InitializeComponent();
             this.id = id;
             this.login = log;
@@ -32,10 +33,13 @@ namespace RM_2._0_old
             fill();
             m = new Menu(login, password);
             DataGridViewTimeEntries.DefaultCellStyle.SelectionBackColor = Color.LightSkyBlue;
+            }
+            catch { MessageBox.Show("Ошибка"); }
 
         }
         public void fill()
         {
+            try {
             DataGridViewTimeEntries.Rows.Clear();
             NameValueCollection parameter = new NameValueCollection();
             RedmineManager manager = new RedmineManager(host, login, password);
@@ -55,9 +59,12 @@ namespace RM_2._0_old
                 DataGridViewTimeEntries.Rows[i].Cells[3].Value = issue.Hours;
                 i++;
             }
+            }
+            catch { MessageBox.Show("Ошибка"); }
         }
         private void добавитьToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            try {
             NameValueCollection parameter = new NameValueCollection();
             parameter.Add("issue_id", id);
             RedmineManager manager = new RedmineManager(host, login, password);
@@ -71,29 +78,63 @@ namespace RM_2._0_old
             manager.CreateObject(CurTimeEntry);
             fill();
             m.ttime();
+            }
+            catch { MessageBox.Show("Ошибка"); }
         }
         private void button1_Click(object sender, EventArgs e)
         {
             try
             {
-                button1.Visible = false;
+                try
+                {
+                    button1.Visible = false;
+                    RedmineManager manager = new RedmineManager(host, login, password);
+                    NameValueCollection parameter = new NameValueCollection();
+                    var CurTimeEntr = manager.GetObject<TimeEntry>(mas[DataGridViewTimeEntries.CurrentCell.RowIndex].ToString(), parameter);
+                    try
+                    {
+                        manager.DeleteObject<TimeEntry>(CurTimeEntr.Id.ToString(), null);
+                    }
+                    catch (RedmineException rex)
+                    {
+                        MessageBox.Show("Ошибка " + rex.Message);
+                    }
+                    CurTimeEntr.SpentOn = dateTimePicker.Value;
+                    CurTimeEntr.Hours = decimal.Parse(textBoxЗатраченноеВремя.Text);
+                    CurTimeEntr.Comments = textBoxВыполненныеДействия.Text;
+                    try
+                    {
+                        manager.CreateObject<TimeEntry>(CurTimeEntr);
+                        MessageBox.Show("Уcпешно");
+                    }
+                    catch (RedmineException rex)
+                    {
+                        MessageBox.Show("Ошибка " + rex.Message);
+                    }
+                    fill();
+                    m.ttime();
+                }
+                catch (Exception c)
+                {
+                    MessageBox.Show(c.Message);
+                }
+            }
+            catch { MessageBox.Show("Ошибка"); }
+        }
+        private void изменитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            button1.Visible = true;
+        }
+        private void удалитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
                 RedmineManager manager = new RedmineManager(host, login, password);
                 NameValueCollection parameter = new NameValueCollection();
                 var CurTimeEntr = manager.GetObject<TimeEntry>(mas[DataGridViewTimeEntries.CurrentCell.RowIndex].ToString(), parameter);
                 try
                 {
                     manager.DeleteObject<TimeEntry>(CurTimeEntr.Id.ToString(), null);
-                }
-                catch (RedmineException rex)
-                {
-                    MessageBox.Show("Ошибка " + rex.Message);
-                }
-                CurTimeEntr.SpentOn = dateTimePicker.Value;
-                CurTimeEntr.Hours = decimal.Parse(textBoxЗатраченноеВремя.Text);
-                CurTimeEntr.Comments = textBoxВыполненныеДействия.Text;
-                try
-                {
-                    manager.CreateObject<TimeEntry>(CurTimeEntr);
                     MessageBox.Show("Уcпешно");
                 }
                 catch (RedmineException rex)
@@ -103,31 +144,7 @@ namespace RM_2._0_old
                 fill();
                 m.ttime();
             }
-            catch (Exception c)
-            {
-                MessageBox.Show(c.Message);
-            }
-        }
-        private void изменитьToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            button1.Visible = true;
-        }
-        private void удалитьToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            RedmineManager manager = new RedmineManager(host, login, password);
-            NameValueCollection parameter = new NameValueCollection();
-            var CurTimeEntr = manager.GetObject<TimeEntry>(mas[DataGridViewTimeEntries.CurrentCell.RowIndex].ToString(), parameter);
-            try
-            {
-                manager.DeleteObject<TimeEntry>(CurTimeEntr.Id.ToString(), null);
-                MessageBox.Show("Уcпешно");
-            }
-            catch (RedmineException rex)
-            {
-                MessageBox.Show("Ошибка " + rex.Message);
-            }
-            fill();
-            m.ttime();
+            catch { MessageBox.Show("Ошибка"); }
         }
 
         private void назадToolStripMenuItem_Click(object sender, EventArgs e)

@@ -55,24 +55,28 @@ namespace RM_2._0_old
         #endregion
         public Menu(string l, string p)
         {
-            InitializeComponent();
-            this.Text = "Меню (" + l + ")";
-            RM_2._0_old.Menu.login = l;
-            RM_2._0_old.Menu.password = p;
-            redmine = new RedmineManager(host, login, password);
-            parameters = new NameValueCollection();
-            Fill();
-            userToolStripMenuItem.Text = l;
-            timer1.Interval = 1000;
-            timer1.Enabled = true;
-            timer2.Interval = 60000;
-            timer2.Enabled = true;
-            dateTimePicker1.Value = DateTime.Now;
-            SearchBtn.Enabled = false;
-            SearchTxt.Enabled = false;
-            domainUpDown1.Wrap = true;
-            checkForME.Checked = true;
-            ttime();
+            try
+            {
+                InitializeComponent();
+                this.Text = "Меню (" + l + ")";
+                RM_2._0_old.Menu.login = l;
+                RM_2._0_old.Menu.password = p;
+                redmine = new RedmineManager(host, login, password);
+                parameters = new NameValueCollection();
+                Fill();
+                userToolStripMenuItem.Text = l;
+                timer1.Interval = 1000;
+                timer1.Enabled = true;
+                timer2.Interval = 60000;
+                timer2.Enabled = true;
+                dateTimePicker1.Value = DateTime.Now;
+                SearchBtn.Enabled = false;
+                SearchTxt.Enabled = false;
+                domainUpDown1.Wrap = true;
+                checkForME.Checked = true;
+                ttime();
+            }
+            catch { MessageBox.Show("Ошибка"); }
         }
         /// <summary>
         /// определение id 
@@ -80,81 +84,89 @@ namespace RM_2._0_old
         /// <returns></returns>
         public void idsearch()
         {
-            parameters = new NameValueCollection();
-            //для проектов
-            foreach (var c in redmine.GetTotalObjectList<Project>(parameters))
+            try
             {
-                if (comboProject.SelectedItem.ToString() == c.Name)
+                parameters = new NameValueCollection();
+                //для проектов
+                foreach (var c in redmine.GetTotalObjectList<Project>(parameters))
                 {
-                    projectId = c.Id;
-                    break;
+                    if (comboProject.SelectedItem.ToString() == c.Name)
+                    {
+                        projectId = c.Id;
+                        break;
+                    }
+                    else
+                        projectId = 0;
                 }
-                else
-                    projectId = 0;
-            }
-            //для статусов
-            foreach (var c in redmine.GetTotalObjectList<IssueStatus>(parameters))
-            {
-                if (comboStatus.SelectedItem.ToString() == c.Name)
+                //для статусов
+                foreach (var c in redmine.GetTotalObjectList<IssueStatus>(parameters))
                 {
-                    statusId = c.Id;
-                    break;
+                    if (comboStatus.SelectedItem.ToString() == c.Name)
+                    {
+                        statusId = c.Id;
+                        break;
+                    }
+                    else
+                        statusId = 0;
                 }
-                else
-                    statusId = 0;
-            }
-            //для приоритета
-            foreach (var c in redmine.GetTotalObjectList<IssuePriority>(parameters))
-            {
-                if (comboPrior.SelectedItem.ToString() == c.Name)
+                //для приоритета
+                foreach (var c in redmine.GetTotalObjectList<IssuePriority>(parameters))
                 {
-                    priorID = c.Id;
-                    break;
+                    if (comboPrior.SelectedItem.ToString() == c.Name)
+                    {
+                        priorID = c.Id;
+                        break;
+                    }
+                    else
+                        priorID = 0;
                 }
-                else
-                    priorID = 0;
+                RefReshFill();
             }
-            RefReshFill();
+            catch { MessageBox.Show("Ошибка"); }
         }
         /// <summary>
         /// наполнение формы
         /// </summary>
         public void Fill()
         {
-            currentUser = redmine.GetCurrentUser();
-            ttime();
-            //Наполнение проектов
-            IList<Project> allProjects = redmine.GetTotalObjectList<Project>(parameters);
-            foreach (var c in allProjects.Distinct())
+            try
             {
-                comboProject.Items.Add(c.Name);
-            }
-            //наполнение сатусов
-            foreach (var c in redmine.GetTotalObjectList<IssueStatus>(parameters))
-            {
-                comboStatus.Items.Add(c.Name);
-            }
-            //наполнение приоритетов
-            foreach (var c in redmine.GetTotalObjectList<IssuePriority>(parameters))
-            {
-                comboPrior.Items.Add(c.Name);
-            }
+                currentUser = redmine.GetCurrentUser();
+                ttime();
+                //Наполнение проектов
+                IList<Project> allProjects = redmine.GetTotalObjectList<Project>(parameters);
+                foreach (var c in allProjects.Distinct())
+                {
+                    comboProject.Items.Add(c.Name);
+                }
+                //наполнение сатусов
+                foreach (var c in redmine.GetTotalObjectList<IssueStatus>(parameters))
+                {
+                    comboStatus.Items.Add(c.Name);
+                }
+                //наполнение приоритетов
+                foreach (var c in redmine.GetTotalObjectList<IssuePriority>(parameters))
+                {
+                    comboPrior.Items.Add(c.Name);
+                }
 
-            //наполнение datagrid
-            NameValueCollection parameter = new NameValueCollection();
+                //наполнение datagrid
+                NameValueCollection parameter = new NameValueCollection();
 
-            parameter.Add("assigned_to_id", currentUser.Id.ToString());
-            RedmineManager manager = new RedmineManager(host, login, password);
-            int i = 0;
-            foreach (var issue in manager.GetTotalObjectList<Issue>(parameter))
-            {
-                dataGridView1.Rows.Add();
-                dataGridView1.Rows[i].Cells[0].Value = issue.Id;
-                dataGridView1.Rows[i].Cells[1].Value = issue.Subject;
-                dataGridView1.Rows[i].Cells[2].Value = issue.Status.Name;
-                dataGridView1.Rows[i].Cells[3].Value = issue.Priority.Name;
-                i++;
+                parameter.Add("assigned_to_id", currentUser.Id.ToString());
+                RedmineManager manager = new RedmineManager(host, login, password);
+                int i = 0;
+                foreach (var issue in manager.GetTotalObjectList<Issue>(parameter))
+                {
+                    dataGridView1.Rows.Add();
+                    dataGridView1.Rows[i].Cells[0].Value = issue.Id;
+                    dataGridView1.Rows[i].Cells[1].Value = issue.Subject;
+                    dataGridView1.Rows[i].Cells[2].Value = issue.Status.Name;
+                    dataGridView1.Rows[i].Cells[3].Value = issue.Priority.Name;
+                    i++;
+                }
             }
+            catch { MessageBox.Show("Ошибка"); }
         }
         private void Menu_Load(object sender, EventArgs e)
         {
@@ -175,24 +187,41 @@ namespace RM_2._0_old
         /// <param name="e"></param>
         private void comboProject_SelectedIndexChanged(object sender, EventArgs e)
         {
-            idsearch();
+            try
+            {
+                idsearch();
+            }
+            catch { MessageBox.Show("Ошибка"); }
         }
         private void comboPrior_SelectedIndexChanged(object sender, EventArgs e)
         {
-            idsearch();
+            try
+            {
+                idsearch();
+            }
+            catch { MessageBox.Show("Ошибка"); }
         }
         private void comboStatus_SelectedIndexChanged(object sender, EventArgs e)
         {
-            idsearch();
+            try
+            {
+                idsearch();
+            }
+            catch { MessageBox.Show("Ошибка"); }
         }
         private void выйтиToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            this.Hide();
+            try
+            {
+                this.Hide();
             Авторизация f = new Авторизация();
             f.Show();
+            }
+            catch { MessageBox.Show("Ошибка"); }
         }
         private void RefReshFill()
         {
+            try {
             ttime();
 
 
@@ -229,34 +258,52 @@ namespace RM_2._0_old
                 dataGridView1.Rows[i].Cells[3].Value = issue.Priority.Name;
                 i++;
             }
+            }
+            catch { MessageBox.Show("Ошибка"); }
         }
         private void timer1_Tick(object sender, EventArgs e)
         {
-            TimeNowTXT.Text = DateTime.Now.ToLongTimeString();
+            try
+            {
+                TimeNowTXT.Text = DateTime.Now.ToLongTimeString();
+            }
+            catch { MessageBox.Show("Ошибка"); }
         }
         private void userToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            dataGridView1.Rows.Clear();
-        }
+            try
+            {
+                RefReshFill();
+            }
+            catch { MessageBox.Show("Ошибка"); }
+}
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
         private void новаяToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Новая новая = new Новая(login, password);
-            новая.Show();
+            try
+            {
+                Новая новая = new Новая(login, password);
+                новая.Show();
+            }
+            catch { MessageBox.Show("Ошибка"); }
         }
         private void domainUpDown1_SelectedItemChanged(object sender, EventArgs e)
         {
-            SearchTxt.Enabled = true;
-            SearchBtn.Enabled = true;
-            SearchBtn.Text = "Поиск";
-            if (domainUpDown1.SelectedIndex == 2)
+            try
             {
-                SearchTxt.Enabled = false;
-                SearchBtn.Text = "Выгрузить";
+                SearchTxt.Enabled = true;
+                SearchBtn.Enabled = true;
+                SearchBtn.Text = "Поиск";
+                if (domainUpDown1.SelectedIndex == 2)
+                {
+                    SearchTxt.Enabled = false;
+                    SearchBtn.Text = "Выгрузить";
+                }
             }
+            catch { MessageBox.Show("Ошибка"); }
         }
         /// <summary>
         /// дополнительный поиск
@@ -265,9 +312,9 @@ namespace RM_2._0_old
         /// <param name="e"></param>
         private void SearchBtn_Click(object sender, EventArgs e)
         {
+            try {
             //id = 0 - номер задачи; 1 - номер ЛРП фыв
             dataGridView1.Rows.Clear();
-
             if (domainUpDown1.SelectedIndex == 0)
             {
 
@@ -382,17 +429,26 @@ namespace RM_2._0_old
                 {
                 }
             }
+            }
+            catch { MessageBox.Show("Ошибка"); }
         }
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            string Search = dataGridView1[0, dataGridView1.CurrentCell.RowIndex].Value.ToString();
-            Просмотр_задач ch = new Просмотр_задач(Search, login, password);
-            ch.Show();
+            try
+            {
+                string Search = dataGridView1[0, dataGridView1.CurrentCell.RowIndex].Value.ToString();
+                Просмотр_задач ch = new Просмотр_задач(Search, login, password);
+                ch.Show();
+            }
+            catch { MessageBox.Show("Ошибка"); }
         }
         private void checkForME_CheckedChanged(object sender, EventArgs e)
         {
+            try {
             mezad = !mezad;
             RefReshFill();
+            }
+            catch { MessageBox.Show("Ошибка"); }
         }
         private void TimeNowTXT_Click(object sender, EventArgs e)
         {
@@ -400,10 +456,15 @@ namespace RM_2._0_old
         }
         private void timer2_Tick(object sender, EventArgs e)
         {
-            ttime();
-        }
+            try
+            {
+                ttime();
+            }
+            catch { MessageBox.Show("Ошибка"); }
+}
         public void ttime()
         {
+            try {
             textBox1.Text = "0";
             decimal tim = 0;
             RedmineManager manager = new RedmineManager(host, login, password);
@@ -416,6 +477,8 @@ namespace RM_2._0_old
                 tim += c.Hours;
             }
             textBox1.Text = tim.ToString();
+            }
+            catch { MessageBox.Show("Ошибка"); }
         }
     }
 }
