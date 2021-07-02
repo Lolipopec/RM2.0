@@ -49,7 +49,7 @@ namespace RM_2._0_old
             {
                 comboBoxПроекты.Items.Add(c.Name);
             }
-            comboBoxМодульЦСС.Items.Add("TRS Manager");
+                comboBoxМодульЦСС.Items.Add("TRS Manager");
                 comboBoxМодульЦСС.Items.Add("ГТП");
                 comboBoxМодульЦСС.Items.Add("Форум ЕСМА");
                 comboBoxМодульЦСС.Items.Add("АСИА");

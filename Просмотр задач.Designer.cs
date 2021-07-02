@@ -65,9 +65,10 @@ namespace RM_2._0_old
             // labelPriority
             // 
             this.labelPriority.AutoSize = true;
-            this.labelPriority.Location = new System.Drawing.Point(424, 33);
+            this.labelPriority.Location = new System.Drawing.Point(318, 27);
+            this.labelPriority.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelPriority.Name = "labelPriority";
-            this.labelPriority.Size = new System.Drawing.Size(80, 17);
+            this.labelPriority.Size = new System.Drawing.Size(61, 13);
             this.labelPriority.TabIndex = 14;
             this.labelPriority.Text = "Приоритет";
             // 
@@ -75,18 +76,19 @@ namespace RM_2._0_old
             // 
             this.ComboBoxPriority.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ComboBoxPriority.FormattingEnabled = true;
-            this.ComboBoxPriority.Location = new System.Drawing.Point(428, 58);
-            this.ComboBoxPriority.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ComboBoxPriority.Location = new System.Drawing.Point(321, 47);
+            this.ComboBoxPriority.Margin = new System.Windows.Forms.Padding(2);
             this.ComboBoxPriority.Name = "ComboBoxPriority";
-            this.ComboBoxPriority.Size = new System.Drawing.Size(197, 24);
+            this.ComboBoxPriority.Size = new System.Drawing.Size(149, 21);
             this.ComboBoxPriority.TabIndex = 15;
             // 
             // labelStatus
             // 
             this.labelStatus.AutoSize = true;
-            this.labelStatus.Location = new System.Drawing.Point(217, 33);
+            this.labelStatus.Location = new System.Drawing.Point(163, 27);
+            this.labelStatus.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelStatus.Name = "labelStatus";
-            this.labelStatus.Size = new System.Drawing.Size(53, 17);
+            this.labelStatus.Size = new System.Drawing.Size(41, 13);
             this.labelStatus.TabIndex = 12;
             this.labelStatus.Text = "Статус";
             // 
@@ -94,74 +96,78 @@ namespace RM_2._0_old
             // 
             this.ComboBoxStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ComboBoxStatus.FormattingEnabled = true;
-            this.ComboBoxStatus.Location = new System.Drawing.Point(221, 58);
-            this.ComboBoxStatus.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ComboBoxStatus.Location = new System.Drawing.Point(166, 47);
+            this.ComboBoxStatus.Margin = new System.Windows.Forms.Padding(2);
             this.ComboBoxStatus.Name = "ComboBoxStatus";
-            this.ComboBoxStatus.Size = new System.Drawing.Size(197, 24);
+            this.ComboBoxStatus.Size = new System.Drawing.Size(149, 21);
             this.ComboBoxStatus.TabIndex = 13;
             // 
             // labelTracker
             // 
             this.labelTracker.AutoSize = true;
-            this.labelTracker.Location = new System.Drawing.Point(12, 33);
+            this.labelTracker.Location = new System.Drawing.Point(9, 27);
+            this.labelTracker.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelTracker.Name = "labelTracker";
-            this.labelTracker.Size = new System.Drawing.Size(56, 17);
+            this.labelTracker.Size = new System.Drawing.Size(44, 13);
             this.labelTracker.TabIndex = 10;
             this.labelTracker.Text = "Трекер";
             // 
             // ComboBoxTracker
             // 
             this.ComboBoxTracker.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ComboBoxTracker.Enabled = false;
             this.ComboBoxTracker.FormattingEnabled = true;
-            this.ComboBoxTracker.Location = new System.Drawing.Point(16, 58);
-            this.ComboBoxTracker.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ComboBoxTracker.Location = new System.Drawing.Point(12, 47);
+            this.ComboBoxTracker.Margin = new System.Windows.Forms.Padding(2);
             this.ComboBoxTracker.Name = "ComboBoxTracker";
-            this.ComboBoxTracker.Size = new System.Drawing.Size(197, 24);
+            this.ComboBoxTracker.Size = new System.Drawing.Size(149, 21);
             this.ComboBoxTracker.TabIndex = 11;
             this.ComboBoxTracker.SelectedIndexChanged += new System.EventHandler(this.ComboBoxTracker_SelectedIndexChanged);
             // 
             // tema
             // 
-            this.tema.Location = new System.Drawing.Point(15, 115);
-            this.tema.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tema.Location = new System.Drawing.Point(11, 93);
+            this.tema.Margin = new System.Windows.Forms.Padding(2);
             this.tema.Name = "tema";
-            this.tema.Size = new System.Drawing.Size(611, 22);
+            this.tema.Size = new System.Drawing.Size(459, 20);
             this.tema.TabIndex = 16;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 95);
+            this.label1.Location = new System.Drawing.Point(10, 77);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(42, 17);
+            this.label1.Size = new System.Drawing.Size(34, 13);
             this.label1.TabIndex = 17;
             this.label1.Text = "Тема";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(13, 142);
+            this.label2.Location = new System.Drawing.Point(10, 115);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(74, 17);
+            this.label2.Size = new System.Drawing.Size(57, 13);
             this.label2.TabIndex = 19;
             this.label2.Text = "Описание";
             // 
             // opisanie
             // 
-            this.opisanie.Location = new System.Drawing.Point(16, 162);
-            this.opisanie.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.opisanie.Location = new System.Drawing.Point(12, 132);
+            this.opisanie.Margin = new System.Windows.Forms.Padding(2);
             this.opisanie.Multiline = true;
             this.opisanie.Name = "opisanie";
-            this.opisanie.Size = new System.Drawing.Size(611, 82);
+            this.opisanie.Size = new System.Drawing.Size(459, 67);
             this.opisanie.TabIndex = 18;
             // 
             // DateDue
             // 
             this.DateDue.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DateDue.Location = new System.Drawing.Point(145, 273);
-            this.DateDue.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.DateDue.Location = new System.Drawing.Point(109, 222);
+            this.DateDue.Margin = new System.Windows.Forms.Padding(2);
             this.DateDue.Name = "DateDue";
-            this.DateDue.Size = new System.Drawing.Size(123, 22);
+            this.DateDue.Size = new System.Drawing.Size(93, 20);
             this.DateDue.TabIndex = 21;
             this.DateDue.Value = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
             // 
@@ -169,27 +175,29 @@ namespace RM_2._0_old
             // 
             this.DateStart.Enabled = false;
             this.DateStart.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DateStart.Location = new System.Drawing.Point(13, 273);
-            this.DateStart.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.DateStart.Location = new System.Drawing.Point(10, 222);
+            this.DateStart.Margin = new System.Windows.Forms.Padding(2);
             this.DateStart.Name = "DateStart";
-            this.DateStart.Size = new System.Drawing.Size(125, 22);
+            this.DateStart.Size = new System.Drawing.Size(95, 20);
             this.DateStart.TabIndex = 20;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(13, 253);
+            this.label3.Location = new System.Drawing.Point(10, 206);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(57, 17);
+            this.label3.Size = new System.Drawing.Size(43, 13);
             this.label3.TabIndex = 22;
             this.label3.Text = "Начата";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(143, 253);
+            this.label4.Location = new System.Drawing.Point(107, 206);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(91, 17);
+            this.label4.Size = new System.Drawing.Size(70, 13);
             this.label4.TabIndex = 22;
             this.label4.Text = "Выполнение";
             // 
@@ -200,9 +208,10 @@ namespace RM_2._0_old
             this.timeZN.Cursor = System.Windows.Forms.Cursors.Hand;
             this.timeZN.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.timeZN.ForeColor = System.Drawing.Color.Black;
-            this.timeZN.Location = new System.Drawing.Point(397, 273);
+            this.timeZN.Location = new System.Drawing.Point(298, 222);
+            this.timeZN.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.timeZN.Name = "timeZN";
-            this.timeZN.Size = new System.Drawing.Size(44, 18);
+            this.timeZN.Size = new System.Drawing.Size(38, 15);
             this.timeZN.TabIndex = 23;
             this.timeZN.Text = "00.00";
             this.timeZN.Click += new System.EventHandler(this.timeZN_Click);
@@ -216,7 +225,8 @@ namespace RM_2._0_old
             this.сохранитьToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(637, 28);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(478, 24);
             this.menuStrip1.TabIndex = 25;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -224,23 +234,23 @@ namespace RM_2._0_old
             // 
             this.назадToolStripMenuItem.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.назадToolStripMenuItem.Name = "назадToolStripMenuItem";
-            this.назадToolStripMenuItem.Size = new System.Drawing.Size(65, 24);
+            this.назадToolStripMenuItem.Size = new System.Drawing.Size(51, 20);
             this.назадToolStripMenuItem.Text = "Назад";
             this.назадToolStripMenuItem.Click += new System.EventHandler(this.назадToolStripMenuItem_Click);
             // 
             // сохранитьToolStripMenuItem
             // 
             this.сохранитьToolStripMenuItem.Name = "сохранитьToolStripMenuItem";
-            this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(97, 24);
+            this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(78, 20);
             this.сохранитьToolStripMenuItem.Text = "Сохранить";
             this.сохранитьToolStripMenuItem.Click += new System.EventHandler(this.сохранитьToolStripMenuItem_Click);
             // 
             // Просмотр_задач
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.ClientSize = new System.Drawing.Size(637, 353);
+            this.ClientSize = new System.Drawing.Size(478, 287);
             this.Controls.Add(this.timeZN);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -259,7 +269,7 @@ namespace RM_2._0_old
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Просмотр_задач";
             this.Text = "-";
             this.Load += new System.EventHandler(this.Просмотр_задач_Load);
