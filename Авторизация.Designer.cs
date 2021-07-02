@@ -47,6 +47,7 @@ namespace RM_2._0_old
             this.PasswordTXT.Margin = new System.Windows.Forms.Padding(5);
             this.PasswordTXT.Multiline = true;
             this.PasswordTXT.Name = "PasswordTXT";
+            this.PasswordTXT.PasswordChar = '*';
             this.PasswordTXT.Size = new System.Drawing.Size(199, 34);
             this.PasswordTXT.TabIndex = 2;
             // 

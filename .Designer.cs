@@ -76,7 +76,7 @@ namespace RM_2._0_old
             // buttonСоздатьЗадачуЦСС
             // 
             this.buttonСоздатьЗадачуЦСС.Location = new System.Drawing.Point(127, 438);
-            this.buttonСоздатьЗадачуЦСС.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonСоздатьЗадачуЦСС.Margin = new System.Windows.Forms.Padding(4);
             this.buttonСоздатьЗадачуЦСС.Name = "buttonСоздатьЗадачуЦСС";
             this.buttonСоздатьЗадачуЦСС.Size = new System.Drawing.Size(100, 28);
             this.buttonСоздатьЗадачуЦСС.TabIndex = 0;
@@ -88,7 +88,7 @@ namespace RM_2._0_old
             // 
             this.comboBoxПроекты.FormattingEnabled = true;
             this.comboBoxПроекты.Location = new System.Drawing.Point(19, 34);
-            this.comboBoxПроекты.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBoxПроекты.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxПроекты.Name = "comboBoxПроекты";
             this.comboBoxПроекты.Size = new System.Drawing.Size(221, 24);
             this.comboBoxПроекты.TabIndex = 1;
@@ -116,7 +116,7 @@ namespace RM_2._0_old
             // 
             this.comboBoxАктивностьЦСС.FormattingEnabled = true;
             this.comboBoxАктивностьЦСС.Location = new System.Drawing.Point(7, 75);
-            this.comboBoxАктивностьЦСС.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBoxАктивностьЦСС.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxАктивностьЦСС.Name = "comboBoxАктивностьЦСС";
             this.comboBoxАктивностьЦСС.Size = new System.Drawing.Size(244, 24);
             this.comboBoxАктивностьЦСС.TabIndex = 7;
@@ -134,7 +134,7 @@ namespace RM_2._0_old
             // 
             this.comboBoxМодульЦСС.FormattingEnabled = true;
             this.comboBoxМодульЦСС.Location = new System.Drawing.Point(7, 25);
-            this.comboBoxМодульЦСС.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBoxМодульЦСС.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxМодульЦСС.Name = "comboBoxМодульЦСС";
             this.comboBoxМодульЦСС.Size = new System.Drawing.Size(244, 24);
             this.comboBoxМодульЦСС.TabIndex = 9;
@@ -152,7 +152,7 @@ namespace RM_2._0_old
             // 
             this.comboBoxКаналЦСС.FormattingEnabled = true;
             this.comboBoxКаналЦСС.Location = new System.Drawing.Point(7, 130);
-            this.comboBoxКаналЦСС.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBoxКаналЦСС.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxКаналЦСС.Name = "comboBoxКаналЦСС";
             this.comboBoxКаналЦСС.Size = new System.Drawing.Size(244, 24);
             this.comboBoxКаналЦСС.TabIndex = 11;
@@ -160,7 +160,7 @@ namespace RM_2._0_old
             // textBoxНомерЦСС
             // 
             this.textBoxНомерЦСС.Location = new System.Drawing.Point(7, 180);
-            this.textBoxНомерЦСС.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxНомерЦСС.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxНомерЦСС.Name = "textBoxНомерЦСС";
             this.textBoxНомерЦСС.Size = new System.Drawing.Size(132, 22);
             this.textBoxНомерЦСС.TabIndex = 13;
@@ -186,7 +186,7 @@ namespace RM_2._0_old
             // textBoxВыполненныеДействияЦСС
             // 
             this.textBoxВыполненныеДействияЦСС.Location = new System.Drawing.Point(4, 292);
-            this.textBoxВыполненныеДействияЦСС.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxВыполненныеДействияЦСС.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxВыполненныеДействияЦСС.Multiline = true;
             this.textBoxВыполненныеДействияЦСС.Name = "textBoxВыполненныеДействияЦСС";
             this.textBoxВыполненныеДействияЦСС.Size = new System.Drawing.Size(340, 62);
@@ -195,7 +195,7 @@ namespace RM_2._0_old
             // dateTimePickerЦСС
             // 
             this.dateTimePickerЦСС.Location = new System.Drawing.Point(13, 394);
-            this.dateTimePickerЦСС.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dateTimePickerЦСС.Margin = new System.Windows.Forms.Padding(4);
             this.dateTimePickerЦСС.Name = "dateTimePickerЦСС";
             this.dateTimePickerЦСС.Size = new System.Drawing.Size(179, 22);
             this.dateTimePickerЦСС.TabIndex = 17;
@@ -221,7 +221,7 @@ namespace RM_2._0_old
             this.panelЦСС.Controls.Add(this.labelКаналЦСС);
             this.panelЦСС.ForeColor = System.Drawing.SystemColors.ControlText;
             this.panelЦСС.Location = new System.Drawing.Point(19, 68);
-            this.panelЦСС.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelЦСС.Margin = new System.Windows.Forms.Padding(4);
             this.panelЦСС.Name = "panelЦСС";
             this.panelЦСС.Size = new System.Drawing.Size(392, 470);
             this.panelЦСС.TabIndex = 18;
@@ -256,7 +256,7 @@ namespace RM_2._0_old
             // textBoxЗатраченноеВремяЦСС
             // 
             this.textBoxЗатраченноеВремяЦСС.Location = new System.Drawing.Point(215, 394);
-            this.textBoxЗатраченноеВремяЦСС.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxЗатраченноеВремяЦСС.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxЗатраченноеВремяЦСС.Name = "textBoxЗатраченноеВремяЦСС";
             this.textBoxЗатраченноеВремяЦСС.Size = new System.Drawing.Size(132, 22);
             this.textBoxЗатраченноеВремяЦСС.TabIndex = 27;
@@ -264,7 +264,7 @@ namespace RM_2._0_old
             // textBoxОписание
             // 
             this.textBoxОписание.Location = new System.Drawing.Point(4, 225);
-            this.textBoxОписание.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxОписание.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxОписание.Multiline = true;
             this.textBoxОписание.Name = "textBoxОписание";
             this.textBoxОписание.Size = new System.Drawing.Size(340, 40);
@@ -288,7 +288,7 @@ namespace RM_2._0_old
             this.panelЕСА.Controls.Add(this.comboBoxАктивностьЕСА);
             this.panelЕСА.Controls.Add(this.labelАктивностьЕСА);
             this.panelЕСА.Location = new System.Drawing.Point(19, 68);
-            this.panelЕСА.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelЕСА.Margin = new System.Windows.Forms.Padding(4);
             this.panelЕСА.Name = "panelЕСА";
             this.panelЕСА.Size = new System.Drawing.Size(392, 470);
             this.panelЕСА.TabIndex = 19;
@@ -315,7 +315,7 @@ namespace RM_2._0_old
             // textBoxЗатраченноеВремяЕСА
             // 
             this.textBoxЗатраченноеВремяЕСА.Location = new System.Drawing.Point(212, 374);
-            this.textBoxЗатраченноеВремяЕСА.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxЗатраченноеВремяЕСА.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxЗатраченноеВремяЕСА.Name = "textBoxЗатраченноеВремяЕСА";
             this.textBoxЗатраченноеВремяЕСА.Size = new System.Drawing.Size(132, 22);
             this.textBoxЗатраченноеВремяЕСА.TabIndex = 24;
@@ -323,7 +323,7 @@ namespace RM_2._0_old
             // textBoxТема
             // 
             this.textBoxТема.Location = new System.Drawing.Point(4, 126);
-            this.textBoxТема.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxТема.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxТема.Multiline = true;
             this.textBoxТема.Name = "textBoxТема";
             this.textBoxТема.Size = new System.Drawing.Size(340, 30);
@@ -341,7 +341,7 @@ namespace RM_2._0_old
             // textBoxОписаниеЕСА
             // 
             this.textBoxОписаниеЕСА.Location = new System.Drawing.Point(7, 196);
-            this.textBoxОписаниеЕСА.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxОписаниеЕСА.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxОписаниеЕСА.Multiline = true;
             this.textBoxОписаниеЕСА.Name = "textBoxОписаниеЕСА";
             this.textBoxОписаниеЕСА.Size = new System.Drawing.Size(340, 53);
@@ -359,7 +359,7 @@ namespace RM_2._0_old
             // buttonСоздатьЗадачуЕСА
             // 
             this.buttonСоздатьЗадачуЕСА.Location = new System.Drawing.Point(32, 406);
-            this.buttonСоздатьЗадачуЕСА.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonСоздатьЗадачуЕСА.Margin = new System.Windows.Forms.Padding(4);
             this.buttonСоздатьЗадачуЕСА.Name = "buttonСоздатьЗадачуЕСА";
             this.buttonСоздатьЗадачуЕСА.Size = new System.Drawing.Size(100, 28);
             this.buttonСоздатьЗадачуЕСА.TabIndex = 18;
@@ -370,7 +370,7 @@ namespace RM_2._0_old
             // dateTimePickerЕСА
             // 
             this.dateTimePickerЕСА.Location = new System.Drawing.Point(4, 374);
-            this.dateTimePickerЕСА.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dateTimePickerЕСА.Margin = new System.Windows.Forms.Padding(4);
             this.dateTimePickerЕСА.Name = "dateTimePickerЕСА";
             this.dateTimePickerЕСА.Size = new System.Drawing.Size(179, 22);
             this.dateTimePickerЕСА.TabIndex = 18;
@@ -388,7 +388,7 @@ namespace RM_2._0_old
             // 
             this.comboBoxКаналЕСА.FormattingEnabled = true;
             this.comboBoxКаналЕСА.Location = new System.Drawing.Point(4, 76);
-            this.comboBoxКаналЕСА.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBoxКаналЕСА.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxКаналЕСА.Name = "comboBoxКаналЕСА";
             this.comboBoxКаналЕСА.Size = new System.Drawing.Size(221, 24);
             this.comboBoxКаналЕСА.TabIndex = 18;
@@ -396,7 +396,7 @@ namespace RM_2._0_old
             // textBoxВыполненныеДействияЕСА
             // 
             this.textBoxВыполненныеДействияЕСА.Location = new System.Drawing.Point(7, 273);
-            this.textBoxВыполненныеДействияЕСА.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxВыполненныеДействияЕСА.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxВыполненныеДействияЕСА.Multiline = true;
             this.textBoxВыполненныеДействияЕСА.Name = "textBoxВыполненныеДействияЕСА";
             this.textBoxВыполненныеДействияЕСА.Size = new System.Drawing.Size(340, 62);
@@ -415,7 +415,7 @@ namespace RM_2._0_old
             // 
             this.comboBoxАктивностьЕСА.FormattingEnabled = true;
             this.comboBoxАктивностьЕСА.Location = new System.Drawing.Point(4, 26);
-            this.comboBoxАктивностьЕСА.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBoxАктивностьЕСА.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxАктивностьЕСА.Name = "comboBoxАктивностьЕСА";
             this.comboBoxАктивностьЕСА.Size = new System.Drawing.Size(221, 24);
             this.comboBoxАктивностьЕСА.TabIndex = 9;
@@ -455,7 +455,7 @@ namespace RM_2._0_old
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.ClientSize = new System.Drawing.Size(423, 527);
+            this.ClientSize = new System.Drawing.Size(423, 554);
             this.Controls.Add(this.panelЕСА);
             this.Controls.Add(this.panelЦСС);
             this.Controls.Add(this.labelПроекты);
@@ -463,7 +463,7 @@ namespace RM_2._0_old
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Новая";
             this.Text = "Новая задача";
             this.Load += new System.EventHandler(this.Новая_Load);
