@@ -124,13 +124,20 @@ namespace RM_2._0_old
         {
             this.Close();
         }
-
         private void сохранитьToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
-
-
-
+            NameValueCollection parameter = new NameValueCollection();
+            RedmineManager manager = new RedmineManager(host, login, password);
+            parameter.Add("issue_id", id);
+            var issue = manager.GetObject<Issue>(id, null);
+            issue.Status = new IdentifiableName() { Id = ComboBoxStatus.SelectedIndex+1 };
+            issue.Priority = new IdentifiableName { Id = ComboBoxPriority.SelectedIndex+1 };
+            issue.Subject = tema.Text;
+            issue.Description = opisanie.Text;
+            issue.DueDate = DateDue.Value;
+            manager.UpdateObject(id, issue);
+            var updatedIssue = manager.GetObject<Issue>(id, null);
+            MessageBox.Show("Обновлена задача "+ updatedIssue.Id);
         }
     }
 }

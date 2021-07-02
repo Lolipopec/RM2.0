@@ -18,6 +18,7 @@ namespace RM_2._0_old
     {
         public string id;
         public string login = "";
+        int[] mas = new int[0];
         public TimeEntry CurTimeEntry { get; set; }
         public string password = "";
         public string host = "http://testred.ru";
@@ -30,7 +31,6 @@ namespace RM_2._0_old
             this.password = pass;
             fill();
             m = new Menu(login, password);
-
         }
         public void fill()
         {
@@ -43,6 +43,9 @@ namespace RM_2._0_old
             int i = 0;
             foreach (var issue in CurTimeEntr)
             {
+                Array.Resize(ref mas,mas.Length+1);
+                mas[i] = issue.Id;
+                Debug.WriteLine("issue.Id" + issue.Id);
                 DataGridViewTimeEntries.Rows.Add();
                 DataGridViewTimeEntries.Rows[i].Cells[0].Value = Convert.ToDateTime(issue.SpentOn).ToShortDateString();
                 DataGridViewTimeEntries.Rows[i].Cells[1].Value = issue.User.Name;
@@ -59,7 +62,7 @@ namespace RM_2._0_old
             User user = manager.GetCurrentUser();
             CurTimeEntry = new TimeEntry();
             CurTimeEntry.Issue = new IdentifiableName() { Id = Convert.ToInt32(id) };
-            CurTimeEntry.SpentOn = DateTime.Now;
+            CurTimeEntry.SpentOn = dateTimePicker.Value;
             CurTimeEntry.User = new IdentifiableName() { Id = user.Id };
             CurTimeEntry.Hours = decimal.Parse(textBoxЗатраченноеВремя.Text);
             CurTimeEntry.Comments = textBoxВыполненныеДействия.Text;
@@ -73,41 +76,30 @@ namespace RM_2._0_old
             try
             {
                 button1.Visible = false;
-                NameValueCollection parameter = new NameValueCollection();
                 RedmineManager manager = new RedmineManager(host, login, password);
-                parameter.Add("issue_id", id);
-                decimal H = decimal.Parse(DataGridViewTimeEntries[3, DataGridViewTimeEntries.CurrentCell.RowIndex].Value.ToString());
-                User user = manager.GetCurrentUser();
-                manager.ImpersonateUser = login;
-                //Debug.WriteLine(user.FirstName);
-                parameter.Add("comments", DataGridViewTimeEntries[2, DataGridViewTimeEntries.CurrentCell.RowIndex].Value.ToString());
-                parameter.Add("hours", DataGridViewTimeEntries[3, DataGridViewTimeEntries.CurrentCell.RowIndex].Value.ToString().Replace(",", "."));
-                parameter.Add("user_id", user.Id.ToString());
-                //parameter.Add("created_on", DataGridViewTimeEntries[1, DataGridViewTimeEntries.CurrentCell.RowIndex].Value.ToString());
-                Debug.WriteLine(id.ToString());
-                var CurTimeEntr = manager.GetTotalObjectList<TimeEntry>(parameter);
-                int CTEid = 0;
-                CurTimeEntry = new TimeEntry();
-                foreach (var issue in CurTimeEntr)
+                NameValueCollection parameter = new NameValueCollection();
+                var CurTimeEntr = manager.GetObject<TimeEntry>(mas[DataGridViewTimeEntries.CurrentCell.RowIndex].ToString(), parameter);
+                try
                 {
-                    CurTimeEntry = issue;
-                    Debug.WriteLine(issue.Hours);
+                    manager.DeleteObject<TimeEntry>(CurTimeEntr.Id.ToString(), null);
                 }
-                Debug.WriteLine(CurTimeEntry.Id);
-                var CurTimeEntr2 = new TimeEntry();
-
-                CurTimeEntry.SpentOn = DateTime.Parse(dateTimePicker.Value.ToString("yyyy-MM-dd"));
-                CurTimeEntry.Hours = 1;
-                CurTimeEntry.Id = 44;
-                CurTimeEntry.Comments = textBoxВыполненныеДействия.Text;
-                CurTimeEntr2.Comments = textBoxВыполненныеДействия.Text;
-                CurTimeEntry.Issue = new IdentifiableName() { Id = 112 };
-                CurTimeEntry.User = new IdentifiableName() { Id = user.Id };
-                CurTimeEntry.Activity = new IdentifiableName() { Id = 10 };
-
-               // manager.UpdateObject(CurTimeEntry.Id.ToString(), CurTimeEntr2);
-
-                manager.UpdateObject(CurTimeEntry.Id.ToString(), CurTimeEntry);
+                catch (RedmineException rex)
+                {
+                    MessageBox.Show("Ошибка " + rex.Message);
+                }
+                CurTimeEntr.SpentOn = dateTimePicker.Value;
+                CurTimeEntr.Hours = decimal.Parse(textBoxЗатраченноеВремя.Text);
+                CurTimeEntr.Comments = textBoxВыполненныеДействия.Text;
+                try
+                {
+                    manager.CreateObject<TimeEntry>(CurTimeEntr);
+                    MessageBox.Show("Уcпешно");
+                }
+                catch (RedmineException rex)
+                {
+                    MessageBox.Show("Ошибка " + rex.Message);
+                }
+                fill();
                 m.ttime();
             }
             catch (Exception c)
@@ -118,13 +110,23 @@ namespace RM_2._0_old
         private void изменитьToolStripMenuItem_Click(object sender, EventArgs e)
         {
             button1.Visible = true;
-
-
         }
         private void удалитьToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
-
+            RedmineManager manager = new RedmineManager(host, login, password);
+            NameValueCollection parameter = new NameValueCollection();
+            var CurTimeEntr = manager.GetObject<TimeEntry>(mas[DataGridViewTimeEntries.CurrentCell.RowIndex].ToString(),parameter);
+            try
+            {
+                manager.DeleteObject<TimeEntry>(CurTimeEntr.Id.ToString(), null);
+                MessageBox.Show("Уcпешно");
+            }
+            catch (RedmineException rex)
+            {
+                MessageBox.Show("Ошибка " +rex.Message);
+            }
+            fill();
+            m.ttime();
         }
     }
 }
