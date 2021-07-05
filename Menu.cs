@@ -214,50 +214,51 @@ namespace RM_2._0_old
             try
             {
                 this.Hide();
-            Авторизация f = new Авторизация();
-            f.Show();
+                Авторизация f = new Авторизация();
+                f.Show();
             }
             catch { MessageBox.Show("Ошибка"); }
         }
         private void RefReshFill()
         {
-            try {
-            ttime();
-
-
-
-
-            dataGridView1.Rows.Clear();
-            //наполнение datagrid
-            NameValueCollection parameterref1 = new NameValueCollection();
-            if (mezad == true)
+            try
             {
-                parameterref1.Add("assigned_to_id", currentUser.Id.ToString());
+                ttime();
 
-            }
-            if (statusId == 0)
-                parameterref1.Add("status_id", "*");
-            else
-                parameterref1.Add("status_id", statusId.ToString());
-            if (priorID == 0)
-                parameterref1.Add("priority", "*");
-            else
-                parameterref1.Add("priority_id", priorID.ToString());
-            if (projectId == 0)
-                parameterref1.Add("project", "*");
-            else
-                parameterref1.Add("project_id", projectId.ToString());
-            RedmineManager manager = new RedmineManager(host, login, password);
-            int i = 0;
-            foreach (var issue in manager.GetTotalObjectList<Issue>(parameterref1))
-            {
-                dataGridView1.Rows.Add();
-                dataGridView1.Rows[i].Cells[0].Value = issue.Id;
-                dataGridView1.Rows[i].Cells[1].Value = issue.Subject;
-                dataGridView1.Rows[i].Cells[2].Value = issue.Status.Name;
-                dataGridView1.Rows[i].Cells[3].Value = issue.Priority.Name;
-                i++;
-            }
+
+
+
+                dataGridView1.Rows.Clear();
+                //наполнение datagrid
+                NameValueCollection parameterref1 = new NameValueCollection();
+                if (mezad == true)
+                {
+                    parameterref1.Add("assigned_to_id", currentUser.Id.ToString());
+
+                }
+                if (statusId == 0)
+                    parameterref1.Add("status_id", "open");
+                else
+                    parameterref1.Add("status_id", statusId.ToString());
+                if (priorID == 0)
+                    parameterref1.Add("priority", "*");
+                else
+                    parameterref1.Add("priority_id", priorID.ToString());
+                if (projectId == 0)
+                    parameterref1.Add("project", "*");
+                else
+                    parameterref1.Add("project_id", projectId.ToString());
+                RedmineManager manager = new RedmineManager(host, login, password);
+                int i = 0;
+                foreach (var issue in manager.GetTotalObjectList<Issue>(parameterref1))
+                {
+                    dataGridView1.Rows.Add();
+                    dataGridView1.Rows[i].Cells[0].Value = issue.Id;
+                    dataGridView1.Rows[i].Cells[1].Value = issue.Subject;
+                    dataGridView1.Rows[i].Cells[2].Value = issue.Status.Name;
+                    dataGridView1.Rows[i].Cells[3].Value = issue.Priority.Name;
+                    i++;
+                }
             }
             catch { MessageBox.Show("Ошибка"); }
         }
@@ -271,12 +272,8 @@ namespace RM_2._0_old
         }
         private void userToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            try
-            {
-                RefReshFill();
-            }
-            catch { MessageBox.Show("Ошибка"); }
-}
+
+        }
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
@@ -312,66 +309,110 @@ namespace RM_2._0_old
         /// <param name="e"></param>
         private void SearchBtn_Click(object sender, EventArgs e)
         {
-            try {
-            //id = 0 - номер задачи; 1 - номер ЛРП фыв
-            dataGridView1.Rows.Clear();
-            if (domainUpDown1.SelectedIndex == 0)
+            try
             {
-
-                try
+                //id = 0 - номер задачи; 1 - номер ЛРП фыв
+                dataGridView1.Rows.Clear();
+                if (domainUpDown1.SelectedIndex == 0)
                 {
-                    NameValueCollection parameterref2 = new NameValueCollection();
-                    parameterref2.Add("issue_id", SearchTxt.Text);
-                    RedmineManager manager = new RedmineManager(host, login, password);
-                    int i = 0;
-                    foreach (var issue in manager.GetTotalObjectList<Issue>(parameterref2))
+
+                    try
                     {
-                        dataGridView1.Rows.Add();
-                        dataGridView1.Rows[i].Cells[0].Value = issue.Id;
-                        dataGridView1.Rows[i].Cells[1].Value = issue.Subject;
-                        dataGridView1.Rows[i].Cells[2].Value = issue.Status.Name;
-                        dataGridView1.Rows[i].Cells[3].Value = issue.Priority.Name;
-                        i++;
+                        NameValueCollection parameterref2 = new NameValueCollection();
+                        parameterref2.Add("issue_id", SearchTxt.Text);
+                        RedmineManager manager = new RedmineManager(host, login, password);
+                        int i = 0;
+                        foreach (var issue in manager.GetTotalObjectList<Issue>(parameterref2))
+                        {
+                            dataGridView1.Rows.Add();
+                            dataGridView1.Rows[i].Cells[0].Value = issue.Id;
+                            dataGridView1.Rows[i].Cells[1].Value = issue.Subject;
+                            dataGridView1.Rows[i].Cells[2].Value = issue.Status.Name;
+                            dataGridView1.Rows[i].Cells[3].Value = issue.Priority.Name;
+                            i++;
+                        }
+                    }
+                    catch
+                    {
+
                     }
                 }
-                catch
+                else if (domainUpDown1.SelectedIndex == 1)
                 {
+                    //тут нужен двойной поиск (1 - в теме, 2 - в описании)
 
+                    try
+                    {
+                        NameValueCollection parameterref2 = new NameValueCollection();
+                        RedmineManager manager = new RedmineManager(host, login, password);
+                        parameterref2.Add("subject", "~" + SearchTxt.Text);
+                        var Search = manager.GetTotalObjectList<Issue>(parameterref2);
+
+                        int i = 0;
+                        foreach (var issue in Search)
+                        {
+                            dataGridView1.Rows.Add();
+                            dataGridView1.Rows[i].Cells[0].Value = issue.Id;
+                            dataGridView1.Rows[i].Cells[1].Value = issue.Subject;
+                            dataGridView1.Rows[i].Cells[2].Value = issue.Status.Name;
+                            dataGridView1.Rows[i].Cells[3].Value = issue.Priority.Name;
+                            i++;
+                        }
+                        if (dataGridView1.RowCount > 0)
+                        {
+                            return;
+                        }
+                        else
+                        {
+                            NameValueCollection parameterref3 = new NameValueCollection();
+                            RedmineManager manager1 = new RedmineManager(host, login, password);
+                            parameterref3.Add("description", "~" + SearchTxt.Text);
+                            var Search2 = manager1.GetTotalObjectList<Issue>(parameterref3);
+
+                            i = 0;
+                            foreach (var issue in Search2)
+                            {
+                                dataGridView1.Rows.Add();
+                                dataGridView1.Rows[i].Cells[0].Value = issue.Id;
+                                dataGridView1.Rows[i].Cells[1].Value = issue.Subject;
+                                dataGridView1.Rows[i].Cells[2].Value = issue.Status.Name;
+                                dataGridView1.Rows[i].Cells[3].Value = issue.Priority.Name;
+                                i++;
+                            }
+                        }
+                    }
+                    catch
+                    {
+
+                    }
                 }
-            }
-            else if (domainUpDown1.SelectedIndex == 1)
-            {
-                //тут нужен двойной поиск (1 - в теме, 2 - в описании)
-
-                try
+                else if (domainUpDown1.SelectedIndex == 2)
                 {
-                    NameValueCollection parameterref2 = new NameValueCollection();
-                    RedmineManager manager = new RedmineManager(host, login, password);
-                    parameterref2.Add("subject", "~" + SearchTxt.Text);
-                    var Search = manager.GetTotalObjectList<Issue>(parameterref2);
+                    try
+                    {
+                        RedmineManager manager = new RedmineManager(host, login, password);
+                        NameValueCollection pr = new NameValueCollection();
+                        pr.Add("login", login);
+                        User uss = manager.GetCurrentUser();
+                        NameValueCollection parameterref2 = new NameValueCollection(); // для поиска по теме
+                        NameValueCollection parameterref3 = new NameValueCollection(); // для поиска по описанию
+                        parameterref2.Add("subject", "~" + "Затраченное время " + uss.FirstName); //параметр по теме*
+                        parameterref3.Add("description", "~" + "Затраченное время"); // параметр по описанию*
+                        parameterref3.Add("start_date", DateTime.Now.Year.ToString("yyyy-MM-dd")); //параметр по дате*
+                        var Search = manager.GetTotalObjectList<Issue>(parameterref2);
+                        var Search2 = manager.GetTotalObjectList<Issue>(parameterref3);
 
-                    int i = 0;
-                    foreach (var issue in Search)
-                    {
-                        dataGridView1.Rows.Add();
-                        dataGridView1.Rows[i].Cells[0].Value = issue.Id;
-                        dataGridView1.Rows[i].Cells[1].Value = issue.Subject;
-                        dataGridView1.Rows[i].Cells[2].Value = issue.Status.Name;
-                        dataGridView1.Rows[i].Cells[3].Value = issue.Priority.Name;
-                        i++;
-                    }
-                    if (dataGridView1.RowCount > 0)
-                    {
-                        return;
-                    }
-                    else
-                    {
-                        NameValueCollection parameterref3 = new NameValueCollection();
-                        RedmineManager manager1 = new RedmineManager(host, login, password);
-                        parameterref3.Add("description", "~" + SearchTxt.Text);
-                        var Search2 = manager1.GetTotalObjectList<Issue>(parameterref3);
+                        int i = 0;
+                        foreach (var issue in Search)
+                        {
+                            dataGridView1.Rows.Add();
+                            dataGridView1.Rows[i].Cells[0].Value = issue.Id;
+                            dataGridView1.Rows[i].Cells[1].Value = issue.Subject;
+                            dataGridView1.Rows[i].Cells[2].Value = issue.Status.Name;
+                            dataGridView1.Rows[i].Cells[3].Value = issue.Priority.Name;
+                            i++;
+                        }
 
-                        i = 0;
                         foreach (var issue in Search2)
                         {
                             dataGridView1.Rows.Add();
@@ -382,53 +423,10 @@ namespace RM_2._0_old
                             i++;
                         }
                     }
-                }
-                catch
-                {
-
-                }
-            }
-            else if (domainUpDown1.SelectedIndex == 2)
-            {
-                try
-                {
-                    RedmineManager manager = new RedmineManager(host, login, password);
-                    NameValueCollection pr = new NameValueCollection();
-                    pr.Add("login", login);
-                    User uss = manager.GetCurrentUser();
-                    NameValueCollection parameterref2 = new NameValueCollection(); // для поиска по теме
-                    NameValueCollection parameterref3 = new NameValueCollection(); // для поиска по описанию
-                    parameterref2.Add("subject", "~" + "Затраченное время " + uss.FirstName); //параметр по теме*
-                    parameterref3.Add("description", "~" + "Затраченное время"); // параметр по описанию*
-                    parameterref3.Add("start_date", DateTime.Now.Year.ToString("yyyy-MM-dd")); //параметр по дате*
-                    var Search = manager.GetTotalObjectList<Issue>(parameterref2);
-                    var Search2 = manager.GetTotalObjectList<Issue>(parameterref3);
-
-                    int i = 0;
-                    foreach (var issue in Search)
+                    catch
                     {
-                        dataGridView1.Rows.Add();
-                        dataGridView1.Rows[i].Cells[0].Value = issue.Id;
-                        dataGridView1.Rows[i].Cells[1].Value = issue.Subject;
-                        dataGridView1.Rows[i].Cells[2].Value = issue.Status.Name;
-                        dataGridView1.Rows[i].Cells[3].Value = issue.Priority.Name;
-                        i++;
-                    }
-
-                    foreach (var issue in Search2)
-                    {
-                        dataGridView1.Rows.Add();
-                        dataGridView1.Rows[i].Cells[0].Value = issue.Id;
-                        dataGridView1.Rows[i].Cells[1].Value = issue.Subject;
-                        dataGridView1.Rows[i].Cells[2].Value = issue.Status.Name;
-                        dataGridView1.Rows[i].Cells[3].Value = issue.Priority.Name;
-                        i++;
                     }
                 }
-                catch
-                {
-                }
-            }
             }
             catch { MessageBox.Show("Ошибка"); }
         }
@@ -444,9 +442,10 @@ namespace RM_2._0_old
         }
         private void checkForME_CheckedChanged(object sender, EventArgs e)
         {
-            try {
-            mezad = !mezad;
-            RefReshFill();
+            try
+            {
+                mezad = !mezad;
+                RefReshFill();
             }
             catch { MessageBox.Show("Ошибка"); }
         }
@@ -461,24 +460,47 @@ namespace RM_2._0_old
                 ttime();
             }
             catch { MessageBox.Show("Ошибка"); }
-}
+        }
         public void ttime()
         {
-            try {
-            textBox1.Text = "0";
-            decimal tim = 0;
-            RedmineManager manager = new RedmineManager(host, login, password);
-            NameValueCollection param = new NameValueCollection();
-            param.Add("spent_on", dateTimePicker1.Value.ToString("yyyy-MM-dd"));
-            param.Add("user_id", currentUser.Id.ToString());
-            var oftime = manager.GetTotalObjectList<TimeEntry>(param);
-            foreach (var c in oftime)
+            try
             {
-                tim += c.Hours;
-            }
-            textBox1.Text = tim.ToString();
+                textBox1.Text = "0";
+                decimal tim = 0;
+                RedmineManager manager = new RedmineManager(host, login, password);
+                NameValueCollection param = new NameValueCollection();
+                param.Add("spent_on", dateTimePicker1.Value.ToString("yyyy-MM-dd"));
+                param.Add("user_id", currentUser.Id.ToString());
+                var oftime = manager.GetTotalObjectList<TimeEntry>(param);
+                foreach (var c in oftime)
+                {
+                    tim += c.Hours;
+                }
+                textBox1.Text = tim.ToString();
             }
             catch { MessageBox.Show("Ошибка"); }
+        }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start(@"Resources\Модули.txt");
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Новая n = new Новая(login, password);
+            n.Show();
+            this.Hide();
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            ttime();
         }
     }
 }

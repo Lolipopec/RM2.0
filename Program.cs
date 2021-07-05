@@ -16,7 +16,6 @@ namespace RM_2._0_old
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new Новая("",""));
             Application.Run(new Авторизация());
         }
     }

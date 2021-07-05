@@ -138,5 +138,8 @@
   <ItemGroup>
     <None Include="Resources\imgonline-com-ua-Transparent-backgr-18UTq8wTOXKduBd-removebg-preview.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Модули.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

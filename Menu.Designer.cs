@@ -39,7 +39,6 @@ namespace RM_2._0_old
             this.comboProject = new System.Windows.Forms.ComboBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.новаяToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.userToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.выйтиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.labelProject = new System.Windows.Forms.Label();
@@ -59,6 +58,8 @@ namespace RM_2._0_old
             this.TimeNowTXT = new System.Windows.Forms.Label();
             this.checkForME = new System.Windows.Forms.CheckBox();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SearchDop.SuspendLayout();
@@ -76,7 +77,7 @@ namespace RM_2._0_old
             this.Status,
             this.Prior});
             this.dataGridView1.Location = new System.Drawing.Point(9, 105);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
@@ -132,7 +133,7 @@ namespace RM_2._0_old
             this.comboProject.Items.AddRange(new object[] {
             "Все проекты"});
             this.comboProject.Location = new System.Drawing.Point(153, 44);
-            this.comboProject.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comboProject.Margin = new System.Windows.Forms.Padding(2);
             this.comboProject.Name = "comboProject";
             this.comboProject.Size = new System.Drawing.Size(197, 21);
             this.comboProject.TabIndex = 2;
@@ -142,37 +143,34 @@ namespace RM_2._0_old
             // dateTimePicker1
             // 
             this.dateTimePicker1.Location = new System.Drawing.Point(485, 52);
-            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(2);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(116, 20);
             this.dateTimePicker1.TabIndex = 3;
             this.dateTimePicker1.Value = new System.DateTime(2021, 6, 24, 23, 33, 46, 0);
+            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
             // menuStrip1
             // 
             this.menuStrip1.BackColor = System.Drawing.Color.Transparent;
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.новаяToolStripMenuItem,
-            this.userToolStripMenuItem,
-            this.выйтиToolStripMenuItem});
+            this.toolStripMenuItem1,
+            this.toolStripMenuItem2,
+            this.выйтиToolStripMenuItem,
+            this.userToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
             this.menuStrip1.Size = new System.Drawing.Size(610, 24);
             this.menuStrip1.TabIndex = 4;
             this.menuStrip1.Text = "menuStrip1";
-            // 
-            // новаяToolStripMenuItem
-            // 
-            this.новаяToolStripMenuItem.Name = "новаяToolStripMenuItem";
-            this.новаяToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
-            this.новаяToolStripMenuItem.Text = "Новая";
-            this.новаяToolStripMenuItem.Click += new System.EventHandler(this.новаяToolStripMenuItem_Click);
+            this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
             // 
             // userToolStripMenuItem
             // 
-            this.userToolStripMenuItem.Margin = new System.Windows.Forms.Padding(420, 0, 0, 0);
+            this.userToolStripMenuItem.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.userToolStripMenuItem.Margin = new System.Windows.Forms.Padding(350, 0, 0, 0);
             this.userToolStripMenuItem.Name = "userToolStripMenuItem";
             this.userToolStripMenuItem.Size = new System.Drawing.Size(25, 20);
             this.userToolStripMenuItem.Text = "1";
@@ -203,7 +201,7 @@ namespace RM_2._0_old
             this.comboStatus.Items.AddRange(new object[] {
             "Все статусы"});
             this.comboStatus.Location = new System.Drawing.Point(9, 82);
-            this.comboStatus.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comboStatus.Margin = new System.Windows.Forms.Padding(2);
             this.comboStatus.Name = "comboStatus";
             this.comboStatus.Size = new System.Drawing.Size(127, 21);
             this.comboStatus.TabIndex = 6;
@@ -226,7 +224,7 @@ namespace RM_2._0_old
             this.comboPrior.Items.AddRange(new object[] {
             "Все приоритеты"});
             this.comboPrior.Location = new System.Drawing.Point(9, 44);
-            this.comboPrior.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comboPrior.Margin = new System.Windows.Forms.Padding(2);
             this.comboPrior.Name = "comboPrior";
             this.comboPrior.Size = new System.Drawing.Size(127, 21);
             this.comboPrior.TabIndex = 6;
@@ -251,7 +249,7 @@ namespace RM_2._0_old
             // 
             this.textBox1.BackColor = System.Drawing.SystemColors.Window;
             this.textBox1.Location = new System.Drawing.Point(9, 302);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(2);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(47, 20);
             this.textBox1.TabIndex = 8;
@@ -274,9 +272,9 @@ namespace RM_2._0_old
             this.SearchDop.Controls.Add(this.SearchTxt);
             this.SearchDop.Controls.Add(this.label4);
             this.SearchDop.Location = new System.Drawing.Point(433, 105);
-            this.SearchDop.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SearchDop.Margin = new System.Windows.Forms.Padding(2);
             this.SearchDop.Name = "SearchDop";
-            this.SearchDop.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SearchDop.Padding = new System.Windows.Forms.Padding(2);
             this.SearchDop.Size = new System.Drawing.Size(168, 123);
             this.SearchDop.TabIndex = 10;
             this.SearchDop.TabStop = false;
@@ -285,7 +283,7 @@ namespace RM_2._0_old
             // SearchBtn
             // 
             this.SearchBtn.Location = new System.Drawing.Point(7, 102);
-            this.SearchBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SearchBtn.Margin = new System.Windows.Forms.Padding(2);
             this.SearchBtn.Name = "SearchBtn";
             this.SearchBtn.Size = new System.Drawing.Size(157, 19);
             this.SearchBtn.TabIndex = 12;
@@ -299,7 +297,7 @@ namespace RM_2._0_old
             this.domainUpDown1.Items.Add("Поиск по номеру ЛРП");
             this.domainUpDown1.Items.Add("Задачи по списанию времени");
             this.domainUpDown1.Location = new System.Drawing.Point(7, 41);
-            this.domainUpDown1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.domainUpDown1.Margin = new System.Windows.Forms.Padding(2);
             this.domainUpDown1.Name = "domainUpDown1";
             this.domainUpDown1.Size = new System.Drawing.Size(157, 20);
             this.domainUpDown1.TabIndex = 12;
@@ -318,7 +316,7 @@ namespace RM_2._0_old
             // SearchTxt
             // 
             this.SearchTxt.Location = new System.Drawing.Point(7, 80);
-            this.SearchTxt.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SearchTxt.Margin = new System.Windows.Forms.Padding(2);
             this.SearchTxt.Name = "SearchTxt";
             this.SearchTxt.Size = new System.Drawing.Size(158, 20);
             this.SearchTxt.TabIndex = 12;
@@ -350,7 +348,7 @@ namespace RM_2._0_old
             // 
             this.checkForME.AutoSize = true;
             this.checkForME.Location = new System.Drawing.Point(155, 82);
-            this.checkForME.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkForME.Margin = new System.Windows.Forms.Padding(2);
             this.checkForME.Name = "checkForME";
             this.checkForME.Size = new System.Drawing.Size(106, 17);
             this.checkForME.TabIndex = 12;
@@ -361,6 +359,20 @@ namespace RM_2._0_old
             // timer2
             // 
             this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(53, 20);
+            this.toolStripMenuItem1.Text = "Новая";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(63, 20);
+            this.toolStripMenuItem2.Text = "Модули";
+            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
             // 
             // Menu
             // 
@@ -384,7 +396,7 @@ namespace RM_2._0_old
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximumSize = new System.Drawing.Size(626, 370);
             this.MinimumSize = new System.Drawing.Size(626, 370);
             this.Name = "Menu";
@@ -411,7 +423,6 @@ namespace RM_2._0_old
         private System.Windows.Forms.ComboBox comboProject;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem новаяToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem userToolStripMenuItem;
         private System.Windows.Forms.Label labelProject;
         private System.Windows.Forms.ComboBox comboStatus;
@@ -431,5 +442,7 @@ namespace RM_2._0_old
         private System.Windows.Forms.Button SearchBtn;
         private System.Windows.Forms.CheckBox checkForME;
         private System.Windows.Forms.Timer timer2;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
     }
 }
